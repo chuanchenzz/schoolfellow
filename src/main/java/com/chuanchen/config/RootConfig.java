@@ -7,6 +7,6 @@ import org.springframework.context.annotation.Configuration;
  * Created by chuanchen-pc on 2017/2/28.
  */
 @Configuration
-@ComponentScan
+@ComponentScan(basePackages = "com.chuanchen")
 public class RootConfig {
 }
