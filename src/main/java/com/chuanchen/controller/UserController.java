@@ -2,6 +2,7 @@ package com.chuanchen.controller;
 
 import com.chuanchen.entity.Alumnus;
 import com.chuanchen.entity.JsonResult;
+import com.chuanchen.entity.Sex;
 import com.chuanchen.entity.User;
 import com.chuanchen.service.UserService;
 import com.chuanchen.util.CommonUtil;
@@ -22,7 +23,7 @@ import java.util.Date;
  */
 @Controller
 @RequestMapping("/user")
-@SessionAttributes(value = {"alumnus", "user"})
+@SessionAttributes(value = {"user"})
 public class UserController {
     @Autowired
     UserService userService;
@@ -40,18 +41,10 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/checkaccount", method = RequestMethod.POST)
     public JsonResult checkAccount(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "student_number") String studentNumber, @RequestParam(value = "start_age") String entryAge, Model model, HttpSession session) {
-        if(session.getAttribute("alumnus") != null){
-            session.removeAttribute("alumnus");
-        }
         if(session.getAttribute("user") != null){
             session.removeAttribute("user");
         }
         Date date = CommonUtil.strToDate(entryAge);
-        Alumnus alumnus = new Alumnus();
-        alumnus.setName(name);
-        alumnus.setStudentNumber(studentNumber);
-        alumnus.setEntranceAge(date);
-        model.addAttribute("alumnus", alumnus);
         JsonResult jsonResult = new JsonResult();
 //        if(userService.isAlumnusExist(name,studentNumber,date)){
 //            jsonResult.setStatusCode(500);
@@ -82,6 +75,30 @@ public class UserController {
         user.setPassword(password);
         model.addAttribute("user",user);
         jsonResult.setStatusCode(200);
+        return jsonResult;
+    }
+    @ResponseBody
+    @RequestMapping(value = "/register",method = RequestMethod.POST)
+    public JsonResult register(@RequestParam("name") String name,@RequestParam("sex") String sex,@RequestParam("nation") String nation,
+                                @RequestParam("identity") String identity,@RequestParam("idCard") String idCard,@RequestParam("birthday") String birthday,
+                                @RequestParam("birthPlace") String birthPlace,@RequestParam("address") String address,@RequestParam("phone") String phone,
+                                @RequestParam("email") String email,@RequestParam("education") String education,@RequestParam("entranceAge") String entranceAge,
+                                @RequestParam("graduteAge") String graduteAge,@RequestParam("academic")String academic,@RequestParam("profession") String profession,
+                               @RequestParam("classs") String classs,@RequestParam("workAddress") String workAddress,@RequestParam("inductive") String inductive,
+                               @RequestParam("organization") String organization,@RequestParam("industry") String industry,@RequestParam("organizationNature") String organizationNature,
+                               @RequestParam("department") String department,@RequestParam("job") String job,HttpSession session,Model model){
+        Alumnus alumnus = new Alumnus();
+        alumnus.setName(name);
+        alumnus.setSex(Sex.sexStrToSex(sex));
+        alumnus.setNation(nation);
+        alumnus.setIdentity(identity);
+        alumnus.setIdCard(idCard);
+        JsonResult jsonResult = new JsonResult();
+        if(session.getAttribute("user") == null){
+            jsonResult.setStatusCode(500);
+            jsonResult.setMessage("发生错误,请重新注册!");
+        }
+        User user = (User) session.getAttribute("user");
         return jsonResult;
     }
 }

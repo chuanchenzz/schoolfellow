@@ -25,7 +25,7 @@ public class Alumnus {
     private String profession;
     private String classs;
     private String workAddress;
-    private String inductive;
+    private Date inductive;
     private String organization;
     private String industry;
     private String organizationNature;
@@ -177,11 +177,11 @@ public class Alumnus {
         this.workAddress = workAddress;
     }
 
-    public String getInductive() {
+    public Date getInductive() {
         return inductive;
     }
 
-    public void setInductive(String inductive) {
+    public void setInductive(Date inductive) {
         this.inductive = inductive;
     }
 

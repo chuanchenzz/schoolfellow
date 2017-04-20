@@ -36,20 +36,20 @@
                 <div class="right_menu">
                     <div id="centertitle"><div id="titlecontent">校友注册</div></div>
                         <div id="ulmenu">
-                        <div class="progress_box">
-                            <a class="active" href="#"><img src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
-                            <a class="inactive" href="#"><img src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
-                            <a class="inactive" href="#"><img src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
+                        <div class="progress_box" id="progress_box_1">
+                            <a class="active" href="#"><img id="1_step_1" src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
+                            <a class="inactive" href="#"><img id="1_step_2" src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
+                            <a class="inactive" href="#"><img id="1_step_3" src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
                         </div>
                         <div class="progress_box" id="progress_box_2" style="display:none">
-                            <a class="inactive" href="#"><img src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
-                            <a class="active" href="#"><img src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
-                            <a class="inactive" href="#"><img src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
+                            <a class="inactive" href="#"><img id="2_step_1" src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
+                            <a class="active" href="#"><img id="2_step_2" src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
+                            <a class="inactive" href="#"><img id="2_step_3" src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
                         </div>
                         <div class="progress_box" id="progress_box_3" style="display:none">
-                            <a class="inactive" href="#"><img src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
-                            <a class="inactive" href="#"><img src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
-                            <a class="active" href="#"><img src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
+                            <a class="inactive" href="#"><img id="3_step_1" src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
+                            <a class="inactive" href="#"><img id="3_step_2" src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
+                            <a class="active" href="#"><img id="3_step_3" src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
                         </div>
                     </div>
                 </div>
@@ -146,9 +146,7 @@
                         	<p>
                         	    <label>籍贯</label>
                         	    <select class="select-option" name="origin_province" id='origin_province'>
-                        	    <option value="">请选择</option><option value=1>北京市</option><option value=2>天津市</option><option value=3>上海市</option><option value=4>重庆市</option><option value=5>河北省</option><option value=6>山西省</option><option value=7>台湾省</option><option value=8>辽宁省</option><option value=9>吉林省</option><option value=10>黑龙江省</option><option value=11>江苏省</option><option value=12>浙江省</option><option value=13>安徽省</option><option value=14>福建省</option><option value=15>江西省</option><option value=16>山东省</option><option value=17>河南省</option><option value=18>湖北省</option><option value=19>湖南省</option><option value=20>广东省</option><option value=21>甘肃省</option><option value=22>四川省</option><option value=23>贵州省</option><option value=24>海南省</option><option value=25>云南省</option><option value=26>青海省</option><option value=27>陕西省</option><option value=28>广西壮族自治区</option><option value=29>西藏自治区</option><option value=30>宁夏回族自治区</option><option value=31>新疆维吾尔自治区</option><option value=32>内蒙古自治区</option><option value=33>澳门特别行政区</option><option value=34>香港特别行政区</option>										</select>
-                        	    <select style="margin-left: 6px;" class="select-option" id="origin_city" name="origin_city">
-                        	    <option selected="selected" value="">请选择</option>
+                        	    <option value="">请选择</option><option value=1>北京市</option><option value=2>天津市</option><option value=3>上海市</option><option value=4>重庆市</option><option value=5>河北省</option><option value=6>山西省</option><option value=7>台湾省</option><option value=8>辽宁省</option><option value=9>吉林省</option><option value=10>黑龙江省</option><option value=11>江苏省</option><option value=12>浙江省</option><option value=13>安徽省</option><option value=14>福建省</option><option value=15>江西省</option><option value=16>山东省</option><option value=17>河南省</option><option value=18>湖北省</option><option value=19>湖南省</option><option value=20>广东省</option><option value=21>甘肃省</option><option value=22>四川省</option><option value=23>贵州省</option><option value=24>海南省</option><option value=25>云南省</option><option value=26>青海省</option><option value=27>陕西省</option><option value=28>广西壮族自治区</option><option value=29>西藏自治区</option><option value=30>宁夏回族自治区</option><option value=31>新疆维吾尔自治区</option><option value=32>内蒙古自治区</option><option value=33>澳门特别行政区</option><option value=34>香港特别行政区</option>
                         	    </select>
                         	    <span class="warn-inline">* </span>
                         	</p>
@@ -156,18 +154,10 @@
                         	<p>
                         	    <label>所在城市</label>
                         	    <select class="select-option" name="current_province" id='current_province'>
-                        	    <option value="">请选择</option><option value=1>北京市</option><option value=2>天津市</option><option value=3>上海市</option><option value=4>重庆市</option><option value=5>河北省</option><option value=6>山西省</option><option value=7>台湾省</option><option value=8>辽宁省</option><option value=9>吉林省</option><option value=10>黑龙江省</option><option value=11>江苏省</option><option value=12>浙江省</option><option value=13>安徽省</option><option value=14>福建省</option><option value=15>江西省</option><option value=16>山东省</option><option value=17>河南省</option><option value=18>湖北省</option><option value=19>湖南省</option><option value=20>广东省</option><option value=21>甘肃省</option><option value=22>四川省</option><option value=23>贵州省</option><option value=24>海南省</option><option value=25>云南省</option><option value=26>青海省</option><option value=27>陕西省</option><option value=28>广西壮族自治区</option><option value=29>西藏自治区</option><option value=30>宁夏回族自治区</option><option value=31>新疆维吾尔自治区</option><option value=32>内蒙古自治区</option><option value=33>澳门特别行政区</option><option value=34>香港特别行政区</option>										</select>
-                        	    <select style="margin-left: 6px;" class="select-option" id="current_city" name="current_city">
-                        	    <option selected="selected" value="">请选择</option>
+                        	    <option value="">请选择</option><option value=1>北京市</option><option value=2>天津市</option><option value=3>上海市</option><option value=4>重庆市</option><option value=5>河北省</option><option value=6>山西省</option><option value=7>台湾省</option><option value=8>辽宁省</option><option value=9>吉林省</option><option value=10>黑龙江省</option><option value=11>江苏省</option><option value=12>浙江省</option><option value=13>安徽省</option><option value=14>福建省</option><option value=15>江西省</option><option value=16>山东省</option><option value=17>河南省</option><option value=18>湖北省</option><option value=19>湖南省</option><option value=20>广东省</option><option value=21>甘肃省</option><option value=22>四川省</option><option value=23>贵州省</option><option value=24>海南省</option><option value=25>云南省</option><option value=26>青海省</option><option value=27>陕西省</option><option value=28>广西壮族自治区</option><option value=29>西藏自治区</option><option value=30>宁夏回族自治区</option><option value=31>新疆维吾尔自治区</option><option value=32>内蒙古自治区</option><option value=33>澳门特别行政区</option><option value=34>香港特别行政区</option>
                         	    </select>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
-
-                        	<p>
-                        	    <label>详细地址</label>
-                        	    <input type="text" class="text-input input-length-50" name="user_address" id="user_address" />
-                        	</p>
-
                         	</div>
 
                         	<!--联系信息-->
@@ -201,7 +191,7 @@
                         	<div class="contlist" style="margin-left:200px;">
                         	<p>
                         	    <label>学历</label>
-                        	    <select name="edu_edulevelid" class="select-option" id=edu_edulevelid>
+                        	    <select name="edu_edulevelid" class="select-option" id="edu_edulevelid">
                         	    <option value=-1>请选择</option><option value=1>大专</option><option value=2>本科</option><option value=3>硕士</option><option value=4>博士</option>										</select>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
@@ -246,9 +236,7 @@
                         	<p>
                         	    <label>工作城市</label>
                         	    <select class="select-option" name="work_province" id="work_province">
-                        	    <option value="">请选择</option><option value=1>北京市</option><option value=2>天津市</option><option value=3>上海市</option><option value=4>重庆市</option><option value=5>河北省</option><option value=6>山西省</option><option value=7>台湾省</option><option value=8>辽宁省</option><option value=9>吉林省</option><option value=10>黑龙江省</option><option value=11>江苏省</option><option value=12>浙江省</option><option value=13>安徽省</option><option value=14>福建省</option><option value=15>江西省</option><option value=16>山东省</option><option value=17>河南省</option><option value=18>湖北省</option><option value=19>湖南省</option><option value=20>广东省</option><option value=21>甘肃省</option><option value=22>四川省</option><option value=23>贵州省</option><option value=24>海南省</option><option value=25>云南省</option><option value=26>青海省</option><option value=27>陕西省</option><option value=28>广西壮族自治区</option><option value=29>西藏自治区</option><option value=30>宁夏回族自治区</option><option value=31>新疆维吾尔自治区</option><option value=32>内蒙古自治区</option><option value=33>澳门特别行政区</option><option value=34>香港特别行政区</option>									  </select>
-                        	    <select style="margin-left: 6px;" class="select-option" id="work_city" name="work_city">
-                        	    <option selected="selected" value="">请选择</option>
+                        	    <option value="">请选择</option><option value=1>北京市</option><option value=2>天津市</option><option value=3>上海市</option><option value=4>重庆市</option><option value=5>河北省</option><option value=6>山西省</option><option value=7>台湾省</option><option value=8>辽宁省</option><option value=9>吉林省</option><option value=10>黑龙江省</option><option value=11>江苏省</option><option value=12>浙江省</option><option value=13>安徽省</option><option value=14>福建省</option><option value=15>江西省</option><option value=16>山东省</option><option value=17>河南省</option><option value=18>湖北省</option><option value=19>湖南省</option><option value=20>广东省</option><option value=21>甘肃省</option><option value=22>四川省</option><option value=23>贵州省</option><option value=24>海南省</option><option value=25>云南省</option><option value=26>青海省</option><option value=27>陕西省</option><option value=28>广西壮族自治区</option><option value=29>西藏自治区</option><option value=30>宁夏回族自治区</option><option value=31>新疆维吾尔自治区</option><option value=32>内蒙古自治区</option><option value=33>澳门特别行政区</option><option value=34>香港特别行政区</option>
                         	    </select>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
