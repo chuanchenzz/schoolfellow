@@ -1,0 +1,178 @@
+/*
+ *create time 2017/4/19
+ *author chuanchen
+ */
+body{
+    font-size:14px;
+    font-family:Microsoft Yahei,Arial;
+}
+*{
+    margin:0;
+    padding:0;
+    outline:none;
+}
+div{
+    display:block;
+}
+#header.headerBox{
+    border-bottom:4px #c72730 solid;
+}
+#header{
+	width:100%;
+	background:#efefef;
+	height:130px;
+}
+#header .content{
+	width:1100px;
+	margin:0 auto;
+	height:130px;
+	overflow:hidden;
+	position:relative;
+}
+#header .content .logo{
+	margin-top:25px;
+}
+#header .content .logo a{
+	display:inline-block;
+}
+#header .content .logo img .logoline{
+	position:absolute;
+	top:42px;
+	left:354px;
+}
+#header .content .logo img .logoxy{
+	position:absolute;
+	top:42px;
+	left:25px;
+	width:240px;
+}
+#header .content .nav{
+	width:750px;
+	position:absolute;
+	top:74px;
+	right:8px;
+	text-align:right;
+	height:30px;
+}
+#header .content .nav a{
+	font-size:18px;
+	color:#221815;
+	display:inline-block;
+	margin-right:40px;
+	height:30px;
+	vertical-align:top;
+	text-decoration:none;
+}
+#header .content .nav a .last{
+	margin-right:0px;
+}
+#header .content .nav a:hover{
+	font-weight:bold;
+	color:#c72a2f;
+	border-bottom:2px solid #c72a2f;
+}
+#header .content .nav a:active{
+	font-weight:bold;
+	color:#c72a2f;
+	border-bottom:2px solid #c72a2f;
+}
+#mainBox{
+    padding-bottom:100px;
+    width:1100px;
+    margin:0 auto;
+}
+#mainBox #mypage .useredit_center{
+    margin-top:100px;
+    margin-left:auto;
+    margin-right:auto;
+    width:1100px;
+}
+#mainBox #mypage .useredit_center .right_menu{
+    width:1100px;
+    margin:0 auto;
+    height:33px;
+}
+#mainBox #mypage .useredit_center .right_menu #centertitle{
+    width:1100px;
+    margin-left:auto;
+    margin:right:auto;
+    margin-top:100px;
+    height:60px;
+    font-size:24px;
+    color:#c72730;
+    font-weight:bold;
+    text-align:center;
+}
+#mainBox #mypage .useredit_center .right_menu #titlecontent{
+    margin-left:20px;
+}
+#mainBox #mypage .useredit_center .right_menu #ulmenu{
+    margin-top:10px;
+    margin-left:auto;
+    margin-right:auto;
+    width:1100px;
+    height:33px;
+    border-bottom:1px solid #efefef;
+}
+#mypage .progress_box{
+    text-align:center;
+    width:450px;
+    margin:0 auto;
+    height:33px;
+    color:#efefef;
+    border-bottom:1px solid #efefef;
+}
+#mypage .progress_box .active{
+    height:33px;
+    color:#c72730;
+    border-bottom:1px solid#c72730;
+}
+#mypage .progress_box a{
+    font-size:16px;
+    width:120px;
+    color:#efefef;
+    display:block;
+    float:left;
+    margin-left:30px;
+    text-decoration:none;
+}
+#mainBox #mypage .useredit_center .right_bottom{
+    margin-left:auto;
+    margin-top:130px;
+    margin-right:auto;
+    width:754px;
+
+}
+#mypage .useredit_center .right_bottom .part_my #useredit_form{
+    margin-top:140px;
+}
+#mypage .useredit_center .right_bottom .part_my .contlist{
+    margin-top:35px;
+    margin-left:130px;
+    margin-bottom:20px;
+    clear:both;
+}
+#mypage .useredit_center .right_bottom .part_my .contlist p{
+    clear:both;
+    height:55px;
+}
+#mypage .useredit_center .right_bottom .part_my .contlist p .text-input{
+    width:255px;
+    height:18px;
+    border:1px solid #cccccc;
+    float:left;
+    padding:7px;
+}
+#mypage .useredit_center .right_bottom .part_my .contlist p label{
+    text-align:left;
+    float:left;
+    width:80px;
+    line-height:34px;
+    color:#333333;
+    font-size:14px;
+    font-weight:none;
+}
+.clear{
+    clear:both;
+}
+
