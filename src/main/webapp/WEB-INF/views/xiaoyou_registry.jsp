@@ -59,15 +59,15 @@
                         <div class="contlist">
                             <p style="margin-left:70px;">
                                 <label>姓名</label>
-                                <input type="text" class="text-input input-length-30" id="name" />
+                                <input type="text" class="text-input input-length-30" id="name" value="陈川" />
                             </p>
                             <p style="margin-left:70px;">
                                 <label>学号</label>
-                                <input type="text" class="text-input input-length-30" id="student_number" />
+                                <input type="text" class="text-input input-length-30" id="student_number" value="2013211634"/>
                             </p>
                             <p style="margin-left:70px;">
                                 <label>入学年份</label>
-                                <input type="text" class="text-input input-length-30" id="eduend" />
+                                <input type="text" class="text-input input-length-30" id="eduend" value="2013-9-21  "/>
                             </p>
                             <p class="btn" style="margin-left:200px;margin-top: 50px;">
                                 <input type="image" id="btn_submit_baseinfo" src="<%=basePath %>img/btn_save.jpg" alt="submit"/>
@@ -78,15 +78,15 @@
                         <div class="contlist">
                             <p style="margin-left:70px;">
                                 <label>用户名</label>
-                                <input type="text" class="text-input input-length-30" id="username" />
+                                <input type="text" class="text-input input-length-30" id="username" value="chuanchen"/>
                             </p>
                             <p style="margin-left:70px;">
                                 <label>密码</label>
-                                <input type="password" class="text-input input-length-30" id="password" />
+                                <input type="password" class="text-input input-length-30" id="password" value="cc1016"/>
                             </p>
                             <p style="margin-left:70px;">
                                 <label>重复密码</label>
-                                <input type="password" class="text-input input-length-30" id="re_password" />
+                                <input type="password" class="text-input input-length-30" id="re_password" value="cc1016"/>
                             </p>
                             <p class="btn" style="margin-left:200px;margin-top: 50px;">
                                 <input type="image" id="btn_submit_account" src="<%=basePath %>img/btn_save.jpg" />
@@ -101,20 +101,20 @@
                         <div class="contlist" style="margin-left:200px;">
                         	<p style="margin-top:30px;">
                         	    <label>姓名</label>
-                        	    <input type="text" class="text-input input-length-30" name="user_name" id="user_name" />
+                        	    <input type="text" class="text-input input-length-30" name="user_name" id="user_name" value="陈川"/>
                         	    <span class="warn-inline" id="user_name_title" >* </span>
                         	</p>
 
                         	<p>
                         	    <label>性别</label>
-                        	    <input class="radio-input" type="radio"  name="user_sex" value="0" /><span class="radio-text">男</span>
-                        	    <input class="radio-input" type="radio"  name="user_sex" value="1" /><span class="radio-text">女</span>
+                        	    <input class="radio-input" type="radio"  name="user_sex" value="1" /><span class="radio-text">男</span>
+                        	    <input class="radio-input" type="radio"  name="user_sex" value="2" /><span class="radio-text">女</span>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
 
                         	<p>
                         	    <label>学号</label>
-                        	    <input type="text" class="text-input input-length-30" name="user_stuid" id="user_stuid" />
+                        	    <input type="text" class="text-input input-length-30" name="user_stuid" id="user_stuid" value="2013211634"/>
                         	</p>
 
                         	<p>
@@ -133,13 +133,13 @@
 
                         	<p>
                         	    <label>身份证号</label>
-                        	    <input type="text" class="text-input input-length-30" name="user_cardid" id="user_cardid" />
+                        	    <input type="text" class="text-input input-length-30" name="user_cardid" id="user_cardid" value="500382199410167453"/>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
 
                         	<p>
                         	    <label>出生日期</label>
-                        	    <input type="text" class="text-input input-length-30" name="user_birth" id="user_birth" />
+                        	    <input type="text" class="text-input input-length-30" name="user_birth" id="user_birth" value="1994-10-16"/>
                         	    <span  class="warn-inline" id="user_birth_title">*    格式为：2013-01-01</span>
                         	</p>
 
@@ -169,13 +169,13 @@
                         	<div class="contlist" style="margin-left:200px;">
                         	<p>
                         	    <label>手机</label>
-                        	    <input type="text" class="text-input input-length-30" name="user_cellphone" id="user_cellphone" />
+                        	    <input type="text" class="text-input input-length-30" name="user_cellphone" id="user_cellphone" value="18996474255"/>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
 
                         	<p>
                         	    <label>邮箱</label>
-                        	    <input type="text" class="text-input input-length-30" name="user_mail" id="user_mail" />
+                        	    <input type="text" class="text-input input-length-30" name="user_mail" id="user_mail" value="chuanchenzz@163.com"/>
                         	    <span class="warn-inline" id="">*</span>
                         	</p>
 
@@ -197,31 +197,31 @@
                         	</p>
 
                         	<p>
-                        	    <label>入学年份</label>
-                        	    <input type="text" class="text-input input-length-30" name="edu_starttime" id="edu_starttime" value=""/>
-                        	    <span class="warn-inline" id="time_form">*    格式为：2013</span>
+                        	    <label>入学时间</label>
+                        	    <input type="text" class="text-input input-length-30" name="edu_starttime" id="edu_starttime" value="2013-01-01"/>
+                        	    <span class="warn-inline" id="time_form">*    格式为：2013-01-01</span>
                         	</p>
 
                         	<p>
-                        	    <label>毕业年份</label>
-                        	    <input type="text" class="text-input input-length-30" name="edu_endtime" id="edu_endtime" />
-                        	    <span class="warn-inline" id="time_form">*    格式为：2013</span>
+                        	    <label>毕业时间</label>
+                        	    <input type="text" class="text-input input-length-30" name="edu_endtime" id="edu_endtime" value="2017-01-01"/>
+                        	    <span class="warn-inline" id="time_form">*    格式为：2013-01-01</span>
                         	</p>
 
                         	<p>
                         	    <label>院(系)</label>
-                        	    <input type="text" class="text-input input-length-30" name="edu_department" id="edu_department" />
+                        	    <input type="text" class="text-input input-length-30" name="edu_department" id="edu_department" value="计算机"/>
                         	</p>
 
                         	<p>
                         	    <label>专业</label>
-                        	    <input type="text" class="text-input input-length-30" name="edu_major" id="edu_major" />
+                        	    <input type="text" class="text-input input-length-30" name="edu_major" id="edu_major" value="计算机"/>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
 
                         	<p>
                         	<label>班级</label>
-                        	    <input type="text" class="text-input input-length-30" name="edu_class" id="edu_class" />
+                        	    <input type="text" class="text-input input-length-30" name="edu_class" id="edu_class" value="0411302"/>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
                         	</div>
@@ -242,14 +242,14 @@
                         	</p>
 
                         	<p>
-                        	    <label>入职年份</label>
-                        	    <input type="text" class="text-input input-length-30" name="workexp_starttime" id="workexp_starttime" value=""/>
-                        	    <span class="warn-inline" id="time_form">* 格式为：2013</span>
+                        	    <label>入职时间</label>
+                        	    <input type="text" class="text-input input-length-30" name="workexp_starttime" id="workexp_starttime" value="2017-01-01"/>
+                        	    <span class="warn-inline" id="time_form">* 格式为：2013-01-01</span>
                         	</p>
 
                         	<p>
                         	    <label>单位名称</label>
-                        	    <input type="text" class="text-input input-length-30" name="workexp_companyname" id="workexp_companyname" value=""/>
+                        	    <input type="text" class="text-input input-length-30" name="workexp_companyname" id="workexp_companyname" value="sohu"/>
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
 
@@ -268,11 +268,11 @@
 
                         	<p>
                         	    <label>部门</label>
-                        	    <input type="text" class="text-input input-length-30" name="workexp_depart" id="workexp_depart" />
+                        	    <input type="text" class="text-input input-length-30" name="workexp_depart" id="workexp_depart" value="mp"/>
                         	</p>
                         	<p>
                         	    <label>职位</label>
-                        	    <input type="text" class="text-input input-length-30" name="workexp_title" id="workexp_title" />
+                        	    <input type="text" class="text-input input-length-30" name="workexp_title" id="workexp_title" value="后台"/>
                         	</p>
                         	</div>
                         	<p class="btn" style="margin-left:350px;margin-top: 50px;margin-bottom:100px;">

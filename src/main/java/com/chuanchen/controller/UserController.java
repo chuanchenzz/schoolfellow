@@ -6,14 +6,10 @@ import com.chuanchen.entity.Sex;
 import com.chuanchen.entity.User;
 import com.chuanchen.service.UserService;
 import com.chuanchen.util.CommonUtil;
-import com.sun.org.apache.regexp.internal.RE;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import sun.nio.cs.US_ASCII;
-
-import javax.jws.soap.SOAPBinding;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -89,16 +85,41 @@ public class UserController {
                                @RequestParam("department") String department,@RequestParam("job") String job,HttpSession session,Model model){
         Alumnus alumnus = new Alumnus();
         alumnus.setName(name);
-        alumnus.setSex(Sex.sexStrToSex(sex));
+        alumnus.setSex(Sex.codeToSex(Integer.valueOf(sex)));
         alumnus.setNation(nation);
         alumnus.setIdentity(identity);
         alumnus.setIdCard(idCard);
+        alumnus.setBirthday(CommonUtil.strToDate(birthday));
+        alumnus.setBirthPlace(birthPlace);
+        alumnus.setAddress(address);
+        alumnus.setPhone(phone);
+        alumnus.setEmail(email);
+        alumnus.setEducation(education);
+        alumnus.setEntranceAge(CommonUtil.strToDate(entranceAge));
+        alumnus.setGraduteAge(CommonUtil.strToDate(graduteAge));
+        alumnus.setAcademic(academic);
+        alumnus.setProfession(profession);
+        alumnus.setClasss(classs);
+        alumnus.setWorkAddress(workAddress);
+        alumnus.setInductive(CommonUtil.strToDate(inductive));
+        alumnus.setOrganization(organization);
+        alumnus.setIndustry(industry);
+        alumnus.setOrganizationNature(organizationNature);
+        alumnus.setDepartment(department);
+        alumnus.setJob(job);
         JsonResult jsonResult = new JsonResult();
         if(session.getAttribute("user") == null){
             jsonResult.setStatusCode(500);
             jsonResult.setMessage("发生错误,请重新注册!");
         }
         User user = (User) session.getAttribute("user");
+        if(userService.saveUserAndAlumnus(user,alumnus) > 0){
+            jsonResult.setStatusCode(200);
+            jsonResult.setMessage("用户注册成功!");
+        }else {
+            jsonResult.setStatusCode(500);
+            jsonResult.setMessage("用户注册失败,请重新注册!");
+        }
         return jsonResult;
     }
 }

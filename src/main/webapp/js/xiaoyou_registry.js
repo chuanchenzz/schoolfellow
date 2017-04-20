@@ -98,12 +98,12 @@ $('#submit').click(function(){
         alert("学号不能为空!");
         return;
     }
-    var nation = $("select[name=user_race] option[selected]").text();
+    var nation = $("select[name=user_race] option:selected").text();
     if(nation == '请选择' || nation == null){
         alert("请选择民族!");
         return;
     }
-    var identify = $("select[name=user_political] option[selected]").text();
+    var identify = $("select[name=user_political] option:selected").text();
     if(identify == "请选择" || identify == null){
         alert("请选择政治面貌!");
         return;
@@ -118,12 +118,12 @@ $('#submit').click(function(){
         alert("请填写出生日期!");
         return;
     }
-    var birthPlace = $('select[name=origin_province] option[selected]').text();
+    var birthPlace = $('select[name=origin_province] option:selected').text();
     if(birthPlace == "请选择" || birthPlace == null){
         alert("请选择籍贯!");
         return;
     }
-    var address = $('select[name=current_province] option[selected]').text();
+    var address = $('select[name=current_province] option:selected').text();
     if(address == '请选择' || address == null){
         alert("请选择所在城市!");
         return;
@@ -138,7 +138,7 @@ $('#submit').click(function(){
         alert("请填写邮箱!");
         return;
     }
-    var education = $('select[name=edu_edulevelid] option[selected]').text();
+    var education = $('select[name=edu_edulevelid] option:selected').text();
     if(education == '请选择' || education == null){
         alert("请选择学历!");
         return;
@@ -168,7 +168,7 @@ $('#submit').click(function(){
         alert('请填写班级!');
         return;
     }
-    var workAddress = $('select[name=work_province] option[selected]').text();
+    var workAddress = $('select[name=work_province] option:selected').text();
     if(workAddress == "请选择" || workAddress == null){
         alert("请选择工作城市!");
         return;
@@ -183,12 +183,12 @@ $('#submit').click(function(){
         alert("请填写单位名称!");
         return;
     }
-    var industry = $('select[name=workexp_industry] option[selected]').text();
+    var industry = $('select[name=workexp_industry] option:selected').text();
     if(industry == "请选择" || industry == null){
         alert("请选择所属行业!");
         return;
     }
-    var organizationNature = $('select[name=workexp_property] option[selected]').text();
+    var organizationNature = $('select[name=workexp_property] option:selected').text();
     if(organizationNature == "请选择" || organizationNature == null){
         alert("请选择单位性质!");
         return;
@@ -213,7 +213,12 @@ $('#submit').click(function(){
                 'job':job},
         url : '/user/register',
         success : function(data){
-
+                var json = $.parseJSON(data);
+                if(json.statusCode == 200){
+                    alert(json.message);
+                }else if(json.statusCode == 500){
+                    alert(json.message);
+                }
         }
     });
 });
