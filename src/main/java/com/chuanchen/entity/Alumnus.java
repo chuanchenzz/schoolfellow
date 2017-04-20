@@ -31,6 +31,7 @@ public class Alumnus {
     private String organizationNature;
     private String department;
     private String job;
+    private String studentNumber;
     public Alumnus(){}
     public int getId() {
         return id;
@@ -222,5 +223,13 @@ public class Alumnus {
 
     public void setJob(String job) {
         this.job = job;
+    }
+
+    public String getStudentNumber() {
+        return studentNumber;
+    }
+
+    public void setStudentNumber(String studentNumber) {
+        this.studentNumber = studentNumber;
     }
 }

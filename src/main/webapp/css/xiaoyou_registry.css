@@ -172,7 +172,41 @@ div{
     font-size:14px;
     font-weight:none;
 }
+#mypage .useredit_center .right_bottom .part_my .contlist .warn-inline{
+    color:#c72730;
+    float:left;
+    line-height:34px;
+    margin-left:15px;
+}
+#mypage p span.radio-text{
+    float:left;
+    padding-left:15px;
+    text-align:left;
+    display:block;
+    line-height:34px;
+    width:40px;
+}
+#mypage p .radio-input{
+    margin-top:10px;
+    line-height:normal;
+    color:#555555;
+    float:left;
+    border:1px solid #cccccc;
+    padding-left:5px;
+}
+#mypage p .select-option{
+    height: 34px;
+    border: 1px solid #cccccc;
+    padding: 7px;
+    border-radius:3px;
+    float:left;
+}
 .clear{
     clear:both;
 }
+.addr_line{
+    padding-bottom:5pd;
+    font-weight:bold;
+}
+
 

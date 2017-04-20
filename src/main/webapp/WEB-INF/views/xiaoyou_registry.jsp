@@ -13,6 +13,7 @@
     <title>校友注册-cqupt</title>
     <link rel="stylesheet" href="<%=basePath %>css/xiaoyou_registry.css" type= "text/css">
     <script type="text/javascript" src="<%=basePath %>bootstrap-3.3.7-dist/js/jquery-3.1.1.js"></script>
+    <script type="text/javascript" src="<%=basePath %>js/xiaoyou_registry.js"></script>
 </head>
 <body>
     <div id="wapper">
@@ -40,6 +41,16 @@
                             <a class="inactive" href="#"><img src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
                             <a class="inactive" href="#"><img src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
                         </div>
+                        <div class="progress_box" id="progress_box_2" style="display:none">
+                            <a class="inactive" href="#"><img src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
+                            <a class="active" href="#"><img src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
+                            <a class="inactive" href="#"><img src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
+                        </div>
+                        <div class="progress_box" id="progress_box_3" style="display:none">
+                            <a class="inactive" href="#"><img src="<%=basePath %>img/step1active.png" style="height:15px;" />填写校友信息</a>
+                            <a class="inactive" href="#"><img src="<%=basePath %>img/step2.png" style="height:15px;" />填写账号密码</a>
+                            <a class="active" href="#"><img src="<%=basePath %>img/step3.png" style="height:15px;" />完善个人资料</a>
+                        </div>
                     </div>
                 </div>
             <div class="right_bottom">
@@ -59,7 +70,7 @@
                                 <input type="text" class="text-input input-length-30" id="eduend" />
                             </p>
                             <p class="btn" style="margin-left:200px;margin-top: 50px;">
-                                <input type="image" id="btn_submit_baseinfo" src="<%=basePath %>img/btn_save.jpg" />
+                                <input type="image" id="btn_submit_baseinfo" src="<%=basePath %>img/btn_save.jpg" alt="submit"/>
                             </p>
                         </div>
                     </div>
@@ -71,11 +82,11 @@
                             </p>
                             <p style="margin-left:70px;">
                                 <label>密码</label>
-                                <input type="password" class="text-input input-length-30" id="edustart" />
+                                <input type="password" class="text-input input-length-30" id="password" />
                             </p>
                             <p style="margin-left:70px;">
                                 <label>重复密码</label>
-                                <input type="password" class="text-input input-length-30" id="eduend" />
+                                <input type="password" class="text-input input-length-30" id="re_password" />
                             </p>
                             <p class="btn" style="margin-left:200px;margin-top: 50px;">
                                 <input type="image" id="btn_submit_account" src="<%=basePath %>img/btn_save.jpg" />
@@ -129,7 +140,7 @@
                         	<p>
                         	    <label>出生日期</label>
                         	    <input type="text" class="text-input input-length-30" name="user_birth" id="user_birth" />
-                        	    <span  class="warn-inline" id="user_birth_title">*    格式为：1980-01-01</span>
+                        	    <span  class="warn-inline" id="user_birth_title">*    格式为：2013-01-01</span>
                         	</p>
 
                         	<p>
@@ -168,7 +179,7 @@
                         	<div class="contlist" style="margin-left:200px;">
                         	<p>
                         	    <label>手机</label>
-                        	    input type="text" class="text-input input-length-30" name="user_cellphone" id="user_cellphone" />
+                        	    <input type="text" class="text-input input-length-30" name="user_cellphone" id="user_cellphone" />
                         	    <span class="warn-inline" id="">* </span>
                         	</p>
 
@@ -176,7 +187,6 @@
                         	    <label>邮箱</label>
                         	    <input type="text" class="text-input input-length-30" name="user_mail" id="user_mail" />
                         	    <span class="warn-inline" id="">*</span>
-                        	    <span class="warn-inline" style="margin-left:80px;" id="">（审核结果将返回到此邮箱，请填写有效的的邮箱地址！）</span>
                         	</p>
 
                         	</div>
@@ -190,7 +200,7 @@
 
                         	<div class="contlist" style="margin-left:200px;">
                         	<p>
-                        	    <label>教育阶段</label>
+                        	    <label>学历</label>
                         	    <select name="edu_edulevelid" class="select-option" id=edu_edulevelid>
                         	    <option value=-1>请选择</option><option value=1>大专</option><option value=2>本科</option><option value=3>硕士</option><option value=4>博士</option>										</select>
                         	    <span class="warn-inline" id="">* </span>
@@ -199,13 +209,13 @@
                         	<p>
                         	    <label>入学年份</label>
                         	    <input type="text" class="text-input input-length-30" name="edu_starttime" id="edu_starttime" value=""/>
-                        	    <span class="warn-inline" id="time_form">*    格式为：1980</span>
+                        	    <span class="warn-inline" id="time_form">*    格式为：2013</span>
                         	</p>
 
                         	<p>
                         	    <label>毕业年份</label>
                         	    <input type="text" class="text-input input-length-30" name="edu_endtime" id="edu_endtime" />
-                        	    <span class="warn-inline" id="time_form">*    格式为：1980</span>
+                        	    <span class="warn-inline" id="time_form">*    格式为：2013</span>
                         	</p>
 
                         	<p>
@@ -246,7 +256,7 @@
                         	<p>
                         	    <label>入职年份</label>
                         	    <input type="text" class="text-input input-length-30" name="workexp_starttime" id="workexp_starttime" value=""/>
-                        	    <span class="warn-inline" id="time_form">* 格式为：1980</span>
+                        	    <span class="warn-inline" id="time_form">* 格式为：2013</span>
                         	</p>
 
                         	<p>
@@ -277,6 +287,9 @@
                         	    <input type="text" class="text-input input-length-30" name="workexp_title" id="workexp_title" />
                         	</p>
                         	</div>
+                        	<p class="btn" style="margin-left:350px;margin-top: 50px;margin-bottom:100px;">
+                                <input type="image" id="submit" src="<%=basePath %>img/btn_save.jpg" />
+                            </p>
                     </div>
                 </div>
             </div>

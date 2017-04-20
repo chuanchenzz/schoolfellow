@@ -11,7 +11,11 @@ import java.util.Date;
 @Service
 public class UserServiceImpl implements UserService{
 
-    public boolean isUserExist(String name, String studentNumber, Date startAge) {
+    public boolean isAlumnusExist(String name, String studentNumber, Date startAge) {
+        return false;
+    }
+
+    public boolean isUserExist(String userName) {
         return false;
     }
 }
