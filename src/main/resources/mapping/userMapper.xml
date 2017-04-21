@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuanchen.dao.UserMapper">
+    <resultMap type="com.chuanchen.entity.User" id="BaseResult">
+        <id property="id"column="id" jdbcType="INTEGER"/>
+        <result property="alumnusId" column="alumnus_id" jdbcType="INTEGER"/>
+        <result property="userName" column="username" jdbcType="VARCHAR"/>
+        <result property="password" column="password" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="isUserExist" parameterType="java.lang.String">
+        select count(*) from user where username = #{userName};
+    </select>
+</mapper>
