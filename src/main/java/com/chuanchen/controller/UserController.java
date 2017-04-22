@@ -23,7 +23,10 @@ import java.util.Date;
 public class UserController {
     @Autowired
     UserService userService;
-
+    @RequestMapping(value = "/test",method = RequestMethod.GET)
+    public String toTestPage(){
+        return "test";
+    }
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request) {
         return "login";

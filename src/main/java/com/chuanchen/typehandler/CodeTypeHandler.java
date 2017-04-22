@@ -15,7 +15,6 @@ import java.sql.SQLException;
  */
 public class CodeTypeHandler extends BaseTypeHandler<String> {
     private Class<String> str;
-    private String[] strs;
     @Autowired
     CodeMapper codeMapper;
 
@@ -24,10 +23,6 @@ public class CodeTypeHandler extends BaseTypeHandler<String> {
             throw new IllegalArgumentException("str can't be null!");
         }
         this.str = str;
-        this.strs = str.getEnumConstants();
-        if (strs == null) {
-            throw new IllegalArgumentException("strs can't be null!");
-        }
     }
 
     public void setNonNullParameter(PreparedStatement preparedStatement, int i, String s, JdbcType jdbcType) throws SQLException {
