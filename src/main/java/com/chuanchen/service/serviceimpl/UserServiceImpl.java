@@ -45,4 +45,17 @@ public class UserServiceImpl implements UserService{
         }
         return 0;
     }
+
+    public Alumnus getAlumnusById(int id) {
+        return alumnusMapper.getAlumnusById(id);
+    }
+    @Transactional
+    public int deleteAlumnusAndUserById(int id) {
+        int resultId = alumnusMapper.deleteAlumusById(id);
+        if(resultId > 0){
+            return userMapper.deleteUserByAlumnusId(id);
+        }else {
+            return 0;
+        }
+    }
 }

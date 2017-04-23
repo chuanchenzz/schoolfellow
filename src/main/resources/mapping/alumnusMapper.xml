@@ -32,5 +32,10 @@
     <select id="isAlumnusExist" parameterType="java.lang.String">
         select count(*) from alumnus where student_number = #{studentNumber} and username = #{name};
     </select>
-
+    <select id="getAlumnusById" parameterType="java.lang.Integer" resultMap="BaseResult">
+        select * from alumnus where id = #{id};
+    </select>
+    <delete id="deleteAlumusById" parameterType="java.lang.Integer">
+        delete from alumnus where id = #{id};
+    </delete>
 </mapper>

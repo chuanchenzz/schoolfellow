@@ -12,4 +12,6 @@ public interface UserMapper {
 
     int saveUser(User user);
 
+    int deleteUserByAlumnusId(int id);
+
 }

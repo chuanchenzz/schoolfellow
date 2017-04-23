@@ -12,4 +12,8 @@ public interface AlumnusMapper {
     int isAlumnusExist(@Param("name") String name, @Param("studentNumber") String studentNumber, @Param("startAge")Date startAge);
 
     int saveAlumnus(Alumnus alumnus);
+
+    Alumnus getAlumnusById(int id);
+
+    int deleteAlumusById(int id);
 }

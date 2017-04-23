@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
@@ -23,10 +24,12 @@ import java.util.Date;
 public class UserController {
     @Autowired
     UserService userService;
-    @RequestMapping(value = "/test",method = RequestMethod.GET)
-    public String toTestPage(){
+
+    @RequestMapping(value = "/test", method = RequestMethod.GET)
+    public String toTestPage() {
         return "test";
     }
+
     @RequestMapping(value = "/login", method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request) {
         return "login";
@@ -40,7 +43,7 @@ public class UserController {
     @ResponseBody
     @RequestMapping(value = "/checkaccount", method = RequestMethod.POST)
     public JsonResult checkAccount(@RequestParam(value = "name", required = true) String name, @RequestParam(value = "student_number") String studentNumber, @RequestParam(value = "start_age") String entryAge, Model model, HttpSession session) {
-        if(session.getAttribute("user") != null){
+        if (session.getAttribute("user") != null) {
             session.removeAttribute("user");
         }
         Date date = CommonUtil.strToDate(entryAge);
@@ -72,20 +75,21 @@ public class UserController {
         User user = new User();
         user.setUserName(userName);
         user.setPassword(password);
-        model.addAttribute("user",user);
+        model.addAttribute("user", user);
         jsonResult.setStatusCode(200);
         return jsonResult;
     }
+
     @ResponseBody
-    @RequestMapping(value = "/register",method = RequestMethod.POST)
-    public JsonResult register(@RequestParam("name") String name,@RequestParam("sex") String sex,@RequestParam("nation") String nation,
-                                @RequestParam("identity") String identity,@RequestParam("idCard") String idCard,@RequestParam("birthday") String birthday,
-                                @RequestParam("birthPlace") String birthPlace,@RequestParam("address") String address,@RequestParam("phone") String phone,
-                                @RequestParam("email") String email,@RequestParam("education") String education,@RequestParam("entranceAge") String entranceAge,
-                                @RequestParam("graduteAge") String graduteAge,@RequestParam("academic")String academic,@RequestParam("profession") String profession,
-                               @RequestParam("classs") String classs,@RequestParam("workAddress") String workAddress,@RequestParam("inductive") String inductive,
-                               @RequestParam("organization") String organization,@RequestParam("industry") String industry,@RequestParam("organizationNature") String organizationNature,
-                               @RequestParam("department") String department,@RequestParam("job") String job,HttpSession session,Model model){
+    @RequestMapping(value = "/register", method = RequestMethod.POST)
+    public JsonResult register(@RequestParam("name") String name, @RequestParam("sex") String sex, @RequestParam("nation") String nation,
+                               @RequestParam("identity") String identity, @RequestParam("idCard") String idCard, @RequestParam("birthday") String birthday,
+                               @RequestParam("birthPlace") String birthPlace, @RequestParam("address") String address, @RequestParam("phone") String phone,
+                               @RequestParam("email") String email, @RequestParam("education") String education, @RequestParam("entranceAge") String entranceAge,
+                               @RequestParam("graduteAge") String graduteAge, @RequestParam("academic") String academic, @RequestParam("profession") String profession,
+                               @RequestParam("classs") String classs, @RequestParam("workAddress") String workAddress, @RequestParam("inductive") String inductive,
+                               @RequestParam("organization") String organization, @RequestParam("industry") String industry, @RequestParam("organizationNature") String organizationNature,
+                               @RequestParam("department") String department, @RequestParam("job") String job, HttpSession session, Model model) {
         Alumnus alumnus = new Alumnus();
         alumnus.setName(name);
         alumnus.setSex(Sex.codeToSex(Integer.valueOf(sex)));
@@ -111,17 +115,45 @@ public class UserController {
         alumnus.setDepartment(department);
         alumnus.setJob(job);
         JsonResult jsonResult = new JsonResult();
-        if(session.getAttribute("user") == null){
+        if (session.getAttribute("user") == null) {
             jsonResult.setStatusCode(500);
             jsonResult.setMessage("发生错误,请重新注册!");
         }
         User user = (User) session.getAttribute("user");
-        if(userService.saveUserAndAlumnus(user,alumnus) > 0){
+        if (userService.saveUserAndAlumnus(user, alumnus) > 0) {
             jsonResult.setStatusCode(200);
             jsonResult.setMessage("用户注册成功!");
-        }else {
+        } else {
             jsonResult.setStatusCode(500);
             jsonResult.setMessage("用户注册失败,请重新注册!");
+        }
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "alumnusinfo/{id}", method = RequestMethod.GET)
+    public JsonResult getAlumnusInfo(@PathVariable("id") String id) {
+        JsonResult jsonResult = new JsonResult();
+        Alumnus alumnus = userService.getAlumnusById(Integer.valueOf(id));
+        if (alumnus == null) {
+            jsonResult.setStatusCode(404);
+            jsonResult.setMessage("没有找到该用户的信息!");
+        } else {
+            jsonResult.setStatusCode(200);
+        }
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "deletealumnus/{id}", method = RequestMethod.GET)
+    public JsonResult deleteAlumnus(@PathVariable("id") String id) {
+        JsonResult jsonResult = new JsonResult();
+        int result = userService.deleteAlumnusById(Integer.valueOf(id));
+        if (result > 0) {
+            jsonResult.setStatusCode(200);
+        } else {
+            jsonResult.setStatusCode(404);
+            jsonResult.setMessage("删除用户失败!");
         }
         return jsonResult;
     }

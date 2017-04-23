@@ -14,4 +14,8 @@ public interface UserService {
     boolean isUserExist(String userName);
 
     int saveUserAndAlumnus(User user, Alumnus alumnus);
+
+    Alumnus getAlumnusById(int id);
+
+    int deleteAlumnusAndUserById(int id);
 }

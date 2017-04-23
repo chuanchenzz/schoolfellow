@@ -12,4 +12,7 @@
     <select id="isUserExist" parameterType="java.lang.String">
         select count(*) from user where username = #{userName};
     </select>
+    <delete id="deleteUserByAlumnusId" parameterType="java.lang.Integer">
+        delete from user where alumnus_id = #{id};
+    </delete>
 </mapper>
