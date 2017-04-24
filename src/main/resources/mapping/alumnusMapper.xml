@@ -9,19 +9,19 @@
         <result property="sex" column="sex" typeHandler="com.chuanchen.typehandler.SexTypeHandler"/>
         <result property="identity" column="identity_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="idCard" column="id_card" jdbcType="VARCHAR"/>
-        <result property="birthday" column="birthday" jdbcType="DATE"/>
+        <result property="birthday" column="birthday" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
         <result property="birthPlace" column="birthplace_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="address" column="address" jdbcType="VARCHAR"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="education" column="education_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
-        <result property="entranceAge" column="entrance_age" jdbcType="DATE"/>
-        <result property="graduteAge" column="gradute_age" jdbcType="DATE"/>
+        <result property="entranceAge" column="entrance_age" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
+        <result property="graduteAge" column="gradute_age" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
         <result property="academic" column="academic" jdbcType="VARCHAR"/>
         <result property="profession" column="profession" jdbcType="VARCHAR"/>
         <result property="classs" column="classs" jdbcType="VARCHAR"/>
         <result property="workAddress" column="work_address_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
-        <result property="inductive" column="inductive_age" jdbcType="DATE"/>
+        <result property="inductive" column="inductive_age" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
         <result property="organization" column="organization" jdbcType="VARCHAR"/>
         <result property="industry" column="industry_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="organizationNature" column="organization_nature_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>

@@ -18,4 +18,6 @@ public interface UserService {
     Alumnus getAlumnusById(int id);
 
     int deleteAlumnusAndUserById(int id);
+
+    User findUserByNameAndPassword(String userName,String password);
 }

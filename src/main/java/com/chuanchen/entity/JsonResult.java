@@ -1,11 +1,14 @@
 package com.chuanchen.entity;
 
+import java.util.Map;
+
 /**
  * Created by chuanchenwine on 2017/4/20.
  */
 public class JsonResult {
     private int statusCode;
     private String message;
+    private Map<String,Object> mapParams;
     public JsonResult(){
 
     }
@@ -29,5 +32,13 @@ public class JsonResult {
 
     public void setMessage(String message) {
         this.message = message;
+    }
+
+    public Map<String, Object> getMapParams() {
+        return mapParams;
+    }
+
+    public void setMapParams(Map<String, Object> mapParams) {
+        this.mapParams = mapParams;
     }
 }

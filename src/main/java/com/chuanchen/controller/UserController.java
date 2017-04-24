@@ -10,10 +10,13 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by chuanchen-pc on 2017/3/11.
@@ -37,6 +40,8 @@ public class UserController {
 
     @RequestMapping(value = "registry", method = RequestMethod.GET)
     public String alumnusRegistry() {
+        Date date = new Date();
+        System.out.println(date);
         return "xiaoyou_registry";
     }
 
@@ -96,19 +101,19 @@ public class UserController {
         alumnus.setNation(nation);
         alumnus.setIdentity(identity);
         alumnus.setIdCard(idCard);
-        alumnus.setBirthday(CommonUtil.strToDate(birthday));
+        alumnus.setBirthday(CommonUtil.isDatePattern(birthday) ? birthday : null);
         alumnus.setBirthPlace(birthPlace);
         alumnus.setAddress(address);
         alumnus.setPhone(phone);
         alumnus.setEmail(email);
         alumnus.setEducation(education);
-        alumnus.setEntranceAge(CommonUtil.strToDate(entranceAge));
-        alumnus.setGraduteAge(CommonUtil.strToDate(graduteAge));
+        alumnus.setEntranceAge(CommonUtil.isDatePattern(entranceAge) ? entranceAge : null);
+        alumnus.setGraduteAge(CommonUtil.isDatePattern(graduteAge) ? graduteAge : null);
         alumnus.setAcademic(academic);
         alumnus.setProfession(profession);
         alumnus.setClasss(classs);
         alumnus.setWorkAddress(workAddress);
-        alumnus.setInductive(CommonUtil.strToDate(inductive));
+        alumnus.setInductive(CommonUtil.isDatePattern(inductive) ? inductive : null);
         alumnus.setOrganization(organization);
         alumnus.setIndustry(industry);
         alumnus.setOrganizationNature(organizationNature);
@@ -131,7 +136,7 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "alumnusinfo/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/alumnusinfo/{id}", method = RequestMethod.GET)
     public JsonResult getAlumnusInfo(@PathVariable("id") String id) {
         JsonResult jsonResult = new JsonResult();
         Alumnus alumnus = userService.getAlumnusById(Integer.valueOf(id));
@@ -145,15 +150,35 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "deletealumnus/{id}", method = RequestMethod.GET)
+    @RequestMapping(value = "/deletealumnus/{id}", method = RequestMethod.GET)
     public JsonResult deleteAlumnus(@PathVariable("id") String id) {
         JsonResult jsonResult = new JsonResult();
-        int result = userService.deleteAlumnusById(Integer.valueOf(id));
+        int result = userService.deleteAlumnusAndUserById(Integer.valueOf(id));
         if (result > 0) {
             jsonResult.setStatusCode(200);
         } else {
             jsonResult.setStatusCode(404);
             jsonResult.setMessage("删除用户失败!");
+        }
+        return jsonResult;
+    }
+
+    @ResponseBody
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public JsonResult userLogin(@RequestParam("user_ame") String userName, @RequestParam("password") String password) {
+        password = CommonUtil.md5Password(password.trim());
+        User user = userService.findUserByNameAndPassword(userName, password);
+        JsonResult jsonResult = new JsonResult();
+        if (user != null) {
+            Alumnus alumnus = userService.getAlumnusById(user.getAlumnusId());
+            Map<String, Object> params = new HashMap<String, Object>();
+            params.put("alumnus", alumnus);
+            params.put("type", user.getLevel().getLevel());
+            jsonResult.setMapParams(params);
+            jsonResult.setStatusCode(200);
+        } else {
+            jsonResult.setStatusCode(404);
+            jsonResult.setMessage("该用户不存在!");
         }
         return jsonResult;
     }

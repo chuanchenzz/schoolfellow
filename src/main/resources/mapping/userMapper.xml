@@ -8,11 +8,18 @@
         <result property="alumnusId" column="alumnus_id" jdbcType="INTEGER"/>
         <result property="userName" column="username" jdbcType="VARCHAR"/>
         <result property="password" column="password" jdbcType="VARCHAR"/>
+        <result property="level" column="level" typeHandler="com.chuanchen.typehandler.UserLevelHandler"/>
     </resultMap>
     <select id="isUserExist" parameterType="java.lang.String">
         select count(*) from user where username = #{userName};
     </select>
+    <select id="findUserByNameAndPassword" resultMap="BaseResult">
+        select * from user where userName = #{userName} and password = #{password};
+    </select>
     <delete id="deleteUserByAlumnusId" parameterType="java.lang.Integer">
         delete from user where alumnus_id = #{id};
     </delete>
+    <insert id="saveUser" parameterType="com.chuanchen.entity.User">
+        insert into user(username,password,alumnus_id,level) values(#{userName},#{password},#{alumnusId},#{level,typeHandler=com.chuanchen.typehandler.UserLevelHandler});
+    </insert>
 </mapper>

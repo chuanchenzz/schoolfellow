@@ -13,19 +13,19 @@ public class Alumnus {
     private String nation;
     private String identity;
     private String idCard;
-    private Date birthday;
+    private String birthday;
     private String birthPlace;
     private String address;
     private String phone;
     private String email;
     private String education;
-    private Date entranceAge;
-    private Date graduteAge;
+    private String entranceAge;
+    private String graduteAge;
     private String academic;
     private String profession;
     private String classs;
     private String workAddress;
-    private Date inductive;
+    private String inductive;
     private String organization;
     private String industry;
     private String organizationNature;
@@ -81,11 +81,11 @@ public class Alumnus {
         this.idCard = idCard;
     }
 
-    public Date getBirthday() {
+    public String getBirthday() {
         return birthday;
     }
 
-    public void setBirthday(Date birthday) {
+    public void setBirthday(String birthday) {
         this.birthday = birthday;
     }
 
@@ -129,19 +129,19 @@ public class Alumnus {
         this.education = education;
     }
 
-    public Date getEntranceAge() {
+    public String getEntranceAge() {
         return entranceAge;
     }
 
-    public void setEntranceAge(Date entranceAge) {
+    public void setEntranceAge(String entranceAge) {
         this.entranceAge = entranceAge;
     }
 
-    public Date getGraduteAge() {
+    public String getGraduteAge() {
         return graduteAge;
     }
 
-    public void setGraduteAge(Date graduteAge) {
+    public void setGraduteAge(String graduteAge) {
         this.graduteAge = graduteAge;
     }
 
@@ -177,11 +177,11 @@ public class Alumnus {
         this.workAddress = workAddress;
     }
 
-    public Date getInductive() {
+    public String getInductive() {
         return inductive;
     }
 
-    public void setInductive(Date inductive) {
+    public void setInductive(String inductive) {
         this.inductive = inductive;
     }
 

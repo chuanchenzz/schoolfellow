@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuanchen.dao.NoticeMapper">
+    <resultMap type="com.chuanchen.entity.Notice" id="BaseResult">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="title" column="title" jdbcType="VARCHAR"/>
+        <result property="pubDate" column="pub_date" jdbcType="DATE"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="type" column="type" typeHandler="com.chuanchen.typehandler.NoticeTypeHandler"/>
+        <result property="userId" column="user_id" jdbcType="INTEGER"/>
+    </resultMap>
+    <select id="totalNoticeSize">
+        select count(*) from notice;
+    </select>
+    <select id="findNotices" resultMap="BaseResult">
+        select * from notice order by pub_date desc limit #{begin},#{limit};
+    </select>
+</mapper>

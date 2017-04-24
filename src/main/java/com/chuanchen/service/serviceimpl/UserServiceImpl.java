@@ -58,4 +58,8 @@ public class UserServiceImpl implements UserService{
             return 0;
         }
     }
+
+    public User findUserByNameAndPassword(String userName, String password) {
+        return userMapper.findUserByNameAndPassword(userName,password);
+    }
 }

@@ -1,6 +1,7 @@
 package com.chuanchen.dao;
 
 import com.chuanchen.entity.User;
+import com.chuanchen.entity.UserLevel;
 import org.apache.ibatis.annotations.Param;
 
 
@@ -13,5 +14,7 @@ public interface UserMapper {
     int saveUser(User user);
 
     int deleteUserByAlumnusId(int id);
+
+    User findUserByNameAndPassword(@Param("userName") String userName,@Param("password") String password);
 
 }
