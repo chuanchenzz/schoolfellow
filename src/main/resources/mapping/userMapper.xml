@@ -16,6 +16,9 @@
     <select id="findUserByNameAndPassword" resultMap="BaseResult">
         select * from user where userName = #{userName} and password = #{password};
     </select>
+    <select id="getTotalCount" >
+        select count(*) from user;
+    </select>
     <delete id="deleteUserByAlumnusId" parameterType="java.lang.Integer">
         delete from user where alumnus_id = #{id};
     </delete>

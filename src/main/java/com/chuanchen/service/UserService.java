@@ -4,6 +4,7 @@ import com.chuanchen.entity.Alumnus;
 import com.chuanchen.entity.User;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by chuanchenwine on 2017/4/18.
@@ -20,4 +21,8 @@ public interface UserService {
     int deleteAlumnusAndUserById(int id);
 
     User findUserByNameAndPassword(String userName,String password);
+
+    int getTotalPage();
+
+    List<Alumnus> findAlumnuses(int page,int limit);
 }

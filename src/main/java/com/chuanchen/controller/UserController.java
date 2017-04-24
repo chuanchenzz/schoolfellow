@@ -10,12 +10,12 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -62,7 +62,23 @@ public class UserController {
         jsonResult.setStatusCode(200);
         return jsonResult;
     }
-
+    @RequestMapping(value = "/findUsers",method = RequestMethod.GET)
+    public JsonResult findUsers(@RequestParam(value = "page",required = true) int page,@RequestParam(value = "limit",required = false,defaultValue = "10") int limit){
+        JsonResult jsonResult = new JsonResult();
+        int totalPage = userService.getTotalPage();
+        if(page <= 0){
+            page = 1;
+        }
+        if(page > totalPage){
+            page = totalPage;
+        }
+        List<Alumnus> alumnusList = userService.findAlumnuses(page,limit);
+        Map<String,Object> map = new HashMap<String, Object>();
+        map.put("alumnusList",alumnusList);
+        jsonResult.setMapParams(map);
+        jsonResult.setStatusCode(200);
+        return jsonResult;
+    }
     @ResponseBody
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     public JsonResult addUser(@RequestParam(value = "userName", required = true) String userName, @RequestParam(value = "password", required = true) String password, Model model) {

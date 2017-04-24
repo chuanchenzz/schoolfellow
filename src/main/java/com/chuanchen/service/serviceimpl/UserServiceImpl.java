@@ -10,12 +10,14 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by chuanchenwine on 2017/4/18.
  */
 @Service
 public class UserServiceImpl implements UserService{
+    private final int PAGE_COUNT = 10;
     @Autowired
     UserMapper userMapper;
     @Autowired
@@ -61,5 +63,15 @@ public class UserServiceImpl implements UserService{
 
     public User findUserByNameAndPassword(String userName, String password) {
         return userMapper.findUserByNameAndPassword(userName,password);
+    }
+
+    public int getTotalPage() {
+        int totalCount = alumnusMapper.getAlumnusCount();
+        return totalCount % 10 == 0 ? totalCount / 10 : totalCount / 10 + 1;
+    }
+
+    public List<Alumnus> findAlumnuses(int page, int limit) {
+        int begin = (page - 1) * PAGE_COUNT;
+        return alumnusMapper.findAlumnuses(begin,limit);
     }
 }

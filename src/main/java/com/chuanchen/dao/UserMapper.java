@@ -17,4 +17,6 @@ public interface UserMapper {
 
     User findUserByNameAndPassword(@Param("userName") String userName,@Param("password") String password);
 
+    int getTotalCount();
+
 }

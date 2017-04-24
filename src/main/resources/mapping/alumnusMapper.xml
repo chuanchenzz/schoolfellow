@@ -35,6 +35,12 @@
     <select id="getAlumnusById" parameterType="java.lang.Integer" resultMap="BaseResult">
         select * from alumnus where id = #{id};
     </select>
+    <select id="findAlumnuses" resultMap="BaseResult">
+        select * from alumnus limit #{begin},#{limit};
+    </select>
+    <select id="getAlumnusCount" >
+        select count(*) from alumnus;
+    </select>
     <delete id="deleteAlumusById" parameterType="java.lang.Integer">
         delete from alumnus where id = #{id};
     </delete>
