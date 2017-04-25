@@ -12,15 +12,17 @@ public class Notice {
     private String content;
     private NoticeType type;
     private int userId;
+    private Status status;
 
     public Notice() {
     }
 
-    public Notice(String title, Date pubDate, String content, NoticeType type) {
+    public Notice(String title, Date pubDate, String content, NoticeType type, Status status) {
         this.title = title;
         this.pubDate = pubDate;
         this.content = content;
         this.type = type;
+        this.status = status;
     }
 
     public int getId() {
@@ -69,5 +71,13 @@ public class Notice {
 
     public void setUserId(int userId) {
         this.userId = userId;
+    }
+
+    public Status getStatus() {
+        return status;
+    }
+
+    public void setStatus(Status status) {
+        this.status = status;
     }
 }

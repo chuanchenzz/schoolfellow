@@ -12,4 +12,12 @@ public interface NoticeMapper {
     int totalNoticeSize();
 
     List<Notice> findNotices(@Param("begin") int begin, @Param("limit") int limit);
+
+    int getNoticesCountByStatus(@Param("status") int statusCode);
+
+    List<Notice> findNoticesByStatus(@Param("begin") int begin,@Param("limit") int limit,@Param("status") int statusCode);
+
+    int updateNotice(@Param("noticeId") int noticeId,@Param("status") int status);
+
+    int putNotice(Notice notice);
 }

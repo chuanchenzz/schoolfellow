@@ -27,4 +27,21 @@ public class NoticeServiceImpl implements NoticeService {
         int begin = (page - 1) * PAGE_SIZE;
         return noticeMapper.findNotices(begin, limit);
     }
+
+    public int getTotalByStatus(int statusCode) {
+        return noticeMapper.getNoticesCountByStatus(statusCode);
+    }
+
+    public List<Notice> findNoticesByStatus(int page, int limit, int statusCode) {
+        int begin = (page - 1) * PAGE_SIZE;
+        return noticeMapper.findNoticesByStatus(begin,limit,statusCode);
+    }
+
+    public boolean updateNotice(int noticeId, int status) {
+        return noticeMapper.updateNotice(noticeId,status) > 0 ? true : false;
+    }
+
+    public int putNotice(Notice notice) {
+        return 0;
+    }
 }

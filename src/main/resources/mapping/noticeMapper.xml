@@ -10,6 +10,7 @@
         <result property="content" column="content" jdbcType="VARCHAR"/>
         <result property="type" column="type" typeHandler="com.chuanchen.typehandler.NoticeTypeHandler"/>
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
+        <result property="status" column="status" typeHandler="com.chuanchen.typehandler.StatusTypeHandler"/>
     </resultMap>
     <select id="totalNoticeSize">
         select count(*) from notice;
@@ -17,4 +18,18 @@
     <select id="findNotices" resultMap="BaseResult">
         select * from notice order by pub_date desc limit #{begin},#{limit};
     </select>
+    <select id="getNoticesCountByStatus">
+        select count(*) from notice where status = #{status};
+    </select>
+    <select id="findNoticesByStatus" resultMap="BaseResult">
+        select * from notice where status = #{status} order by pub_date limit #{begin},#{limit};
+    </select>
+    <update id="updateNotice">
+        update notice set status = #{status} where id = #{noticeId};
+    </update>
+    <insert id="putNotice" parameterType="com.chuanchen.entity.Notice">
+        insert into notice(title,pub_date,content,type,user_id,status)
+        values(#{title},#{pubDate},#{content},#{type,typeHandler=com.chuanchen.typehandler.NoticeTypeHandler},#{userId},
+        #{status,typeHandler=com.chuanchen.typehandler.StatusTypeHandler);
+    </insert>
 </mapper>

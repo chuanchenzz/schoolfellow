@@ -13,4 +13,11 @@ public interface NoticeService {
 
     List<Notice> findNotices(int page,int limit);
 
+    int getTotalByStatus(int statusCode);
+
+    List<Notice> findNoticesByStatus(int page,int limit,int statusCode);
+
+    boolean updateNotice(int noticeId,int status);
+
+    int putNotice(Notice notice);
 }
