@@ -1,9 +1,7 @@
 package com.chuanchen.controller;
 
-import com.chuanchen.entity.Alumnus;
-import com.chuanchen.entity.JsonResult;
-import com.chuanchen.entity.Sex;
-import com.chuanchen.entity.User;
+import com.chuanchen.entity.*;
+import com.chuanchen.service.BaseDataService;
 import com.chuanchen.service.UserService;
 import com.chuanchen.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -27,6 +25,9 @@ import java.util.Map;
 public class UserController {
     @Autowired
     UserService userService;
+
+    @Autowired
+    BaseDataService baseDataService;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String toTestPage() {
@@ -107,7 +108,7 @@ public class UserController {
                                @RequestParam("identity") String identity, @RequestParam("idCard") String idCard, @RequestParam("birthday") String birthday,
                                @RequestParam("birthPlace") String birthPlace, @RequestParam("address") String address, @RequestParam("phone") String phone,
                                @RequestParam("email") String email, @RequestParam("education") String education, @RequestParam("entranceAge") String entranceAge,
-                               @RequestParam("graduteAge") String graduteAge, @RequestParam("academic") String academic, @RequestParam("profession") String profession,
+                               @RequestParam("graduteAge") String graduteAge,@RequestParam("instructor") String instructor, @RequestParam("academic") String academic, @RequestParam("profession") String profession,
                                @RequestParam("classs") String classs, @RequestParam("workAddress") String workAddress, @RequestParam("inductive") String inductive,
                                @RequestParam("organization") String organization, @RequestParam("industry") String industry, @RequestParam("organizationNature") String organizationNature,
                                @RequestParam("department") String department, @RequestParam("job") String job, HttpSession session, Model model) {
@@ -125,6 +126,7 @@ public class UserController {
         alumnus.setEducation(education);
         alumnus.setEntranceAge(CommonUtil.isDatePattern(entranceAge) ? entranceAge : null);
         alumnus.setGraduteAge(CommonUtil.isDatePattern(graduteAge) ? graduteAge : null);
+        alumnus.setInstructor(instructor);
         alumnus.setAcademic(academic);
         alumnus.setProfession(profession);
         alumnus.setClasss(classs);
@@ -195,6 +197,25 @@ public class UserController {
         } else {
             jsonResult.setStatusCode(404);
             jsonResult.setMessage("该用户不存在!");
+        }
+        return jsonResult;
+    }
+    @RequestMapping(value = "/findbasedata/{type}",method = RequestMethod.GET)
+    public JsonResult findBaseData(@PathVariable("type") int type){
+        if(type <= 0){
+            type = 1;
+        }else if(type > 6){
+            type = 6;
+        }
+        List<CommonCode> codeList = baseDataService.getCommonCodesByType(type);
+        JsonResult jsonResult = new JsonResult();
+        if(codeList == null || codeList.size() == 0){
+            jsonResult.setStatusCode(404);
+        }else {
+            jsonResult.setStatusCode(200);
+            Map<String,Object> params = new HashMap<String, Object>();
+            params.put("codelist",codeList);
+            jsonResult.setMapParams(params);
         }
         return jsonResult;
     }

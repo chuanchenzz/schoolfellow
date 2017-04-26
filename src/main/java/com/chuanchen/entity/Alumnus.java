@@ -21,6 +21,7 @@ public class Alumnus {
     private String education;
     private String entranceAge;
     private String graduteAge;
+    private String instructor;
     private String academic;
     private String profession;
     private String classs;
@@ -231,5 +232,13 @@ public class Alumnus {
 
     public void setStudentNumber(String studentNumber) {
         this.studentNumber = studentNumber;
+    }
+
+    public String getInstructor() {
+        return instructor;
+    }
+
+    public void setInstructor(String instructor) {
+        this.instructor = instructor;
     }
 }

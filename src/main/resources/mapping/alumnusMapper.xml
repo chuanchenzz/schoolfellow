@@ -17,6 +17,7 @@
         <result property="education" column="education_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="entranceAge" column="entrance_age" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
         <result property="graduteAge" column="gradute_age" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
+        <result property="instructor" column="instructor" jdbcType="VARCHAR"/>
         <result property="academic" column="academic" jdbcType="VARCHAR"/>
         <result property="profession" column="profession" jdbcType="VARCHAR"/>
         <result property="classs" column="classs" jdbcType="VARCHAR"/>

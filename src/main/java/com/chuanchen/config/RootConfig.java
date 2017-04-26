@@ -16,7 +16,7 @@ import javax.sql.DataSource;
  */
 @Configuration
 @ComponentScan(basePackages = "com.chuanchen")
-@PropertySource("classpath:/dbcp.properties")
+@PropertySource("classpath:dbcp.properties")
 public class RootConfig {
     @Autowired
     Environment environment;
