@@ -1,6 +1,6 @@
 package com.chuanchen.config;
 
-import org.apache.commons.dbcp2.BasicDataSource;
+import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -23,12 +23,12 @@ public class RootConfig {
     @Bean
     public BasicDataSource dataSource(){
         BasicDataSource basicDataSource = new BasicDataSource();
-        basicDataSource.setDriverClassName(environment.getProperty("classDriver"));
-        basicDataSource.setUrl(environment.getProperty("url"));
-        basicDataSource.setUsername(environment.getProperty("userName"));
-        basicDataSource.setPassword(environment.getProperty("password"));
+        basicDataSource.setDriverClassName(environment.getProperty("driver"));
+        basicDataSource.setUrl(environment.getProperty("jdbc.url"));
+        basicDataSource.setUsername(environment.getProperty("jdbc.userName"));
+        basicDataSource.setPassword(environment.getProperty("jdbc.password"));
         basicDataSource.setInitialSize(Integer.valueOf(environment.getProperty("initialSize")));
-        basicDataSource.setMaxTotal(Integer.valueOf(environment.getProperty("maxTotal")));
+        basicDataSource.setMaxWait(Integer.valueOf(environment.getProperty("maxWait")));
         return basicDataSource;
     }
     @Bean

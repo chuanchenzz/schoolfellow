@@ -200,6 +200,7 @@ public class UserController {
         }
         return jsonResult;
     }
+    @ResponseBody
     @RequestMapping(value = "/findbasedata/{type}",method = RequestMethod.GET)
     public JsonResult findBaseData(@PathVariable("type") int type){
         if(type <= 0){
