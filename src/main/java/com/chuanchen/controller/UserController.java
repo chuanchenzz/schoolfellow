@@ -10,11 +10,9 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
-import java.util.Date;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by chuanchen-pc on 2017/3/11.
@@ -94,11 +92,49 @@ public class UserController {
 //            model.addAttribute("user", user);
 //            jsonResult.setStatusCode(200);
 //        }
+        //获取地区集合
+        List<CommonCode> addressList = baseDataService.getCommonCodesByType(CodeType.CITY);
+        if(addressList == null){
+            addressList = Collections.emptyList();
+        }
+        //获取民族集合
+        List<CommonCode> nationList = baseDataService.getCommonCodesByType(CodeType.NATION);
+        if(nationList == null){
+            nationList = Collections.emptyList();
+        }
+        //获取学历集合
+        List<CommonCode> academicList = baseDataService.getCommonCodesByType(CodeType.EDUCATION);
+        if(academicList == null){
+            nationList = Collections.emptyList();
+        }
+        //获取行业集合
+        List<CommonCode> industryList = baseDataService.getCommonCodesByType(CodeType.INDUSTRY);
+        if(industryList == null){
+            industryList = Collections.emptyList();
+        }
+        //获取身份集合
+        List<CommonCode> identifyList = baseDataService.getCommonCodesByType(CodeType.IDENTITY);
+        if(identifyList == null){
+            identifyList = Collections.emptyList();
+        }
+        //获取公司性质集合
+        List<CommonCode> natureList = baseDataService.getCommonCodesByType(CodeType.COMPANY_NATURE);
+        if(nationList == null){
+            nationList = Collections.emptyList();
+        }
         User user = new User();
         user.setUserName(userName);
         user.setPassword(password);
         model.addAttribute("user", user);
         jsonResult.setStatusCode(200);
+        Map<String,Object> params = new HashMap<String, Object>();
+        params.put("addressList",addressList);
+        params.put("nationList",nationList);
+        params.put("academicList",academicList);
+        params.put("industryList",industryList);
+        params.put("identifyList",identifyList);
+        params.put("natureList",natureList);
+        jsonResult.setMapParams(params);
         return jsonResult;
     }
 
@@ -202,13 +238,14 @@ public class UserController {
     }
     @ResponseBody
     @RequestMapping(value = "/findbasedata/{type}",method = RequestMethod.GET)
-    public JsonResult findBaseData(@PathVariable("type") int type){
+    public JsonResult findBaseData(@PathVariable("type") int type, HttpServletResponse response){
+        response.setCharacterEncoding("utf-8");
         if(type <= 0){
             type = 1;
         }else if(type > 6){
             type = 6;
         }
-        List<CommonCode> codeList = baseDataService.getCommonCodesByType(type);
+        List<CommonCode> codeList = baseDataService.getCommonCodesByType(CodeType.getTypeByCode(type));
         JsonResult jsonResult = new JsonResult();
         if(codeList == null || codeList.size() == 0){
             jsonResult.setStatusCode(404);

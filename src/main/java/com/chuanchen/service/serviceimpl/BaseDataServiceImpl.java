@@ -1,6 +1,7 @@
 package com.chuanchen.service.serviceimpl;
 
 import com.chuanchen.dao.CommonCodeMapper;
+import com.chuanchen.entity.CodeType;
 import com.chuanchen.entity.CommonCode;
 import com.chuanchen.service.BaseDataService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,7 +16,7 @@ import java.util.List;
 public class BaseDataServiceImpl implements BaseDataService{
     @Autowired
     CommonCodeMapper commonCodeMapper;
-    public List<CommonCode> getCommonCodesByType(int type) {
-        return commonCodeMapper.getCommonCodesByType(type);
+    public List<CommonCode> getCommonCodesByType(CodeType type) {
+        return commonCodeMapper.getCommonCodesByType(type.getCode());
     }
 }

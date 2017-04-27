@@ -37,8 +37,8 @@ function jumpToAccount(){
     $('#2_step_1').attr('src','/img/step1gray.png');
     $('#2_step_2').attr('src','/img/step2active.png');
 }
-
 $('#btn_submit_account').click(function(){
+
         var username = $('#username').val();
         if(username == '' || username == null){
             alert('请填写用户名!');
@@ -62,18 +62,19 @@ $('#btn_submit_account').click(function(){
             type:'POST',
             data:{'userName':username,'password':password},
             url:'/user/adduser',
+            dataType:'json',
             success:function(data){
-                var json = $.parseJSON(data);
-                if(json.statusCode == 500){
+                alert(data);
+                if(data.statusCode == 500){
                     alert(json.message);
                     return;
-                }else if(json.statusCode == 200){
-                    jumpToInfos();
+                }else if(data.statusCode == 200){
+                    jumpToInfos(data);
                 }
             }
         });
 });
-function jumpToInfos(){
+function jumpToInfos(data){
     $('.account_info').css('display','none');
     $('.fill_account').css('display','block');
     $('#progress_box_2').css('display','none');
@@ -81,6 +82,44 @@ function jumpToInfos(){
     $('#3_step_1').attr('src','/img/step1gray.png');
     $('#3_step_2').attr('src','/img/step2.png');
     $('#3_step_3').attr('src','/img/step3active.png');
+    var addressList = data.mapParams.addressList;
+    var nationList = data.mapParams.nationList;
+    var academicList = data.mapParams.academicList;
+    var industryList = data.mapParams.industryList;
+    var identifyList = data.mapParams.identifyList;
+    var natureList = data.mapParams.natureList;
+    var appendStr = '';
+    for(var i = 0;i < addressList.length;i++){
+        appendStr += "<option value='"+addressList[i].id+"'>"+addressList[i].name+"</option>";
+    }
+    $('#current_province').append(appendStr);
+    $('#origin_province').append(appendStr);
+    $('#work_province').append(appendStr);
+    appendStr = '';
+    for(var i = 0;i < nationList.length;i++){
+        appendStr += "<option value='"+nationList[i].id+"'>"+nationList[i].name+"</option>";
+    }
+    $('#user_race').append(appendStr);
+    appendStr = '';
+    for(var i = 0;i < academicList.length;i++){
+        appendStr += "<option value='"+academicList[i].id+"'>"+academicList[i].name+"</option>";
+    }
+    $('#edu_edulevelid').append(appendStr);
+    appendStr = '';
+    for(var i = 0;i < industryList.length;i++){
+        appendStr += "<option value='"+industryList[i].id+"'>"+industryList[i].name+"</option>";
+    }
+    $('#workexp_industry').append(appendStr);
+    appendStr = '';
+    for(var i = 0;i < identifyList.length;i++){
+        appendStr += "<option value='"+identifyList[i].id+"'>"+identifyList[i].name+"</option>";
+    }
+    $('#user_political').append(appendStr);
+    appendStr = '';
+    for(var i = 0;i < natureList.length;i++){
+        appendStr += "<option value='"+natureList[i].id+"'>"+natureList[i].name+"</option>";
+    }
+    $('#workexp_property').append(appendStr);
 }
 $('#submit').click(function(){
     var name = $('#user_name').val();
