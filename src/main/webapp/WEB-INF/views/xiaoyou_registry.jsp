@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                             </div>
                             <div class="fill_account" style="display:none;margin-top:-20px;">
-                            <form action="/user/register" method="post" enctype=”multipart/form-data”>
+                            <form action="/user/register" method="post" enctype="multipart/form-data">
                                 <!--基本信息-->
                                 <div class="addr_line" style="border-bottom: 1px solid #fff;font-size:16px; color: #c72730;">
                                     基本信息
@@ -103,30 +103,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <div class="contlist" style="margin-left:200px;">
                                    <p style="margin-top:30px;">
                                        <label>姓名</label>
-                                       <input type="text" class="text-input input-length-30" name="user_name" id="user_name" value="陈川"/>
+                                       <input type="text" class="text-input input-length-30" name="name" id="user_name" value="陈川"/>
                                        <span class="warn-inline" id="user_name_title" >* </span>
                                    </p>
 
                                    <p>
                                        <label>性别</label>
-                                       <input class="radio-input" type="radio"  name="user_sex" value="1" /><span class="radio-text">男</span>
-                                       <input class="radio-input" type="radio"  name="user_sex" value="2" /><span class="radio-text">女</span>
+                                       <input class="radio-input" type="radio"  name="sex" value="1" /><span class="radio-text">男</span>
+                                       <input class="radio-input" type="radio"  name="sex" value="2" /><span class="radio-text">女</span>
                                        <span class="warn-inline" id="">* </span>
                                    </p>
                                    <p>
                                        <label>头像</label>
-                                       <input type="file" class="text-input input-length-30" name="user_avatar" id="user_avatar" />
+                                       <input type="file" class="text-input input-length-30" name="avatar" id="user_avatar" />
                                        <span class="warn-inline" id="">* </span>
                                    </p>
 
                                    <p>
                                        <label>学号</label>
-                                       <input type="text" class="text-input input-length-30" name="user_stuid" id="user_stuid" value="2013211634"/>
+                                       <input type="text" class="text-input input-length-30" name="student_number" id="user_stuid" value="2013211634"/>
                                    </p>
 
                                    <p>
                                        <label>民族</label>
-                                       <select class="select-option" name="user_race" id="user_race">
+                                       <select class="select-option" name="nation" id="user_race">
                                            <option value="">请选择</option>									
                                         </select>
                                            <span class="warn-inline">* </span>
@@ -134,7 +134,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                        <p>
                                            <label>政治面貌</label>
-                                           <select class="select-option" id="user_political" name="user_political">
+                                           <select class="select-option" id="user_political" name="identity">
                                                <option value="">请选择</option>	
                                             </select>
                                                <span class="warn-inline">* </span>
@@ -142,19 +142,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                            <p>
                                                <label>身份证号</label>
-                                               <input type="text" class="text-input input-length-30" name="user_cardid" id="user_cardid" value="500382199410167453"/>
+                                               <input type="text" class="text-input input-length-30" name="idCard" id="user_cardid" value="500382199410167453"/>
                                                <span class="warn-inline" id="">* </span>
                                            </p>
 
                                            <p>
                                                <label>出生日期</label>
-                                               <input type="text" class="text-input input-length-30" name="user_birth" id="user_birth" value="1994-10-16"/>
+                                               <input type="text" class="text-input input-length-30" name="birthday" id="user_birth" value="1994-10-16"/>
                                                <span  class="warn-inline" id="user_birth_title">*    格式为：2013-01-01</span>
                                            </p>
 
                                            <p>
                                                <label>籍贯</label>
-                                               <select class="select-option" name="origin_province" id='origin_province'>
+                                               <select class="select-option" name="birthPlace" id='origin_province'>
                                                    <option value="">请选择</option>
                                                </select>
                                                <span class="warn-inline">* </span>
@@ -162,7 +162,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                            <p>
                                                <label>所在城市</label>
-                                               <select class="select-option" name="current_province" id='current_province'>
+                                               <select class="select-option" name="address" id='current_province'>
                                                    <option value="">请选择</option>
                                                </select>
                                                <span class="warn-inline" id="">* </span>
@@ -178,13 +178,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                        <div class="contlist" style="margin-left:200px;">
                                            <p>
                                                <label>手机</label>
-                                               <input type="text" class="text-input input-length-30" name="user_cellphone" id="user_cellphone" value="18996474255"/>
+                                               <input type="text" class="text-input input-length-30" name="phone" id="user_cellphone" value="18996474255"/>
                                                <span class="warn-inline" id="">* </span>
                                            </p>
 
                                            <p>
                                                <label>邮箱</label>
-                                               <input type="text" class="text-input input-length-30" name="user_mail" id="user_mail" value="chuanchenzz@163.com"/>
+                                               <input type="text" class="text-input input-length-30" name="email" id="user_mail" value="chuanchenzz@163.com"/>
                                                <span class="warn-inline" id="">*</span>
                                            </p>
 
@@ -200,7 +200,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                        <div class="contlist" style="margin-left:200px;">
                                            <p>
                                                <label>学历</label>
-                                               <select name="edu_edulevelid" class="select-option" id="edu_edulevelid">
+                                               <select name="education" class="select-option" id="edu_edulevelid">
                                                    <option value=-1>请选择</option>
                                                 </select>
                                                    <span class="warn-inline" id="">* </span>
@@ -208,13 +208,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                                <p>
                                                    <label>入学时间</label>
-                                                   <input type="text" class="text-input input-length-30" name="edu_starttime" id="edu_starttime" value="2013-01-01"/>
+                                                   <input type="text" class="text-input input-length-30" name="entranceAge" id="edu_starttime" value="2013-01-01"/>
                                                    <span class="warn-inline" id="time_form">*    格式为：2013-01-01</span>
                                                </p>
 
                                                <p>
                                                    <label>毕业时间</label>
-                                                   <input type="text" class="text-input input-length-30" name="edu_endtime" id="edu_endtime" value="2017-01-01"/>
+                                                   <input type="text" class="text-input input-length-30" name="graduteAge" id="edu_endtime" value="2017-01-01"/>
                                                    <span class="warn-inline" id="time_form">*    格式为：2013-01-01</span>
                                                </p>
                                                <p>
@@ -224,18 +224,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                             </p>
                                             <p>
                                                <label>院(系)</label>
-                                               <input type="text" class="text-input input-length-30" name="edu_department" id="edu_department" value="计算机"/>
+                                               <input type="text" class="text-input input-length-30" name="academic" id="edu_department" value="计算机"/>
                                            </p>
 
                                            <p>
                                                <label>专业</label>
-                                               <input type="text" class="text-input input-length-30" name="edu_major" id="edu_major" value="计算机"/>
+                                               <input type="text" class="text-input input-length-30" name="profession" id="edu_major" value="计算机"/>
                                                <span class="warn-inline" id="">* </span>
                                            </p>
 
                                            <p>
                                                <label>班级</label>
-                                               <input type="text" class="text-input input-length-30" name="edu_class" id="edu_class" value="0411302"/>
+                                               <input type="text" class="text-input input-length-30" name="classs" id="edu_class" value="0411302"/>
                                                <span class="warn-inline" id="">* </span>
                                            </p>
                                        </div>
@@ -249,7 +249,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                        <div class="contlist" style="margin-left:200px;">
                                            <p>
                                                <label>工作城市</label>
-                                               <select class="select-option" name="work_province" id="work_province">
+                                               <select class="select-option" name="workAddress    " id="work_province">
                                                    <option value="">请选择</option>
                                                </select>
                                                <span class="warn-inline" id="">* </span>
@@ -257,26 +257,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                            <p>
                                                <label>入职时间</label>
-                                               <input type="text" class="text-input input-length-30" name="workexp_starttime" id="workexp_starttime" value="2017-01-01"/>
+                                               <input type="text" class="text-input input-length-30" name="inductive" id="workexp_starttime" value="2017-01-01"/>
                                                <span class="warn-inline" id="time_form">* 格式为：2013-01-01</span>
                                            </p>
 
                                            <p>
                                                <label>单位名称</label>
-                                               <input type="text" class="text-input input-length-30" name="workexp_companyname" id="workexp_companyname" value="sohu"/>
+                                               <input type="text" class="text-input input-length-30" name="organization" id="workexp_companyname" value="sohu"/>
                                                <span class="warn-inline" id="">* </span>
                                            </p>
 
                                            <p>
                                                <label>所属行业</label>
-                                               <select class="select-option" name="workexp_industry" id="workexp_industry">
+                                               <select class="select-option" name="industry" id="workexp_industry">
                                                    <option value="">请选择</option>
                                                 </select>
                                                    <span class="warn-inline" id="">* </span>
                                                </p>
                                                <p>
                                                    <label>单位性质</label>
-                                                   <select class="select-option" name="workexp_property" id="workexp_property">
+                                                   <select class="select-option" name="organizationNature" id="workexp_property">
                                                        <option value="">请选择</option>
                                                     </select>
                                                        <span class="warn-inline" id="">* </span>
@@ -284,15 +284,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
                                                    <p>
                                                        <label>部门</label>
-                                                       <input type="text" class="text-input input-length-30" name="workexp_depart" id="workexp_depart" value="mp"/>
+                                                       <input type="text" class="text-input input-length-30" name="department" id="workexp_depart" value="mp"/>
                                                    </p>
                                                    <p>
                                                        <label>职位</label>
-                                                       <input type="text" class="text-input input-length-30" name="workexp_title" id="workexp_title" value="后台"/>
+                                                       <input type="text" class="text-input input-length-30" name="job" id="workexp_title" value="后台"/>
                                                    </p>
                                                </div>
                                                <p class="btn" style="margin-left:350px;margin-top: 50px;margin-bottom:100px;">
-                                                <input type="image" id="submit" src="<%=basePath %>img/btn_save.jpg" />
+                                                <input type="submit" id="submit" src="<%=basePath %>img/btn_save.jpg" />
                                             </p>
                                             </form>
                                         </div>

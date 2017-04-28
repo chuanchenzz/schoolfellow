@@ -10,7 +10,7 @@
         <result property="password" column="password" jdbcType="VARCHAR"/>
         <result property="level" column="level" typeHandler="com.chuanchen.typehandler.UserLevelHandler"/>
     </resultMap>
-    <select id="isUserExist" parameterType="java.lang.String">
+    <select id="isUserExist" parameterType="java.lang.String" resultType="java.lang.Integer">
         select count(*) from user where username = #{userName};
     </select>
     <select id="findUserByNameAndPassword" resultMap="BaseResult">

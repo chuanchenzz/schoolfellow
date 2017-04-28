@@ -22,8 +22,8 @@ public class UserServiceImpl implements UserService{
     UserMapper userMapper;
     @Autowired
     AlumnusMapper alumnusMapper;
-    public boolean isAlumnusExist(String name, String studentNumber, Date startAge) {
-        int result = alumnusMapper.isAlumnusExist(name,studentNumber,startAge);
+    public boolean isAlumnusExist(String name, String studentNumber) {
+        int result = alumnusMapper.isAlumnusExist(name,studentNumber);
         if(result > 0){
             return true;
         }

@@ -7,6 +7,8 @@
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="username" jdbcType="VARCHAR"/>
         <result property="sex" column="sex" typeHandler="com.chuanchen.typehandler.SexTypeHandler"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
+        <result property="nation" column="nation_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="identity" column="identity_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="idCard" column="id_card" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
@@ -30,7 +32,7 @@
         <result property="job" column="job" jdbcType="VARCHAR"/>
         <result property="studentNumber" column="student_number" jdbcType="VARCHAR"/>
     </resultMap>
-    <select id="isAlumnusExist" parameterType="java.lang.String">
+    <select id="isAlumnusExist" parameterType="java.lang.String" resultType="java.lang.Integer">
         select count(*) from alumnus where student_number = #{studentNumber} and username = #{name};
     </select>
     <select id="getAlumnusById" parameterType="java.lang.Integer" resultMap="BaseResult">
@@ -42,6 +44,14 @@
     <select id="getAlumnusCount" >
         select count(*) from alumnus;
     </select>
+    <insert id="saveAlumnus" parameterType="com.chuanchen.entity.Alumnus">
+        insert into
+        alumnus(username,sex,nation_number,identity_number,id_card,birthday,birthplace_number,address,phone,email,education_number,entrance_age,gradute_age,academic,profession,classs,work_address_number,inductive_age,organization,industry_number,organization_nature_number,department,job,student_number,instructor,avatar)
+        values (
+        #{name},#{sex,typeHandler=com.chuanchen.typehandler.SexTypeHandler},#{nation,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{identity,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{idCard},#{birthday,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{birthPlace,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{address},
+        #{phone},#{email},#{education,typeHandler=com.chuanchen.typehandler.CodeTypeHandler}，#{entranceAge,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{graduteAge,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{academic},#{profession},#{classs},#{workAddress,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},
+        #{inductive,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{organization},#{industry,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{organizationNature,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{department},#{job},#{studentNumber},#{instructor},#{avatar});
+    </insert>
     <delete id="deleteAlumusById" parameterType="java.lang.Integer">
         delete from alumnus where id = #{id};
     </delete>

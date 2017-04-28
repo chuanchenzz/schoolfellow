@@ -5,6 +5,8 @@ import com.chuanchen.service.BaseDataService;
 import com.chuanchen.service.UserService;
 import com.chuanchen.util.CommonUtil;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.PropertySource;
+import org.springframework.core.env.Environment;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -13,6 +15,8 @@ import org.springframework.web.multipart.MultipartFile;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.IOException;
 import java.util.*;
 
 /**
@@ -21,12 +25,16 @@ import java.util.*;
 @Controller
 @RequestMapping("/user")
 @SessionAttributes(value = {"user"})
+@PropertySource("classpath:variables.properties")
 public class UserController {
     @Autowired
     UserService userService;
 
     @Autowired
     BaseDataService baseDataService;
+
+    @Autowired
+    Environment environment;
 
     @RequestMapping(value = "/test", method = RequestMethod.GET)
     public String toTestPage() {
@@ -39,9 +47,9 @@ public class UserController {
     }
 
     @RequestMapping(value = "registry", method = RequestMethod.GET)
-    public String alumnusRegistry() {
-        Date date = new Date();
-        System.out.println(date);
+    public String alumnusRegistry(HttpServletRequest  request) {
+        String path = request.getSession().getServletContext().getRealPath("avatars");
+        System.out.print(path);
         return "xiaoyou_registry";
     }
 
@@ -51,15 +59,13 @@ public class UserController {
         if (session.getAttribute("user") != null) {
             session.removeAttribute("user");
         }
-        Date date = CommonUtil.strToDate(entryAge);
         JsonResult jsonResult = new JsonResult();
-//        if(userService.isAlumnusExist(name,studentNumber,date)){
-//            jsonResult.setStatusCode(500);
-//            jsonResult.setMessage("该用户已经存在,请不要重复注册!");
-//        }else {
-//            jsonResult.setStatusCode(200);
-//        }
-        jsonResult.setStatusCode(200);
+        if(userService.isAlumnusExist(name,studentNumber)){
+            jsonResult.setStatusCode(500);
+            jsonResult.setMessage("该用户已经存在,请不要重复注册!");
+        }else {
+            jsonResult.setStatusCode(200);
+        }
         return jsonResult;
     }
     @RequestMapping(value = "/findUsers",method = RequestMethod.GET)
@@ -83,79 +89,75 @@ public class UserController {
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
     public JsonResult addUser(@RequestParam(value = "userName", required = true) String userName, @RequestParam(value = "password", required = true) String password, Model model) {
         JsonResult jsonResult = new JsonResult();
-//        if (userService.isUserExist(userName)) {
-//            jsonResult.setStatusCode(500);
-//            jsonResult.setMessage("该用户名已经存在,请修改用户名!");
-//        } else {
-//            User user = new User();
-//            user.setUserName(userName);
-//            user.setPassword(password);
-//            model.addAttribute("user", user);
-//            jsonResult.setStatusCode(200);
-//        }
-        //获取地区集合
-        List<CommonCode> addressList = baseDataService.getCommonCodesByType(CodeType.CITY);
-        if(addressList == null){
-            addressList = Collections.emptyList();
+        if (userService.isUserExist(userName)) {
+            jsonResult.setStatusCode(500);
+            jsonResult.setMessage("该用户名已经存在,请修改用户名!");
+        } else {
+            User user = new User();
+            user.setUserName(userName);
+            user.setPassword(password);
+            model.addAttribute("user", user);
+            //获取地区集合
+            List<CommonCode> addressList = baseDataService.getCommonCodesByType(CodeType.CITY);
+            if(addressList == null){
+                addressList = Collections.emptyList();
+            }
+            //获取民族集合
+            List<CommonCode> nationList = baseDataService.getCommonCodesByType(CodeType.NATION);
+            if(nationList == null){
+                nationList = Collections.emptyList();
+            }
+            //获取学历集合
+            List<CommonCode> academicList = baseDataService.getCommonCodesByType(CodeType.EDUCATION);
+            if(academicList == null){
+                nationList = Collections.emptyList();
+            }
+            //获取行业集合
+            List<CommonCode> industryList = baseDataService.getCommonCodesByType(CodeType.INDUSTRY);
+            if(industryList == null){
+                industryList = Collections.emptyList();
+            }
+            //获取身份集合
+            List<CommonCode> identifyList = baseDataService.getCommonCodesByType(CodeType.IDENTITY);
+            if(identifyList == null){
+                identifyList = Collections.emptyList();
+            }
+            //获取公司性质集合
+            List<CommonCode> natureList = baseDataService.getCommonCodesByType(CodeType.COMPANY_NATURE);
+            if(nationList == null){
+                nationList = Collections.emptyList();
+            }
+            jsonResult.setStatusCode(200);
+            Map<String,Object> params = new HashMap<String, Object>();
+            params.put("addressList",addressList);
+            params.put("nationList",nationList);
+            params.put("academicList",academicList);
+            params.put("industryList",industryList);
+            params.put("identifyList",identifyList);
+            params.put("natureList",natureList);
+            jsonResult.setMapParams(params);
         }
-        //获取民族集合
-        List<CommonCode> nationList = baseDataService.getCommonCodesByType(CodeType.NATION);
-        if(nationList == null){
-            nationList = Collections.emptyList();
-        }
-        //获取学历集合
-        List<CommonCode> academicList = baseDataService.getCommonCodesByType(CodeType.EDUCATION);
-        if(academicList == null){
-            nationList = Collections.emptyList();
-        }
-        //获取行业集合
-        List<CommonCode> industryList = baseDataService.getCommonCodesByType(CodeType.INDUSTRY);
-        if(industryList == null){
-            industryList = Collections.emptyList();
-        }
-        //获取身份集合
-        List<CommonCode> identifyList = baseDataService.getCommonCodesByType(CodeType.IDENTITY);
-        if(identifyList == null){
-            identifyList = Collections.emptyList();
-        }
-        //获取公司性质集合
-        List<CommonCode> natureList = baseDataService.getCommonCodesByType(CodeType.COMPANY_NATURE);
-        if(nationList == null){
-            nationList = Collections.emptyList();
-        }
-        User user = new User();
-        user.setUserName(userName);
-        user.setPassword(password);
-        model.addAttribute("user", user);
-        jsonResult.setStatusCode(200);
-        Map<String,Object> params = new HashMap<String, Object>();
-        params.put("addressList",addressList);
-        params.put("nationList",nationList);
-        params.put("academicList",academicList);
-        params.put("industryList",industryList);
-        params.put("identifyList",identifyList);
-        params.put("natureList",natureList);
-        jsonResult.setMapParams(params);
         return jsonResult;
     }
 
-    @ResponseBody
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public JsonResult register(@RequestParam("name") String name, @RequestParam("sex") String sex, @RequestParam("avatar") MultipartFile avatar,@RequestParam("nation") String nation,
+    public String register(@RequestParam("name") String name, @RequestParam("sex") String sex, @RequestPart("avatar") MultipartFile avatar,@RequestParam("nation") String nation,
                                @RequestParam("identity") String identity, @RequestParam("idCard") String idCard, @RequestParam("birthday") String birthday,
                                @RequestParam("birthPlace") String birthPlace, @RequestParam("address") String address, @RequestParam("phone") String phone,
                                @RequestParam("email") String email, @RequestParam("education") String education, @RequestParam("entranceAge") String entranceAge,
                                @RequestParam("graduteAge") String graduteAge, @RequestParam("instructor") String instructor, @RequestParam("academic") String academic, @RequestParam("profession") String profession,
                                @RequestParam("classs") String classs, @RequestParam("workAddress") String workAddress, @RequestParam("inductive") String inductive,
                                @RequestParam("organization") String organization, @RequestParam("industry") String industry, @RequestParam("organizationNature") String organizationNature,
-                               @RequestParam("department") String department, @RequestParam("job") String job, HttpSession session, Model model) {
+                               @RequestParam("department") String department, @RequestParam("job") String job, @RequestParam("student_number") String studentNumber, HttpSession session, HttpServletRequest request) {
         Alumnus alumnus = new Alumnus();
         alumnus.setName(name);
         alumnus.setSex(Sex.codeToSex(Integer.valueOf(sex)));
-        if(saveImage(avatar)){
-
+        String path = null;
+        if((path = saveAvatar(avatar,request)) != null){
+            alumnus.setAvatar(path);
         }
         alumnus.setNation(nation);
+        alumnus.setStudentNumber(studentNumber);
         alumnus.setIdentity(identity);
         alumnus.setIdCard(idCard);
         alumnus.setBirthday(CommonUtil.isDatePattern(birthday) ? birthday : null);
@@ -177,26 +179,41 @@ public class UserController {
         alumnus.setOrganizationNature(organizationNature);
         alumnus.setDepartment(department);
         alumnus.setJob(job);
-        JsonResult jsonResult = new JsonResult();
         if (session.getAttribute("user") == null) {
-            jsonResult.setStatusCode(500);
-            jsonResult.setMessage("发生错误,请重新注册!");
+            return "index";
         }
         User user = (User) session.getAttribute("user");
         if (userService.saveUserAndAlumnus(user, alumnus) > 0) {
-            jsonResult.setStatusCode(200);
-            jsonResult.setMessage("用户注册成功!");
+            return "index";
         } else {
-            jsonResult.setStatusCode(500);
-            jsonResult.setMessage("用户注册失败,请重新注册!");
+            return "xiaoyou_registry";
         }
-        return jsonResult;
     }
-    public boolean saveImage(MultipartFile image){
+    public String saveAvatar(MultipartFile image,HttpServletRequest request){
+        if(image == null){
+            System.out.println("hehehehehehehehehehehehhehehh");
+        }
         if(image.getName() != null && !image.getName().equals("") && image.getSize() > 0){
-            return false;
+            String basePath = request.getSession().getServletContext().getRealPath(environment.getProperty("avatarsDir"));
+            File file = new File(basePath,image.getOriginalFilename());
+            if(!file.getParentFile().exists()){
+                file.getParentFile().mkdir();
+            }
+            if(!file.exists()){
+                try {
+                    file.createNewFile();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+            try {
+                image.transferTo(file);
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return file.getAbsolutePath();
         }else {
-            return false;
+            return null;
         }
     }
     @ResponseBody

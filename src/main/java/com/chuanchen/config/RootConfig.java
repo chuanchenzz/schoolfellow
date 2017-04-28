@@ -45,7 +45,6 @@ public class RootConfig {
     @Bean
     public MultipartResolver multipartResolver() throws IOException{
         CommonsMultipartResolver commonsMultipartResolver = new CommonsMultipartResolver();
-        commonsMultipartResolver.setUploadTempDir(new FileSystemResource(""));
         commonsMultipartResolver.setMaxUploadSize(2097152);
         commonsMultipartResolver.setMaxInMemorySize(0);
         commonsMultipartResolver.setDefaultEncoding("UTF-8");

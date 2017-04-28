@@ -90,175 +90,157 @@ function jumpToInfos(data){
     var natureList = data.mapParams.natureList;
     var appendStr = '';
     for(var i = 0;i < addressList.length;i++){
-        appendStr += "<option value='"+addressList[i].id+"'>"+addressList[i].name+"</option>";
+        appendStr += "<option value='"+addressList[i].name+"'>"+addressList[i].name+"</option>";
     }
     $('#current_province').append(appendStr);
     $('#origin_province').append(appendStr);
     $('#work_province').append(appendStr);
     appendStr = '';
     for(var i = 0;i < nationList.length;i++){
-        appendStr += "<option value='"+nationList[i].id+"'>"+nationList[i].name+"</option>";
+        appendStr += "<option value='"+nationList[i].name+"'>"+nationList[i].name+"</option>";
     }
     $('#user_race').append(appendStr);
     appendStr = '';
     for(var i = 0;i < academicList.length;i++){
-        appendStr += "<option value='"+academicList[i].id+"'>"+academicList[i].name+"</option>";
+        appendStr += "<option value='"+academicList[i].name+"'>"+academicList[i].name+"</option>";
     }
     $('#edu_edulevelid').append(appendStr);
     appendStr = '';
     for(var i = 0;i < industryList.length;i++){
-        appendStr += "<option value='"+industryList[i].id+"'>"+industryList[i].name+"</option>";
+        appendStr += "<option value='"+industryList[i].name+"'>"+industryList[i].name+"</option>";
     }
     $('#workexp_industry').append(appendStr);
     appendStr = '';
     for(var i = 0;i < identifyList.length;i++){
-        appendStr += "<option value='"+identifyList[i].id+"'>"+identifyList[i].name+"</option>";
+        appendStr += "<option value='"+identifyList[i].name+"'>"+identifyList[i].name+"</option>";
     }
     $('#user_political').append(appendStr);
     appendStr = '';
     for(var i = 0;i < natureList.length;i++){
-        appendStr += "<option value='"+natureList[i].id+"'>"+natureList[i].name+"</option>";
+        appendStr += "<option value='"+natureList[i].name+"'>"+natureList[i].name+"</option>";
     }
     $('#workexp_property').append(appendStr);
 }
-$('#submit').click(function(){
-    var name = $('#user_name').val();
-    if(name == '' || name == null){
-        alert("名字不能为空!");
-        return;
-    }
-    var sex = $('input:radio[name="user_sex"]:checked').val();
-    if(sex == '' || sex == null){
-        alert("请选择性别!");
-        return;
-    }
-    var studentNumber = $('#user_stuid').val();
-    if(studentNumber == '' || studentNumber == null){
-        alert("学号不能为空!");
-        return;
-    }
-    var nation = $("select[name=user_race] option:selected").text();
-    if(nation == '请选择' || nation == null){
-        alert("请选择民族!");
-        return;
-    }
-    var identify = $("select[name=user_political] option:selected").text();
-    if(identify == "请选择" || identify == null){
-        alert("请选择政治面貌!");
-        return;
-    }
-    var idCard = $('#user_cardid').val();
-    if(idCard == '' || idCard == null){
-        alert("请填写身份证号!");
-        return;
-    }
-    var birthday = $('#user_birth').val();
-    if(birthday == '' || birthday == null){
-        alert("请填写出生日期!");
-        return;
-    }
-    var birthPlace = $('select[name=origin_province] option:selected').text();
-    if(birthPlace == "请选择" || birthPlace == null){
-        alert("请选择籍贯!");
-        return;
-    }
-    var address = $('select[name=current_province] option:selected').text();
-    if(address == '请选择' || address == null){
-        alert("请选择所在城市!");
-        return;
-    }
-    var phone = $('#user_cellphone').val();
-    if(phone == '' || phone == null){
-        alert("请填写手机号!");
-        return;
-    }
-    var email = $('#user_mail').val();
-    if(email == '' || email == null){
-        alert("请填写邮箱!");
-        return;
-    }
-    var education = $('select[name=edu_edulevelid] option:selected').text();
-    if(education == '请选择' || education == null){
-        alert("请选择学历!");
-        return;
-    }
-    var entranceAge = $('#edu_starttime').val();
-    if(entranceAge == '' || entranceAge == null){
-        alert("请填写入学时间!");
-        return;
-    }
-    var graduteAge = $('#edu_endtime').val();
-    if(graduteAge == '' || graduteAge == null){
-        alert('请填写毕业时间!');
-        return;
-    }
-    var academic = $('#edu_department').val();
-    if(academic == '' || academic == null){
-        alert("请填写院系!");
-        return;
-    }
-    var profession = $('#edu_major').val();
-    if(profession == '' || profession == null){
-        alert('请填写专业!');
-        return;
-    }
-    var classs = $('#edu_class').val();
-    if(classs == '' || classs == null){
-        alert('请填写班级!');
-        return;
-    }
-    var workAddress = $('select[name=work_province] option:selected').text();
-    if(workAddress == "请选择" || workAddress == null){
-        alert("请选择工作城市!");
-        return;
-    }
-    var inductiveAge = $('#workexp_starttime').val();
-    if(inductiveAge == '' || inductiveAge == null){
-        alert("请填写入职时间!");
-        return;
-    }
-    var organization = $('#workexp_companyname').val();
-    if(organization == '' || organization == null){
-        alert("请填写单位名称!");
-        return;
-    }
-    var industry = $('select[name=workexp_industry] option:selected').text();
-    if(industry == "请选择" || industry == null){
-        alert("请选择所属行业!");
-        return;
-    }
-    var organizationNature = $('select[name=workexp_property] option:selected').text();
-    if(organizationNature == "请选择" || organizationNature == null){
-        alert("请选择单位性质!");
-        return;
-    }
-    var department = $('#workexp_depart').val();
-    if(department == '' || department == null){
-        alert("请填写部门!");
-        return;
-    }
-    var job = $('#workexp_title').val();
-    if(job == '' || job == null){
-        alert("请填写职位!");
-        return;
-    }
-    $.ajax({
-        type : 'POST',
-        data : {'name':name,'sex':sex,'nation':nation,'identity':identify,'idCard':idCard,
-                'birthday':birthday,'birthPlace':birthPlace,'address':address,'phone':phone,'email':email,'education':education,
-                'entranceAge':entranceAge,'graduteAge':graduteAge,'academic':academic,'profession':profession,
-                'classs':classs,'workAddress':workAddress,'inductive':inductiveAge,'organization':organization,
-                'industry':industry,'organizationNature':organizationNature,'department':department,
-                'job':job},
-        url : '/user/register',
-        success : function(data){
-                var json = $.parseJSON(data);
-                if(json.statusCode == 200){
-                    alert(json.message);
-                }else if(json.statusCode == 500){
-                    alert(json.message);
-                }
-        }
-    });
-});
+// $('#submit').click(function(){
+//     var name = $('#user_name').val();
+//     if(name == '' || name == null){
+//         alert("名字不能为空!");
+//         return;
+//     }
+//     var sex = $('input:radio[name="user_sex"]:checked').val();
+//     if(sex == '' || sex == null){
+//         alert("请选择性别!");
+//         return;
+//     }
+//     var studentNumber = $('#user_stuid').val();
+//     if(studentNumber == '' || studentNumber == null){
+//         alert("学号不能为空!");
+//         return;
+//     }
+//     var nation = $("select[name=user_race] option:selected").text();
+//     if(nation == '请选择' || nation == null){
+//         alert("请选择民族!");
+//         return;
+//     }
+//     var identify = $("select[name=user_political] option:selected").text();
+//     if(identify == "请选择" || identify == null){
+//         alert("请选择政治面貌!");
+//         return;
+//     }
+//     var idCard = $('#user_cardid').val();
+//     if(idCard == '' || idCard == null){
+//         alert("请填写身份证号!");
+//         return;
+//     }
+//     var birthday = $('#user_birth').val();
+//     if(birthday == '' || birthday == null){
+//         alert("请填写出生日期!");
+//         return;
+//     }
+//     var birthPlace = $('select[name=origin_province] option:selected').text();
+//     if(birthPlace == "请选择" || birthPlace == null){
+//         alert("请选择籍贯!");
+//         return;
+//     }
+//     var address = $('select[name=current_province] option:selected').text();
+//     if(address == '请选择' || address == null){
+//         alert("请选择所在城市!");
+//         return;
+//     }
+//     var phone = $('#user_cellphone').val();
+//     if(phone == '' || phone == null){
+//         alert("请填写手机号!");
+//         return;
+//     }
+//     var email = $('#user_mail').val();
+//     if(email == '' || email == null){
+//         alert("请填写邮箱!");
+//         return;
+//     }
+//     var education = $('select[name=edu_edulevelid] option:selected').text();
+//     if(education == '请选择' || education == null){
+//         alert("请选择学历!");
+//         return;
+//     }
+//     var entranceAge = $('#edu_starttime').val();
+//     if(entranceAge == '' || entranceAge == null){
+//         alert("请填写入学时间!");
+//         return;
+//     }
+//     var graduteAge = $('#edu_endtime').val();
+//     if(graduteAge == '' || graduteAge == null){
+//         alert('请填写毕业时间!');
+//         return;
+//     }
+//     var academic = $('#edu_department').val();
+//     if(academic == '' || academic == null){
+//         alert("请填写院系!");
+//         return;
+//     }
+//     var profession = $('#edu_major').val();
+//     if(profession == '' || profession == null){
+//         alert('请填写专业!');
+//         return;
+//     }
+//     var classs = $('#edu_class').val();
+//     if(classs == '' || classs == null){
+//         alert('请填写班级!');
+//         return;
+//     }
+//     var workAddress = $('select[name=work_province] option:selected').text();
+//     if(workAddress == "请选择" || workAddress == null){
+//         alert("请选择工作城市!");
+//         return;
+//     }
+//     var inductiveAge = $('#workexp_starttime').val();
+//     if(inductiveAge == '' || inductiveAge == null){
+//         alert("请填写入职时间!");
+//         return;
+//     }
+//     var organization = $('#workexp_companyname').val();
+//     if(organization == '' || organization == null){
+//         alert("请填写单位名称!");
+//         return;
+//     }
+//     var industry = $('select[name=workexp_industry] option:selected').text();
+//     if(industry == "请选择" || industry == null){
+//         alert("请选择所属行业!");
+//         return;
+//     }
+//     var organizationNature = $('select[name=workexp_property] option:selected').text();
+//     if(organizationNature == "请选择" || organizationNature == null){
+//         alert("请选择单位性质!");
+//         return;
+//     }
+//     var department = $('#workexp_depart').val();
+//     if(department == '' || department == null){
+//         alert("请填写部门!");
+//         return;
+//     }
+//     var job = $('#workexp_title').val();
+//     if(job == '' || job == null){
+//         alert("请填写职位!");
+//         return;
+//     }
+// });
 });

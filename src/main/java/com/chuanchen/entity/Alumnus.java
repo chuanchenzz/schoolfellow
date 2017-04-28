@@ -10,6 +10,7 @@ public class Alumnus {
     private int id;
     private String name;
     private Sex sex;
+    private String avatar;
     private String nation;
     private String identity;
     private String idCard;
@@ -240,5 +241,13 @@ public class Alumnus {
 
     public void setInstructor(String instructor) {
         this.instructor = instructor;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }

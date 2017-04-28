@@ -10,7 +10,7 @@ import java.util.List;
  * Created by chuanchenwine on 2017/4/18.
  */
 public interface UserService {
-    boolean isAlumnusExist(String name, String studentNumber, Date startAge);
+    boolean isAlumnusExist(String name, String studentNumber);
 
     boolean isUserExist(String userName);
 
