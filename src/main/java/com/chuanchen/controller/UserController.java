@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -140,17 +141,20 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/register", method = RequestMethod.POST)
-    public JsonResult register(@RequestParam("name") String name, @RequestParam("sex") String sex, @RequestParam("nation") String nation,
+    public JsonResult register(@RequestParam("name") String name, @RequestParam("sex") String sex, @RequestParam("avatar") MultipartFile avatar,@RequestParam("nation") String nation,
                                @RequestParam("identity") String identity, @RequestParam("idCard") String idCard, @RequestParam("birthday") String birthday,
                                @RequestParam("birthPlace") String birthPlace, @RequestParam("address") String address, @RequestParam("phone") String phone,
                                @RequestParam("email") String email, @RequestParam("education") String education, @RequestParam("entranceAge") String entranceAge,
-                               @RequestParam("graduteAge") String graduteAge,@RequestParam("instructor") String instructor, @RequestParam("academic") String academic, @RequestParam("profession") String profession,
+                               @RequestParam("graduteAge") String graduteAge, @RequestParam("instructor") String instructor, @RequestParam("academic") String academic, @RequestParam("profession") String profession,
                                @RequestParam("classs") String classs, @RequestParam("workAddress") String workAddress, @RequestParam("inductive") String inductive,
                                @RequestParam("organization") String organization, @RequestParam("industry") String industry, @RequestParam("organizationNature") String organizationNature,
                                @RequestParam("department") String department, @RequestParam("job") String job, HttpSession session, Model model) {
         Alumnus alumnus = new Alumnus();
         alumnus.setName(name);
         alumnus.setSex(Sex.codeToSex(Integer.valueOf(sex)));
+        if(saveImage(avatar)){
+
+        }
         alumnus.setNation(nation);
         alumnus.setIdentity(identity);
         alumnus.setIdCard(idCard);
@@ -188,7 +192,13 @@ public class UserController {
         }
         return jsonResult;
     }
-
+    public boolean saveImage(MultipartFile image){
+        if(image.getName() != null && !image.getName().equals("") && image.getSize() > 0){
+            return false;
+        }else {
+            return false;
+        }
+    }
     @ResponseBody
     @RequestMapping(value = "/alumnusinfo/{id}", method = RequestMethod.GET)
     public JsonResult getAlumnusInfo(@PathVariable("id") String id) {

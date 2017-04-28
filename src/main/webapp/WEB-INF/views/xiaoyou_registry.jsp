@@ -95,7 +95,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                             </div>
                             <div class="fill_account" style="display:none;margin-top:-20px;">
-                            <form action="" method="post" enctype=”multipart/form-data”>
+                            <form action="/user/register" method="post" enctype=”multipart/form-data”>
                                 <!--基本信息-->
                                 <div class="addr_line" style="border-bottom: 1px solid #fff;font-size:16px; color: #c72730;">
                                     基本信息
