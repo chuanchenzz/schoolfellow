@@ -10,4 +10,12 @@ import java.util.List;
  */
 public interface BaseDataService {
     List<CommonCode> getCommonCodesByType(CodeType type);
+
+    CommonCode getCommonCodeFromCacheById(int type,int id);
+
+    CommonCode getCommonCodeFromCacheByName(int type,String name);
+
+    CommonCode getCommonCodeById(int type,int id);
+
+    CommonCode getCommonCodeByName(int type,String name);
 }

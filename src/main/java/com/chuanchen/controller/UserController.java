@@ -96,6 +96,7 @@ public class UserController {
             User user = new User();
             user.setUserName(userName);
             user.setPassword(password);
+            user.setLevel(UserLevel.NORMAL_USER);
             model.addAttribute("user", user);
             //获取地区集合
             List<CommonCode> addressList = baseDataService.getCommonCodesByType(CodeType.CITY);
@@ -156,27 +157,27 @@ public class UserController {
         if((path = saveAvatar(avatar,request)) != null){
             alumnus.setAvatar(path);
         }
-        alumnus.setNation(nation);
+        alumnus.setNation(baseDataService.getCommonCodeFromCacheByName(CodeType.NATION.getCode(),nation));
         alumnus.setStudentNumber(studentNumber);
-        alumnus.setIdentity(identity);
+        alumnus.setIdentity(baseDataService.getCommonCodeFromCacheByName(CodeType.IDENTITY.getCode(),identity));
         alumnus.setIdCard(idCard);
         alumnus.setBirthday(CommonUtil.isDatePattern(birthday) ? birthday : null);
-        alumnus.setBirthPlace(birthPlace);
-        alumnus.setAddress(address);
+        alumnus.setBirthPlace(baseDataService.getCommonCodeFromCacheByName(CodeType.CITY.getCode(),birthPlace));
+        alumnus.setAddress(baseDataService.getCommonCodeFromCacheByName(CodeType.CITY.getCode(),address));
         alumnus.setPhone(phone);
         alumnus.setEmail(email);
-        alumnus.setEducation(education);
+        alumnus.setEducation(baseDataService.getCommonCodeFromCacheByName(CodeType.EDUCATION.getCode(),education));
         alumnus.setEntranceAge(CommonUtil.isDatePattern(entranceAge) ? entranceAge : null);
         alumnus.setGraduteAge(CommonUtil.isDatePattern(graduteAge) ? graduteAge : null);
         alumnus.setInstructor(instructor);
         alumnus.setAcademic(academic);
         alumnus.setProfession(profession);
         alumnus.setClasss(classs);
-        alumnus.setWorkAddress(workAddress);
+        alumnus.setWorkAddress(baseDataService.getCommonCodeFromCacheByName(CodeType.CITY.getCode(),workAddress));
         alumnus.setInductive(CommonUtil.isDatePattern(inductive) ? inductive : null);
         alumnus.setOrganization(organization);
-        alumnus.setIndustry(industry);
-        alumnus.setOrganizationNature(organizationNature);
+        alumnus.setIndustry(baseDataService.getCommonCodeFromCacheByName(CodeType.INDUSTRY.getCode(),industry));
+        alumnus.setOrganizationNature(baseDataService.getCommonCodeFromCacheByName(CodeType.COMPANY_NATURE.getCode(),organizationNature));
         alumnus.setDepartment(department);
         alumnus.setJob(job);
         if (session.getAttribute("user") == null) {

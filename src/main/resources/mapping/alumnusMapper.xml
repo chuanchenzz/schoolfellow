@@ -13,7 +13,7 @@
         <result property="idCard" column="id_card" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
         <result property="birthPlace" column="birthplace_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
-        <result property="address" column="address" jdbcType="VARCHAR"/>
+        <result property="address" column="address" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="education" column="education_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
@@ -46,10 +46,10 @@
     </select>
     <insert id="saveAlumnus" parameterType="com.chuanchen.entity.Alumnus">
         insert into
-        alumnus(username,sex,nation_number,identity_number,id_card,birthday,birthplace_number,address,phone,email,education_number,entrance_age,gradute_age,academic,profession,classs,work_address_number,inductive_age,organization,industry_number,organization_nature_number,department,job,student_number,instructor,avatar)
+        alumnus(username,sex,nation_number,identity_number,id_card,birthday,birthplace_number,address_number,phone,email,education_number,entrance_age,gradute_age,academic,profession,classs,work_address_number,inductive_age,organization,industry_number,organization_nature_number,department,job,student_number,instructor,avatar)
         values (
-        #{name},#{sex,typeHandler=com.chuanchen.typehandler.SexTypeHandler},#{nation,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{identity,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{idCard},#{birthday,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{birthPlace,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{address},
-        #{phone},#{email},#{education,typeHandler=com.chuanchen.typehandler.CodeTypeHandler}，#{entranceAge,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{graduteAge,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{academic},#{profession},#{classs},#{workAddress,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},
+        #{name},#{sex,typeHandler=com.chuanchen.typehandler.SexTypeHandler},#{nation,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{identity,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{idCard},#{birthday,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{birthPlace,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{address,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},
+        #{phone},#{email},#{education,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{entranceAge,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{graduteAge,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{academic},#{profession},#{classs},#{workAddress,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},
         #{inductive,typeHandler=com.chuanchen.typehandler.DateTypeHandler},#{organization},#{industry,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{organizationNature,typeHandler=com.chuanchen.typehandler.CodeTypeHandler},#{department},#{job},#{studentNumber},#{instructor},#{avatar});
     </insert>
     <delete id="deleteAlumusById" parameterType="java.lang.Integer">

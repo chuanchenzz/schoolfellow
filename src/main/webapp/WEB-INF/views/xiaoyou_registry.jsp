@@ -68,7 +68,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                     </p>
                                     <p style="margin-left:70px;">
                                         <label>入学年份</label>
-                                        <input type="text" class="text-input input-length-30" id="eduend" value="2013-9-21  "/>
+                                        <input type="text" class="text-input input-length-30" id="eduend" value="2013-09-21"/>
                                     </p>
                                     <p class="btn" style="margin-left:200px;margin-top: 50px;">
                                         <input type="image" id="btn_submit_baseinfo" src="<%=basePath %>img/btn_save.jpg" alt="submit"/>

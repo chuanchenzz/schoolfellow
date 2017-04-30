@@ -16,7 +16,8 @@ public class CommonUtil {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
         Date date = null;
         try {
-            date = sdf.parse(strDate);
+            date = sdf.parse(strDate.trim());
+            System.out.println(date);
         } catch (ParseException e) {
             e.printStackTrace();
         }

@@ -12,4 +12,10 @@
     <select id="getCommonCodesByType" parameterType="java.lang.Integer" resultMap="BaseResult">
         select * from code where type = #{type};
     </select>
+    <select id="getCommonCodeById" resultMap="BaseResult">
+        select * from code where type = #{type} and id = #{id};
+    </select>
+    <select id="getCommonCodeByName" resultMap="BaseResult">
+        select * from code where type = #{type} and name = #{name};
+    </select>
 </mapper>

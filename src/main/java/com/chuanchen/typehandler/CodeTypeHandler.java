@@ -1,9 +1,8 @@
 package com.chuanchen.typehandler;
 
-import com.chuanchen.dao.CodeMapper;
+import com.chuanchen.entity.CommonCode;
 import org.apache.ibatis.type.BaseTypeHandler;
 import org.apache.ibatis.type.JdbcType;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import java.sql.CallableStatement;
 import java.sql.PreparedStatement;
@@ -13,35 +12,39 @@ import java.sql.SQLException;
 /**
  * Created by chuanchenwine on 2017/4/21.
  */
-public class CodeTypeHandler extends BaseTypeHandler<String> {
-    private Class<String> str;
-    @Autowired
-    CodeMapper codeMapper;
+public class CodeTypeHandler extends BaseTypeHandler<CommonCode> {
+    private Class<CommonCode> commonCode;
 
-    public CodeTypeHandler(Class<String> str) {
-        if (str == null) {
-            throw new IllegalArgumentException("str can't be null!");
+    public CodeTypeHandler(Class<CommonCode> commonCode) {
+        if (commonCode == null) {
+            throw new IllegalArgumentException("commonCode can't be null!");
         }
-        this.str = str;
+        this.commonCode = commonCode;
     }
 
-    public void setNonNullParameter(PreparedStatement preparedStatement, int i, String s, JdbcType jdbcType) throws SQLException {
-        int code = codeMapper.getIdByName(s);
-        preparedStatement.setInt(i, code);
+    public void setNonNullParameter(PreparedStatement preparedStatement, int i, CommonCode commonCode, JdbcType jdbcType) throws SQLException {
+        int code = commonCode.getId();
+        preparedStatement.setInt(i,code);
     }
 
-    public String getNullableResult(ResultSet resultSet, String s) throws SQLException {
+    public CommonCode getNullableResult(ResultSet resultSet, String s) throws SQLException {
         int code = resultSet.getInt(s);
-        return codeMapper.getNameById(code);
+        CommonCode commonCode = new CommonCode();
+        commonCode.setId(code);
+        return commonCode;
     }
 
-    public String getNullableResult(ResultSet resultSet, int i) throws SQLException {
+    public CommonCode getNullableResult(ResultSet resultSet, int i) throws SQLException {
         int code = resultSet.getInt(i);
-        return codeMapper.getNameById(code);
+        CommonCode commonCode = new CommonCode();
+        commonCode.setId(code);
+        return commonCode;
     }
 
-    public String getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
+    public CommonCode getNullableResult(CallableStatement callableStatement, int i) throws SQLException {
         int code = callableStatement.getInt(i);
-        return codeMapper.getNameById(code);
+        CommonCode commonCode = new CommonCode();
+        commonCode.setId(code);
+        return commonCode;
     }
 }

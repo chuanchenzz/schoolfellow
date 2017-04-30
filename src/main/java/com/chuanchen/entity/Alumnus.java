@@ -11,26 +11,26 @@ public class Alumnus {
     private String name;
     private Sex sex;
     private String avatar;
-    private String nation;
-    private String identity;
+    private CommonCode nation;
+    private CommonCode identity;
     private String idCard;
     private String birthday;
-    private String birthPlace;
-    private String address;
+    private CommonCode birthPlace;
+    private CommonCode address;
     private String phone;
     private String email;
-    private String education;
+    private CommonCode education;
     private String entranceAge;
     private String graduteAge;
     private String instructor;
     private String academic;
     private String profession;
     private String classs;
-    private String workAddress;
+    private CommonCode workAddress;
     private String inductive;
     private String organization;
-    private String industry;
-    private String organizationNature;
+    private CommonCode industry;
+    private CommonCode organizationNature;
     private String department;
     private String job;
     private String studentNumber;
@@ -59,19 +59,19 @@ public class Alumnus {
         this.sex = sex;
     }
 
-    public String getNation() {
+    public CommonCode getNation() {
         return nation;
     }
 
-    public void setNation(String nation) {
+    public void setNation(CommonCode nation) {
         this.nation = nation;
     }
 
-    public String getIdentity() {
+    public CommonCode getIdentity() {
         return identity;
     }
 
-    public void setIdentity(String identity) {
+    public void setIdentity(CommonCode identity) {
         this.identity = identity;
     }
 
@@ -91,19 +91,19 @@ public class Alumnus {
         this.birthday = birthday;
     }
 
-    public String getBirthPlace() {
+    public CommonCode getBirthPlace() {
         return birthPlace;
     }
 
-    public void setBirthPlace(String birthPlace) {
+    public void setBirthPlace(CommonCode birthPlace) {
         this.birthPlace = birthPlace;
     }
 
-    public String getAddress() {
+    public CommonCode getAddress() {
         return address;
     }
 
-    public void setAddress(String address) {
+    public void setAddress(CommonCode address) {
         this.address = address;
     }
 
@@ -123,11 +123,11 @@ public class Alumnus {
         this.email = email;
     }
 
-    public String getEducation() {
+    public CommonCode getEducation() {
         return education;
     }
 
-    public void setEducation(String education) {
+    public void setEducation(CommonCode education) {
         this.education = education;
     }
 
@@ -171,11 +171,11 @@ public class Alumnus {
         this.classs = classs;
     }
 
-    public String getWorkAddress() {
+    public CommonCode getWorkAddress() {
         return workAddress;
     }
 
-    public void setWorkAddress(String workAddress) {
+    public void setWorkAddress(CommonCode workAddress) {
         this.workAddress = workAddress;
     }
 
@@ -195,19 +195,19 @@ public class Alumnus {
         this.organization = organization;
     }
 
-    public String getIndustry() {
+    public CommonCode getIndustry() {
         return industry;
     }
 
-    public void setIndustry(String industry) {
+    public void setIndustry(CommonCode industry) {
         this.industry = industry;
     }
 
-    public String getOrganizationNature() {
+    public CommonCode getOrganizationNature() {
         return organizationNature;
     }
 
-    public void setOrganizationNature(String organizationNature) {
+    public void setOrganizationNature(CommonCode organizationNature) {
         this.organizationNature = organizationNature;
     }
 
