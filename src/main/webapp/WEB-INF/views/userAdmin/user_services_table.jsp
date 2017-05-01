@@ -11,25 +11,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>校友网后台管理系统</title>
+  <title>AdminLTE 2 | Mailbox</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/iCheck/all.css">
+  <!-- bootstrap datepicker -->
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/datepicker/datepicker3.css">
+  <!-- Bootstrap time Picker -->
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/timepicker/bootstrap-timepicker.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- fullCalendar 2.2.5-->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.min.css">
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.print.css" media="print">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.print.css" media="print">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
   folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/dist/css/skins/_all-skins.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/iCheck/flat/blue.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -42,7 +47,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
     <header class="main-header">
       <!-- Logo -->
-      <a href="#" class="logo">
+      <a href="../../../AdminLTE-2.3.11/index2.html" class="logo">
         <!-- mini logo for sidebar mini 50x50 pixels -->
         <span class="logo-mini"><b>A</b>DMIN</span>
         <!-- logo for regular state and mobile devices -->
@@ -60,28 +65,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <div class="navbar-custom-menu">
           <ul class="nav navbar-nav">
-            <!-- Messages: style can be found in dropdown.less-->
-
-            <!-- Notifications: style can be found in dropdown.less -->
-
-            <!-- Tasks: style can be found in dropdown.less -->
-
-            <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="../../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <span class="hidden-xs">chuanchen</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="../../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
                     chuanchen
-                    <!-- <small>Member since Nov. 2012</small> -->
                   </p>
                 </li>
+                <!-- Menu Footer-->
                 <li class="user-footer">
                   <div class="pull-left">
                     <a href="#" class="btn btn-default btn-flat">个人信息</a>
@@ -92,8 +90,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 </li>
               </ul>
             </li>
-            <!-- Control Sidebar Toggle Button -->
-
           </ul>
         </div>
       </nav>
@@ -108,55 +104,39 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header">MAIN NAVIGATION</li>
-          <li class="treeview">
+          <li class="treeview active">
             <a href="#">
-              <i class="fa fa-dashboard"></i> <span>校友信息管理</span>
+              <i class="fa fa-dashboard"></i> <span>个人信息管理</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
+              <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
-              <span>校友通知管理</span>
+              <span>个人通知管理</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/notice/findNotices/1?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告管理</a></li>
-              <li><a href="/notice/findNotices/2?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友消息管理</a></li>
-              <li><a href="/notice/findNotices/3?page=1&limit=15"><i class="fa fa-circle-o"></i> 母校动态管理</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> 已发布通知</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> 发布通知</a></li>
             </ul>
           </li>
           <li class="treeview">
             <a href="#">
-              <i class="fa fa-laptop"></i>
-              <span>杰出校友管理</span>
+              <i class="fa fa-edit"></i> <span>个人捐赠管理</span>
               <span class="pull-right-container">
                 <i class="fa fa-angle-left pull-right"></i>
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/topAlumnus/findTopAlumnus?page=1&limit=16"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
-              <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
-            </ul>
-          </li>
-          <li class="treeview active">
-            <a href="#">
-              <i class="fa fa-edit"></i> <span>捐赠发布管理</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 捐赠表总览</a></li>
-              <li><a href="/donation/toDonationPage"><i class="fa fa-circle-o"></i> 发布捐赠消息</a></li>
-              <li><a href="/donation/toDonationProcessPage"><i class="fa fa-circle-o"></i> 捐赠流程</a></li>
+              <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 我的捐赠历史</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -167,8 +147,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/project/findProjects?page=1&limit=15&type=1"><i class="fa fa-circle-o"></i> 合作项目</a></li>
-              <li><a href="/project/findProjects?page=1&limit=15&type=2"><i class="fa fa-circle-o"></i> 招聘信息</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i>已发布校友服务</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i>发布校友服务</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -193,8 +173,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          校友信息表
-          <small>总共 <c:out value="${totalCount}"/> 条数据</small>
+          校友服务历史表
+          <small>总共 <c:out value="${count}"/> 条数据</small>
         </h1>
       </section>
 
@@ -204,7 +184,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">校友信息表</h3>
+                <h3 class="box-title">发布校友服务历史表</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -223,29 +203,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>学号</th>
-                            <th>辅导员</th>
-                            <th>专业</th>
-                            <th>邮箱</th>
-                            <th>所在地</th>
-                            <th>查看操作</th>
-                            <th>删除操作</th>
+                            <th>项目名</th>
+                            <th>项目发布人</th>
+                            <th>发布时间</th>
+                            <th>发布类型</th>
+                            <th>项目状态</th>
+                            <th>查看详细信息</th>
                           </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${alumnusList}" var="item">
+                            <c:forEach items="${projectList}" var="item">
                                <tr class="odd gradeX">
                                 <td><c:out value="${item.name}"/></td>
-                                <td><c:out value="${item.sex.sex}"/></td>
-                                <td><c:out value="${item.studentNumber}"/></td>
-                                <td><c:out value="${item.instructor}"/></td>
-                                <td><c:out value="${item.profession}"/></td>
-                                <td><c:out value="${item.email}"/></td>
-                                <td><c:out value="${item.address.name}"/></td>
-                                <td><a href="/user/alumnusinfo/${item.id}">查看</a></td>
-                                <td><a href="/user/deletealumnus/${item.id}">删除</a></td>
+                                <td><c:out value="${item.uploadName}"/></td>
+                                <td><c:out value="${item.uploadTime}"/></td>
+                                <td><c:out value="${item.projectType.description}"/></td>
+                                <td><c:out value="${item.status.description}"/></td>
+                                <td><a href="/notice/noticeinfo/${item.id}">查看</a></td>
                                </tr>
                             </c:forEach>
                       </tbody>
@@ -305,6 +279,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <strong>Copyright &copy; 2017-2020 chuanchen.</strong> All rights
     reserved.
   </footer>
+
+  <!-- Control Sidebar -->
+
+  <!-- /.control-sidebar -->
   <!-- Add the sidebar's background. This div must be placed
   immediately after the control sidebar -->
   <div class="control-sidebar-bg"></div>
@@ -312,20 +290,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- ./wrapper -->
 
 <!-- jQuery 2.2.3 -->
-<script src="../../AdminLTE-2.3.11/plugins/jQuery/jquery-2.2.3.min.js"></script>
+<script src="../../../AdminLTE-2.3.11/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
-<script src="../../AdminLTE-2.3.11/bootstrap/js/bootstrap.min.js"></script>
+<script src="../../../AdminLTE-2.3.11/bootstrap/js/bootstrap.min.js"></script>
 <!-- Slimscroll -->
-<script src="../../AdminLTE-2.3.11/plugins/slimScroll/jquery.slimscroll.min.js"></script>
+<script src="../../../AdminLTE-2.3.11/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
-<script src="../../AdminLTE-2.3.11/plugins/fastclick/fastclick.js"></script>
+<script src="../../../AdminLTE-2.3.11/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
-<script src="../../AdminLTE-2.3.11/dist/js/app.min.js"></script>
+<script src="../../../AdminLTE-2.3.11/dist/js/app.min.js"></script>
+<!-- bootstrap datepicker -->
+<script src="../../../AdminLTE-2.3.11/plugins/datepicker/bootstrap-datepicker.js"></script>
 <!-- iCheck -->
-<script src="../../AdminLTE-2.3.11/plugins/iCheck/icheck.min.js"></script>
+<script src="../../../AdminLTE-2.3.11/plugins/iCheck/icheck.min.js"></script>
+<script src="../../../AdminLTE-2.3.11/dist/js/app.min.js"></script>
 <!-- Page Script -->
-  
 <!-- AdminLTE for demo purposes -->
-<script src="../../AdminLTE-2.3.11/dist/js/demo.js"></script>
+<script src="../../../AdminLTE-2.3.11/dist/js/demo.js"></script>
+<script src="../../../js/user_personal_info.js"></script>
 </body>
 </html>

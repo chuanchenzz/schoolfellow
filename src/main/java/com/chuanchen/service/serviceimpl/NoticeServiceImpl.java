@@ -3,9 +3,11 @@ package com.chuanchen.service.serviceimpl;
 import com.chuanchen.dao.NoticeMapper;
 import com.chuanchen.entity.Notice;
 import com.chuanchen.service.NoticeService;
+import com.chuanchen.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Collections;
 import java.util.List;
 
 /**
@@ -65,5 +67,15 @@ public class NoticeServiceImpl implements NoticeService {
 
     public int getTotalCountByType(int type) {
         return noticeMapper.getTotalCountByType(type);
+    }
+
+    public List<Notice> getNoticesByAlumnusId(int page,int limit,int alumnusId) {
+        int begin = (page - 1) * Constant.NOTICE_PAGE_COUNT;
+        List<Notice> noticeList = noticeMapper.getNoticesByAlumnusId(begin,limit,alumnusId);
+        return noticeList == null ? Collections.<Notice>emptyList() : noticeList;
+    }
+
+    public int getCountByAlumnusId(int alumnusId) {
+        return noticeMapper.getCountByAlumnusId(alumnusId);
     }
 }

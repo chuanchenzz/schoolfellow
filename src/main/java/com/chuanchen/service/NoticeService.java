@@ -30,4 +30,8 @@ public interface NoticeService {
     boolean deleteNoticeById(int id);
 
     int getTotalCountByType(int type);
+
+    List<Notice> getNoticesByAlumnusId(int page,int limit,int alumnusId);
+
+    int getCountByAlumnusId(int alumnusId);
 }

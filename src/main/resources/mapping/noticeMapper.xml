@@ -33,6 +33,12 @@
     <select id="getTotalCountByType" resultType="java.lang.Integer">
         select count(*) from notice where type = #{type};
     </select>
+    <select id="getNoticesByAlumnusId" resultMap="BaseResult">
+        select * from notice where user_id = #{alumnusId} order by pub_date desc limit #{begin},#{limit};
+    </select>
+    <select id="getCountByAlumnusId" resultType="java.lang.Integer">
+        select count(*) from notice where user_id = #{alumnusId};
+    </select>
     <update id="updateNotice">
         update notice set status = #{status} where id = #{noticeId};
     </update>

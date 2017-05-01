@@ -50,9 +50,28 @@ public class DonationController {
         model.addAttribute("donationList", donationList);
         model.addAttribute("totalCount", totalCount);
         model.addAttribute("pageCount", pageCount);
-        return "donate_table";
+        return "admin/donate_table";
     }
-
+    //user
+    @RequestMapping(value = "/findUserDonations", method = RequestMethod.GET)
+    public String findUserDonations(@Param("page") int page, @Param("limit") int limit, Model model) {
+        int totalCount = donationService.getTotalCount();
+        int pageCount = pageCount(totalCount);
+        if (page <= 0) {
+            page = 1;
+        }
+        if (page > pageCount) {
+            page = pageCount;
+        }
+        if (limit != Constant.DONATION_PAGE_COUNT) {
+            limit = Constant.DONATION_PAGE_COUNT;
+        }
+        List<Donation> donationList = donationService.findDonations(page, limit);
+        model.addAttribute("donationList", donationList);
+        model.addAttribute("totalCount", totalCount);
+        model.addAttribute("pageCount", pageCount);
+        return "userAdmin/user_donation_history_table";
+    }
     @ResponseBody
     @RequestMapping(value = "/deleteDonation/{id}", method = RequestMethod.GET)
     public JsonResult deleteDonation(@PathVariable("id") int id) {
@@ -80,7 +99,7 @@ public class DonationController {
         } else {
             model.addAttribute("putDonation", false);
         }
-        return "publish_donation";
+        return "admin/publish_donation";
     }
 
     @RequestMapping(value = "/donation/{id}", method = RequestMethod.GET)
@@ -88,9 +107,9 @@ public class DonationController {
         Donation donation = donationService.findDonationById(id);
         if (donation != null) {
             model.addAttribute("donation", donation);
-            return "donation_detail";
+            return "admin/donation_detail";
         } else {
-            return "donate_table";
+            return "admin/donate_table";
         }
     }
 

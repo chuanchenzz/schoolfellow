@@ -14,6 +14,7 @@ public class Project {
     private String file;
     private ProjectType projectType;
     private Status status;
+    private int alumnusId;
     public Project(){}
 
     public int getId() {
@@ -78,5 +79,13 @@ public class Project {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public int getAlumnusId() {
+        return alumnusId;
+    }
+
+    public void setAlumnusId(int alumnusId) {
+        this.alumnusId = alumnusId;
     }
 }

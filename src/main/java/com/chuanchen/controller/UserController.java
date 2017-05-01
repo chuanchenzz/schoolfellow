@@ -24,7 +24,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("/user")
-@SessionAttributes(value = {"user"})
+@SessionAttributes(value = {"alumnus","user"})
 @PropertySource("classpath:variables.properties")
 public class UserController {
     @Autowired
@@ -84,7 +84,7 @@ public class UserController {
         model.addAttribute("alumnusList",alumnusList);
         model.addAttribute("totalCount",totalPage);
         model.addAttribute("page",page);
-        return "xiaoyou_table";
+        return "admin/xiaoyou_table";
     }
     @ResponseBody
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
@@ -215,18 +215,64 @@ public class UserController {
             return null;
         }
     }
+    //admin
     @RequestMapping(value = "/alumnusinfo/{id}", method = RequestMethod.GET)
     public String getAlumnusInfo(@PathVariable("id") String id,Model model) {
         JsonResult jsonResult = new JsonResult();
         Alumnus alumnus = userService.getAlumnusById(Integer.valueOf(id));
         if (alumnus == null) {
-            return "xiaoyou_table";
+            return "admin/xiaoyou_table";
         } else {
             model.addAttribute("alumnus",alumnus);
-            return "xiaoyou_detail";
+            return "admin/xiaoyou_detail";
         }
     }
-
+    //user
+    @RequestMapping(value = "getSelfInfo",method = RequestMethod.GET)
+    public String getSelfInfo(Model model,HttpSession httpSession){
+        Alumnus alumnus = (Alumnus) httpSession.getAttribute("alumnus");
+        if(alumnus == null){
+            return "跳转到登录界面";
+        }
+        //获取地区集合
+        List<CommonCode> addressList = baseDataService.getCommonCodesByType(CodeType.CITY);
+        if(addressList == null){
+            addressList = Collections.emptyList();
+        }
+        //获取民族集合
+        List<CommonCode> nationList = baseDataService.getCommonCodesByType(CodeType.NATION);
+        if(nationList == null){
+            nationList = Collections.emptyList();
+        }
+        //获取学历集合
+        List<CommonCode> academicList = baseDataService.getCommonCodesByType(CodeType.EDUCATION);
+        if(academicList == null){
+            nationList = Collections.emptyList();
+        }
+        //获取行业集合
+        List<CommonCode> industryList = baseDataService.getCommonCodesByType(CodeType.INDUSTRY);
+        if(industryList == null){
+            industryList = Collections.emptyList();
+        }
+        //获取身份集合
+        List<CommonCode> identifyList = baseDataService.getCommonCodesByType(CodeType.IDENTITY);
+        if(identifyList == null){
+            identifyList = Collections.emptyList();
+        }
+        //获取公司性质集合
+        List<CommonCode> natureList = baseDataService.getCommonCodesByType(CodeType.COMPANY_NATURE);
+        if(nationList == null){
+            nationList = Collections.emptyList();
+        }
+        model.addAttribute("addressList",addressList);
+        model.addAttribute("nationList",nationList);
+        model.addAttribute("academicList",academicList);
+        model.addAttribute("industryList",industryList);
+        model.addAttribute("identifyList",identifyList);
+        model.addAttribute("natureList",natureList);
+        model.addAttribute("alumnus",alumnus);
+        return "userAdmin/user_personal_info";
+    }
     @ResponseBody
     @RequestMapping(value = "/deletealumnus/{id}", method = RequestMethod.GET)
     public JsonResult deleteAlumnus(@PathVariable("id") String id) {
@@ -243,12 +289,13 @@ public class UserController {
 
     @ResponseBody
     @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public JsonResult userLogin(@RequestParam("user_ame") String userName, @RequestParam("password") String password) {
+    public JsonResult userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password,Model model) {
         password = CommonUtil.md5Password(password.trim());
         User user = userService.findUserByNameAndPassword(userName, password);
         JsonResult jsonResult = new JsonResult();
         if (user != null) {
             Alumnus alumnus = userService.getAlumnusById(user.getAlumnusId());
+            model.addAttribute("alumnus",alumnus);
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("alumnus", alumnus);
             params.put("type", user.getLevel().getLevel());
@@ -280,5 +327,19 @@ public class UserController {
             jsonResult.setMapParams(params);
         }
         return jsonResult;
+    }
+    @RequestMapping(value = "/backManagement",method = RequestMethod.GET)
+    public String backManagement(@RequestParam("level") int level,HttpSession httpSession){
+        if(httpSession.getAttribute("alumnus") == null){
+            return "not_found";
+        }
+        UserLevel userLevel = UserLevel.levelToUserLevel(level);
+        if(userLevel == UserLevel.ADMIN_USER){
+            return "admin/admin_management_index";
+        }else if(userLevel == UserLevel.NORMAL_USER){
+            return "userAdmin/user_management_index";
+        }else {
+            throw new IllegalArgumentException();
+        }
     }
 }

@@ -49,10 +49,10 @@ public class TopAlumnusController {
         topAlumnus.setAvatar(saveTopAvatar(avatar, request));
         if (topAlumnusService.uploadTopAlumnus(topAlumnus)) {
             model.addAttribute("isUpload",1);
-            return "add_top_xiaoyou";
+            return "admin/add_top_xiaoyou";
         } else {
             model.addAttribute("isUpload",0);
-            return "add_top_xiaoyou";
+            return "admin/add_top_xiaoyou";
         }
     }
 
@@ -73,7 +73,7 @@ public class TopAlumnusController {
         model.addAttribute("topAlumnusList",topAlumnusList);
         model.addAttribute("totalCount",totalCount);
         model.addAttribute("pageCount",pageCount);
-        return "xiaoyou_photos";
+        return "admin/xiaoyou_photos";
     }
     private int pageCount(int totalCount) {
         if(totalCount / Constant.TOPALUMNUS_PAGE_COUNT == 0){

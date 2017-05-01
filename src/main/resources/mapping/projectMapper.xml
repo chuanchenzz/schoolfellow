@@ -12,6 +12,7 @@
         <result property="file" column="file" jdbcType="VARCHAR"/>
         <result property="projectType" column="project_type" typeHandler="com.chuanchen.typehandler.ProjectTypeHandler"/>
         <result property="status" column="status" typeHandler="com.chuanchen.typehandler.StatusTypeHandler"/>
+        <result property="alumnusId" column="alumnus_id" jdbcType="INTEGER"/>
     </resultMap>
     <select id="getTotalCount" resultType="java.lang.Integer">
         select count(*) from project;
@@ -21,6 +22,12 @@
     </select>
     <select id="findProjectById" resultMap="BaseResult">
         select * from project where id = #{id};
+    </select>
+    <select id="getCountByAlumnusId" resultType="java.lang.Integer">
+        select count(*) from project where alumnus_id = #{alumnusId};
+    </select>
+    <select id="findProjectsByAlumnusId" resultMap="BaseResult">
+        select * from project where alumnus_id = #{alumnusId} order by upload_time desc limit #{begin},#{limit};
     </select>
     <delete id="deleteProject" parameterType="java.lang.Integer">
         delete from project where id = #{id};

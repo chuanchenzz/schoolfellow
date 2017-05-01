@@ -28,4 +28,8 @@ public interface NoticeMapper {
     int deleteNoticeById(@Param("id") int id);
 
     int getTotalCountByType(int type);
+
+    List<Notice> getNoticesByAlumnusId(@Param("begin") int begin,@Param("limit") int limit,@Param("alumnusId") int alumnusId);
+
+    int getCountByAlumnusId(@Param("alumnus") int alumnusId);
 }

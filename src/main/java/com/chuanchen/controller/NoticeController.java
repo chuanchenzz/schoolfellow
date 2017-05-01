@@ -1,16 +1,15 @@
 package com.chuanchen.controller;
 
-import com.chuanchen.entity.JsonResult;
-import com.chuanchen.entity.Notice;
-import com.chuanchen.entity.NoticeType;
-import com.chuanchen.entity.Status;
+import com.chuanchen.entity.*;
 import com.chuanchen.service.NoticeService;
 import com.chuanchen.service.UserService;
+import com.chuanchen.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import javax.servlet.http.HttpSession;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -51,13 +50,13 @@ public class NoticeController {
     private String toPageByType(NoticeType noticeType) {
         switch (noticeType) {
             case NOTICE_MESSAGE:
-                return "notice_message_table";
+                return "admin/notice_message_table";
             case SCHOOL_DYNAMIC:
-                return "campus_message_table";
+                return "admin/campus_message_table";
             case ALUMNUS_MESSAGE:
-                return "xiaoyou_message_table";
+                return "admin/xiaoyou_message_table";
             default:
-                return "notice_message_table";
+                return "admin/notice_message_table";
         }
     }
 
@@ -109,15 +108,49 @@ public class NoticeController {
             String userName = userService.getUsernameById(userId);
             model.addAttribute("notice", notice);
             model.addAttribute("username", userName);
-            return "notice_info";
+            return "admin/notice_info";
         } else {
-            return "notice_info";
+            return "admin/notice_info";
         }
     }
-
+    //user
+    @RequestMapping(value = "/userPulishNoticePage",method = RequestMethod.GET)
+    public String publishNoticePage(Model model,HttpSession httpSession){
+        Alumnus alumnus = (Alumnus) httpSession.getAttribute("alumnus");
+        if(alumnus == null){
+            return "请重新登陆!";
+        }
+        model.addAttribute("alumnusId",alumnus.getId());
+        return "userAdmin/user_publish_notice";
+    }
     @RequestMapping(value = "/deletenotice/{id}", method = RequestMethod.GET)
     public String deleteNotice(@PathVariable("id") int id) {
         boolean result = noticeService.deleteNoticeById(id);
         return "redirect:/notice/findNotices?page=1&limit=15";
     }
+    //user
+    @RequestMapping(value = "/myPublishNotice",method = RequestMethod.GET)
+    public String checkMyPublishNotice(@RequestParam("page") int page,@RequestParam("limit") int limit, Model model, HttpSession httpSession){
+        Alumnus alumnus = (Alumnus) httpSession.getAttribute("alumnus");
+        if(alumnus == null){
+            return "请重新登陆!";
+        }
+        int count = noticeService.getCountByAlumnusId(alumnus.getId());
+        int pageCount = pageCount(count);
+        if(page <= 0 ){
+            page = 1;
+        }
+        if(page > pageCount){
+            page = pageCount;
+        }
+        if(limit != Constant.NOTICE_PAGE_COUNT){
+            limit = Constant.NOTICE_PAGE_COUNT;
+        }
+        List<Notice> noticeList = noticeService.getNoticesByAlumnusId(page,limit,alumnus.getId());
+        model.addAttribute("noticeList",noticeList);
+        model.addAttribute("count",count);
+        model.addAttribute("pageCount",pageCount);
+        return "userAdmin/user_publish_notice_table";
+    }
+
 }

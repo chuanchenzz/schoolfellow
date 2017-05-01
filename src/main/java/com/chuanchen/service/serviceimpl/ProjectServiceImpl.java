@@ -34,4 +34,14 @@ public class ProjectServiceImpl implements ProjectService{
     public boolean deleteProject(int id) {
         return projectMapper.deleteProject(id) > 0 ? true : false;
     }
+
+    public int getCountByAlumnusId(int alumnusId) {
+        return projectMapper.getCountByAlumnusId(alumnusId);
+    }
+
+    public List<Project> findProjectsByAlumnusId(int page, int limit, int alumnusId) {
+        int begin = (page - 1) * Constant.PROJECT_PAGE_COUNT;
+        List<Project> projectList = projectMapper.findProjectsByAlumnusId(begin,limit,alumnusId);
+        return projectList == null ? Collections.<Project>emptyList() : projectList;
+    }
 }

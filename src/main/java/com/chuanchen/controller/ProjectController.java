@@ -1,9 +1,11 @@
 package com.chuanchen.controller;
 
+import com.chuanchen.entity.Alumnus;
 import com.chuanchen.entity.Project;
 import com.chuanchen.entity.ProjectType;
 import com.chuanchen.service.ProjectService;
 import com.chuanchen.util.Constant;
+import org.apache.ibatis.annotations.Param;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 
+import javax.servlet.http.HttpSession;
 import java.util.List;
 
 /**
@@ -44,14 +47,38 @@ public class ProjectController {
         }else if(ProjectType.codeToProjectType(type) == ProjectType.INCRUITMENT_INFO){
             model.addAttribute("title","招聘信息表");
         }
-        return "cooperrator_project_table";
+        return "admin/cooperrator_project_table";
+    }
+    //user
+    @RequestMapping(value = "/findPublishProjects",method = RequestMethod.GET)
+    public String findPublishProjects(@RequestParam("page") int page, @Param("limit") int limit, Model model, HttpSession httpSession){
+        Alumnus alumnus = (Alumnus) httpSession.getAttribute("alumnus");
+        if(alumnus == null){
+            return "请重新登陆!";
+        }
+        int count = projectService.getCountByAlumnusId(alumnus.getId());
+        int pageCount = pageCount(count);
+        if(page <= 0){
+            page = 1;
+        }
+        if(page > pageCount){
+            page = pageCount;
+        }
+        if(limit != Constant.PROJECT_PAGE_COUNT){
+            limit = Constant.PROJECT_PAGE_COUNT;
+        }
+        List<Project> projectList = projectService.findProjectList(page,limit,alumnus.getId());
+        model.addAttribute("projectList",projectList);
+        model.addAttribute("count",count);
+        model.addAttribute("pageCount",pageCount);
+        return "userAdmin/user_services_table";
     }
     @RequestMapping(value = "/projectInfo/{id}",method = RequestMethod.GET)
     public String findProjectInfo(@RequestParam("id") int id,Model model){
         Project project = projectService.findProjectById(id);
         if(project != null){
             model.addAttribute("project",project);
-            return "project_info";
+            return "admin/project_info";
         }else {
             return "";
         }

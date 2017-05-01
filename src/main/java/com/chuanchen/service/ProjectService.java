@@ -16,4 +16,8 @@ public interface ProjectService {
     Project findProjectById(int id);
 
     boolean deleteProject(int id);
+
+    int getCountByAlumnusId(int alumnusId);
+
+    List<Project> findProjectsByAlumnusId(int page,int limit,int alumnusId);
 }

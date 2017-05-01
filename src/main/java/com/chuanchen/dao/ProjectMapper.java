@@ -17,4 +17,8 @@ public interface ProjectMapper {
     Project findProjectById(@Param("id") int id);
 
     int deleteProject(@Param("id") int id);
+
+    int getCountByAlumnusId(@Param("alumnusId") int alumnusId);
+
+    List<Project> findProjectsByAlumnusId(@Param("begin") int begin,@Param("limit") int limit,@Param("alumnusId") int alumnusId);
 }
