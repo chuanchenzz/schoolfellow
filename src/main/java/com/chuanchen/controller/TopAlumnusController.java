@@ -37,7 +37,7 @@ public class TopAlumnusController {
 
     @RequestMapping(value = "/addTopAlumnusPage", method = RequestMethod.GET)
     public String addTopAlumnusPage(HttpSession session, Model model) {
-        return "add_top_xiaoyou";
+        return "admin/add_top_xiaoyou";
     }
 
     @RequestMapping(value = "/uploadTopAlumnus", method = RequestMethod.POST)

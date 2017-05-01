@@ -104,6 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             </a>
             <ul class="treeview-menu">
               <li><a href="/user/getSelfInfo"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
+              <li><a href="/user/cityAlumnus?page=1&limit=15"><i class="fa fa-circle-o"></i> 同城校友</a></li>
             </ul>
           </li>
           <li class="treeview">

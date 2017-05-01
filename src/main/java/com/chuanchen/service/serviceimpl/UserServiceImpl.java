@@ -7,6 +7,7 @@ import com.chuanchen.entity.CodeType;
 import com.chuanchen.entity.User;
 import com.chuanchen.service.BaseDataService;
 import com.chuanchen.service.UserService;
+import com.chuanchen.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -105,5 +106,14 @@ public class UserServiceImpl implements UserService{
 
     public String getUsernameById(int id) {
         return userMapper.getUsernameById(id);
+    }
+
+    public int getCountByCity(int cityCode) {
+        return alumnusMapper.getCountByCity(cityCode);
+    }
+
+    public List<Alumnus> getAlumnusesByCity(int page,int limit,int cityCode) {
+        int begin = (page - 1) * Constant.ALUMNUS_PAGE_COUNT;
+        return alumnusMapper.getAlumnusListByCity(begin,limit,cityCode);
     }
 }

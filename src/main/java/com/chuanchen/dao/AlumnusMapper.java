@@ -23,4 +23,8 @@ public interface AlumnusMapper {
     int getAlumnusCount();
 
     String getAlumnusNameById(@Param("id") int id);
+
+    int getCountByCity(@Param("cityCode") int cityCode);
+
+    List<Alumnus> getAlumnusListByCity(@Param("begin") int begin,@Param("limit") int limit,@Param("cityCode") int cityCode);
 }

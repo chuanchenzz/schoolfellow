@@ -173,34 +173,107 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-                  <h1>
-                     <c:out value="${project.projectType.description}"></c:out>详细信息
-                  </h1>
-              </section>
+        <h1>
+          同城校友
+          <small>总共 <c:out value="${totalCount}"/> 条数据</small>
+        </h1>
+      </section>
 
-              <!-- Main content -->
-              <section class="content">
+      <!-- Main content -->
+      <section class="content">
+        <div class="row">
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">同城校友表</h3>
+              </div>
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
                   <div class="row">
-                      <div class="col-md-9" style="margin-left: 200px;">
-                          <div class="box box-primary">
-                              <div class="box-header with-border" style="text-align: center;">
-                                  <h1 >${project.name}</h1>
-                              </div>
-                              <div class="box-body no-padding">
-                                  <div class="mailbox-read-message">
-                                      ${project.content}
-                                  </div>
-                                  <div class="box-footer" style="text-align: right;margin-right: 50px;">
-                                      <h3>发布时间:${project.uploadTime}</h3>
-                                  </div>
-                                  <div class="box-footer" style="text-align: left;margin-left: 50px;">
-                                      <h4>点击下载详细文件:<a href="${project.file}">点击下载</a></h4>
-                                  </div>
-                              </div>
-                          </div>
+                    <div class="col-sm-12" style="text-align: right;">
+                      <div class="example1_filter" id="dataTables_filter">
+                        <label>Search
+                          <input type="search" class="form-control input-sm" placeholder aria-controls="example1">
+                        </label>
                       </div>
+                    </div>
                   </div>
-              </section>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>姓名</th>
+                            <th>性别</th>
+                            <th>学号</th>
+                            <th>辅导员</th>
+                            <th>专业</th>
+                            <th>邮箱</th>
+                            <th>所在地</th>
+                            <th>查看操作</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${alumnusList}" var="item">
+                               <tr class="odd gradeX">
+                                <td><c:out value="${item.name}"/></td>
+                                <td><c:out value="${item.sex.sex}"/></td>
+                                <td><c:out value="${item.studentNumber}"/></td>
+                                <td><c:out value="${item.instructor}"/></td>
+                                <td><c:out value="${item.profession}"/></td>
+                                <td><c:out value="${item.email}"/></td>
+                                <td><c:out value="${item.address.name}"/></td>
+                                <td><a href="#">查看</a></td>
+                               </tr>
+                            </c:forEach>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-5" style="padding-top: 8px;">
+                    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">每页最多展示15条数据</div>
+                  </div>
+                  <div class="col-sm-7" style="text-align: right;">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                      <ul class="pagination">
+                        <li class="paginate_button previous disabled" id="example1_previous">
+                          <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
+                        </li>
+                        <li class="paginate_button active">
+                          <a href="#" aria-controls="example1" data-dt-idx="1" tabindex="0">1</a>
+                        </li>
+                        <li class="paginate_button">
+                          <a href="#" aria-controls="example1" data-dt-idx="2" tabindex="0">2</a>
+                        </li>
+                        <li class="paginate_button">
+                          <a href="#" aria-controls="example1" data-dt-idx="3" tabindex="0">3</a>
+                        </li>
+                        <li class="paginate_button">
+                          <a href="#" aria-controls="example1" data-dt-idx="4" tabindex="0">4</a>
+                        </li>
+                        <li class="paginate_button">
+                          <a href="#" aria-controls="example1" data-dt-idx="5" tabindex="0">5</a>
+                        </li>
+                        <li class="paginate_button">
+                          <a href="#" aria-controls="example1" data-dt-idx="6" tabindex="0">6</a>
+                        </li>
+                        <li class="paginate_button next" id="example1_next">
+                          <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
+                        </li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <!-- /.box-body -->
+          </div>
+          <!-- /.row -->
+        </div>
+      </div>
+    </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -239,6 +312,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- Page Script -->
 <!-- AdminLTE for demo purposes -->
 <script src="../../../AdminLTE-2.3.11/dist/js/demo.js"></script>
-<script src="../../../js/user_publish_notice.js"></script>
+<script src="../../../js/user_personal_info.js"></script>
 </body>
 </html>

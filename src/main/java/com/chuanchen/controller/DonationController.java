@@ -115,12 +115,12 @@ public class DonationController {
 
     @RequestMapping(value = "/toDonationPage", method = RequestMethod.GET)
     public String toDonationPage() {
-        return "publish_donation";
+        return "admin/publish_donation";
     }
 
     @RequestMapping(value = "/toDonationProcessPage", method = RequestMethod.GET)
     public String toDonationProcessPage() {
-        return "donation_process";
+        return "admin/donation_process";
     }
     @RequestMapping(value = "/setDonationProcess",method = RequestMethod.POST)
     public String setDonationProcess(@RequestParam("donationCompass") String donationCompass, @RequestParam("donationWay") String donationWay, @RequestPart("donationFile")MultipartFile donationFile,

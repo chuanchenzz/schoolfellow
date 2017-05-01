@@ -29,4 +29,8 @@ public interface UserService {
     String getAlumnusNameById(int id);
 
     String getUsernameById(int id);
+
+    int getCountByCity(int cityCode);
+
+    List<Alumnus> getAlumnusesByCity(int page,int limit,int cityCode);
 }

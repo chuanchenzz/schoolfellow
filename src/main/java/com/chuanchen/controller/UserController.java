@@ -4,6 +4,8 @@ import com.chuanchen.entity.*;
 import com.chuanchen.service.BaseDataService;
 import com.chuanchen.service.UserService;
 import com.chuanchen.util.CommonUtil;
+import com.chuanchen.util.Constant;
+import org.apache.tools.ant.taskdefs.condition.Http;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
@@ -48,8 +50,6 @@ public class UserController {
 
     @RequestMapping(value = "registry", method = RequestMethod.GET)
     public String alumnusRegistry(HttpServletRequest  request) {
-        String path = request.getSession().getServletContext().getRealPath("avatars");
-        System.out.print(path);
         return "xiaoyou_registry";
     }
 
@@ -85,6 +85,12 @@ public class UserController {
         model.addAttribute("totalCount",totalPage);
         model.addAttribute("page",page);
         return "admin/xiaoyou_table";
+    }
+    private int pageCount(int totalCount) {
+        if(totalCount / Constant.ALUMNUS_PAGE_COUNT == 0){
+            return 1;
+        }
+        return totalCount % Constant.ALUMNUS_PAGE_COUNT == 0 ? totalCount / Constant.ALUMNUS_PAGE_COUNT : totalCount / Constant.ALUMNUS_PAGE_COUNT + 1;
     }
     @ResponseBody
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
@@ -227,6 +233,29 @@ public class UserController {
             return "admin/xiaoyou_detail";
         }
     }
+    @RequestMapping(value = "/cityAlumnus",method = RequestMethod.GET)
+    public String getCityAlumnus(@RequestParam("page") int page,@RequestParam("limit") int limit, Model model, HttpSession httpSession){
+        Alumnus alumnus = (Alumnus) httpSession.getAttribute("alumnus");
+        if(alumnus == null){
+            return "not_found";
+        }
+        int cityCount = userService.getCountByCity(alumnus.getWorkAddress().getId());
+        int pageCount = pageCount(cityCount);
+        if(page <= 0){
+            page = 1;
+        }
+        if(page > pageCount){
+            page = pageCount;
+        }
+        if(limit != Constant.ALUMNUS_PAGE_COUNT){
+            limit = Constant.ALUMNUS_PAGE_COUNT;
+        }
+        List<Alumnus> alumnusList = userService.getAlumnusesByCity(page,limit,alumnus.getWorkAddress().getId());
+        model.addAttribute("alumnusList",alumnusList);
+        model.addAttribute("totalCount",cityCount);
+        model.addAttribute("pageCount",pageCount);
+        return "userAdmin/user_city_alumnus";
+    }
     //user
     @RequestMapping(value = "/getSelfInfo",method = RequestMethod.GET)
     public String getSelfInfo(Model model,HttpSession httpSession){
@@ -287,25 +316,23 @@ public class UserController {
         return jsonResult;
     }
 
-    @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
-    public JsonResult userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password,HttpSession httpSession) {
+    @RequestMapping(value = "/login", method = RequestMethod.POST)
+    public String userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password,HttpSession httpSession,Model model) {
         password = CommonUtil.md5Password(password.trim());
         User user = userService.findUserByNameAndPassword(userName, password);
-        JsonResult jsonResult = new JsonResult();
         if (user != null) {
-            Alumnus alumnus = userService.getAlumnusById(user.getAlumnusId());
-            httpSession.setAttribute("alumnus",alumnus);
-            Map<String, Object> params = new HashMap<String, Object>();
-            params.put("alumnus", alumnus);
-            params.put("type", user.getLevel().getLevel());
-            jsonResult.setMapParams(params);
-            jsonResult.setStatusCode(200);
+            switch (user.getLevel()){
+                case NORMAL_USER:
+                {
+                    Alumnus alumnus = userService.getAlumnusById(user.getAlumnusId());
+                    httpSession.setAttribute("alumnus",alumnus);
+                }
+            }
+            model.addAttribute("level", user.getLevel().getLevel());
+            return "redirect:/user/backManagement";
         } else {
-            jsonResult.setStatusCode(404);
-            jsonResult.setMessage("该用户不存在!");
+            return "login";
         }
-        return jsonResult;
     }
     @ResponseBody
     @RequestMapping(value = "/findbasedata/{type}",method = RequestMethod.GET)
@@ -342,8 +369,7 @@ public class UserController {
     }
     @RequestMapping(value = "/backManagement",method = RequestMethod.GET)
     public String backManagement(@RequestParam("level") int level,HttpSession httpSession){
-        if(httpSession.getAttribute("alumnus") == null){
-            System.out.println("not found");
+        if(level == 0 && httpSession.getAttribute("alumnus") == null){
             return "not_found";
         }
         UserLevel userLevel = UserLevel.levelToUserLevel(level);

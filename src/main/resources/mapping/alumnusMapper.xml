@@ -44,6 +44,12 @@
     <select id="getAlumnusCount" resultType="java.lang.Integer">
         select count(*) from alumnus;
     </select>
+    <select id="getCountByCity" resultType="java.lang.Integer">
+        select count(*) from alumnus where work_address_number = #{cityCode};
+    </select>
+    <select id="getAlumnusListByCity" resultMap="BaseResult">
+        select * from alumnus where work_address_number = #{cityCode} limit #{begin},#{limit};
+    </select>
     <select id="getAlumnusNameById" resultType="java.lang.String" parameterType="java.lang.Integer">
         select username from alumnus where id = #{id};
     </select>
