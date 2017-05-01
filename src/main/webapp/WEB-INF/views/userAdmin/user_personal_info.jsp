@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Mailbox</title>
+  <title>校友网后台管理</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
+              <li><a href="/user/getSelfInfo"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -124,8 +124,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 已发布通知</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 发布通知</a></li>
+              <li><a href="/notice/myPublishNotice?page=1&limit=15"><i class="fa fa-circle-o"></i> 已发布通知</a></li>
+              <li><a href="/notice/userPulishNoticePage"><i class="fa fa-circle-o"></i> 发布通知</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -136,7 +136,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 我的捐赠历史</a></li>
+              <li><a href="/donation/findUserDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 捐赠历史</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -147,8 +147,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i>已发布校友服务</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i>发布校友服务</a></li>
+              <li><a href="/project/findPublishProjects?page=1&limit=15"><i class="fa fa-circle-o"></i>已发布校友服务</a></li>
+              <li><a href="/project/publishServicePage"><i class="fa fa-circle-o"></i>发布校友服务</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -339,7 +339,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="form-group">
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">姓名:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="">
+                  <input type="text" class="form-control" name="name" value="<c:out value='${alumnus.name}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
@@ -364,7 +364,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">学号:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" >
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.studentNumber}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
@@ -392,7 +392,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">身份证号:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" >
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.idCard}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
@@ -435,7 +435,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <div class="input-group-addon">
                         <i class="fa fa-phone"></i>
                       </div>
-                      <input type="text" class="form-control" id="phone" name="phone">
+                      <input type="text" class="form-control" id="phone" name="phone" value="<c:out value='${alumnus.phone}'/>">
                     </div>
                   </div>
                 </div>
@@ -446,7 +446,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <div class="input-group-addon">
                         <i class="fa fa-envelope"></i>
                       </div>
-                      <input type="email" class="form-control" id="email" name="email">
+                      <input type="email" class="form-control" id="email" name="email" value="<c:out value='${alumnus.email}'/>">
                     </div>
                   </div>
                 </div>
@@ -486,19 +486,19 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">学院:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" >
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.academic}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">专业:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" >
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.profession}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">班级:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" >
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.classs}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
@@ -526,7 +526,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">公司名称:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" >
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.organization}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
@@ -554,13 +554,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">所属单位部门:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="">
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.department}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">工作职位:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" >
+                  <input type="text" class="form-control" name="" value="<c:out value='${alumnus.job}'/>">
                   </div>
                 </div>
                 <div class="box-footer" style="text-align: center;">

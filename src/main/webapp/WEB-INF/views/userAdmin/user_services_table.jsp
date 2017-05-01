@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Mailbox</title>
+  <title>校友网后台管理</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -104,7 +104,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header">MAIN NAVIGATION</li>
-          <li class="treeview active">
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>个人信息管理</span>
               <span class="pull-right-container">
@@ -112,7 +112,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
+              <li><a href="/user/getSelfInfo"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -124,8 +124,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 已发布通知</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 发布通知</a></li>
+              <li><a href="/notice/myPublishNotice?page=1&limit=15"><i class="fa fa-circle-o"></i> 已发布通知</a></li>
+              <li><a href="/notice/userPulishNoticePage"><i class="fa fa-circle-o"></i> 发布通知</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -136,10 +136,10 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 我的捐赠历史</a></li>
+              <li><a href="/donation/findUserDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 捐赠历史</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-table"></i> <span>校友服务管理</span>
               <span class="pull-right-container">
@@ -147,8 +147,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i>已发布校友服务</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i>发布校友服务</a></li>
+              <li><a href="/project/findPublishProjects?page=1&limit=15"><i class="fa fa-circle-o"></i>已发布校友服务</a></li>
+              <li><a href="/project/publishServicePage"><i class="fa fa-circle-o"></i>发布校友服务</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -219,7 +219,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 <td><c:out value="${item.uploadTime}"/></td>
                                 <td><c:out value="${item.projectType.description}"/></td>
                                 <td><c:out value="${item.status.description}"/></td>
-                                <td><a href="/notice/noticeinfo/${item.id}">查看</a></td>
+                                <td><a href="/project/user/projectInfo/${item.id}">查看</a></td>
                                </tr>
                             </c:forEach>
                       </tbody>

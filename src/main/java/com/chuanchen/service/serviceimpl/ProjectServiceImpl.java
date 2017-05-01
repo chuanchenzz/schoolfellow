@@ -44,4 +44,9 @@ public class ProjectServiceImpl implements ProjectService{
         List<Project> projectList = projectMapper.findProjectsByAlumnusId(begin,limit,alumnusId);
         return projectList == null ? Collections.<Project>emptyList() : projectList;
     }
+
+    public boolean saveProject(Project project) {
+        int result = projectMapper.saveProject(project);
+        return result > 0 ? true : false;
+    }
 }

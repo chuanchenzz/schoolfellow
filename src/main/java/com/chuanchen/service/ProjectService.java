@@ -20,4 +20,6 @@ public interface ProjectService {
     int getCountByAlumnusId(int alumnusId);
 
     List<Project> findProjectsByAlumnusId(int page,int limit,int alumnusId);
+
+    boolean saveProject(Project project);
 }

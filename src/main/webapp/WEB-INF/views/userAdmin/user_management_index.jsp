@@ -11,7 +11,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Mailbox</title>
+  <title>校友网后台管理</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -23,7 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Theme style -->
   <link rel="stylesheet" href="../../../AdminLTE-2.3.11/dist/css/AdminLTE.min.css">
-  folder instead of downloading all of them to reduce the load. -->
   <link rel="stylesheet" href="../../../AdminLTE-2.3.11/dist/css/skins/_all-skins.min.css">
   <!-- iCheck -->
   <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/iCheck/flat/blue.css">
@@ -104,7 +103,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
+              <li><a href="/user/getSelfInfo"><i class="fa fa-circle-o"></i> 个人信息一览</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -116,8 +115,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 已发布通知</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 发布通知</a></li>
+              <li><a href="/notice/myPublishNotice?page=1&limit=15"><i class="fa fa-circle-o"></i> 已发布通知</a></li>
+              <li><a href="/notice/userPulishNoticePage"><i class="fa fa-circle-o"></i> 发布通知</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -128,7 +127,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 我的捐赠历史</a></li>
+              <li><a href="/donation/findUserDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 捐赠历史</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -139,8 +138,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i>已发布校友服务</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i>发布校友服务</a></li>
+              <li><a href="/project/findPublishProjects?page=1&limit=15"><i class="fa fa-circle-o"></i>已发布校友服务</a></li>
+              <li><a href="/project/publishServicePage"><i class="fa fa-circle-o"></i>发布校友服务</a></li>
             </ul>
           </li>
           <li class="treeview">

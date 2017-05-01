@@ -32,6 +32,6 @@ public class CommonUtil {
         return simpleDateFormat.format(date);
     }
     public static String md5Password(String password){
-        return null;
+        return password;
     }
 }

@@ -15,21 +15,21 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/bootstrap/css/bootstrap.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/bootstrap/css/bootstrap.min.css">
   <!-- Font Awesome -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.5.0/css/font-awesome.min.css">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
   <!-- fullCalendar 2.2.5-->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.min.css">
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.print.css" media="print">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/fullcalendar/fullcalendar.print.css" media="print">
   <!-- Theme style -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/dist/css/AdminLTE.min.css">
   <!-- AdminLTE Skins. Choose a skin from the css/skins
   folder instead of downloading all of them to reduce the load. -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/dist/css/skins/_all-skins.min.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/dist/css/skins/_all-skins.min.css">
   <!-- iCheck -->
-  <link rel="stylesheet" href="../../AdminLTE-2.3.11/plugins/iCheck/flat/blue.css">
+  <link rel="stylesheet" href="../../../AdminLTE-2.3.11/plugins/iCheck/flat/blue.css">
   <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
   <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
   <!--[if lt IE 9]>
@@ -69,13 +69,13 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
             <!-- User Account: style can be found in dropdown.less -->
             <li class="dropdown user user-menu">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                <img src="../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
+                <img src="../../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
                 <span class="hidden-xs">chuanchen</span>
               </a>
               <ul class="dropdown-menu">
                 <!-- User image -->
                 <li class="user-header">
-                  <img src="../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
+                  <img src="../../../AdminLTE-2.3.11/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
 
                   <p>
                     chuanchen

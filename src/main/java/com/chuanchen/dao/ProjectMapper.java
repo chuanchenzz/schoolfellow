@@ -21,4 +21,6 @@ public interface ProjectMapper {
     int getCountByAlumnusId(@Param("alumnusId") int alumnusId);
 
     List<Project> findProjectsByAlumnusId(@Param("begin") int begin,@Param("limit") int limit,@Param("alumnusId") int alumnusId);
+
+    int saveProject(Project project);
 }

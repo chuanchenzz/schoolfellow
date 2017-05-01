@@ -172,87 +172,34 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
       <section class="content-header">
-            <h1>
-                发布校友服务
-            </h1>
-        </section>
+                  <h1>
+                     <c:out value="${project.projectType.description}"></c:out>详细信息
+                  </h1>
+              </section>
 
-        <!-- Main content -->
-        <section class="content">
-            <div class="row" style="margin-left: 100px;">
-                <div class="col-md-8">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">发布校友服务</h3>
-                        </div>
-                        <c:if test="${addProject == 200}">
-                        <div class="alert alert-success alert-dismissible" id="checksuccess" >
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                                <h4><i class="icon fa fa-check"></i> 提示!</h4>
-                            发布校友服务,等待审核!
-                        </div>
-                        </c:if>
-                        <c:if test="${addProject == 500}">
-                        <div class="alert alert-danger alert-dismissible" id="checkfail" >
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                            <h4><i class="icon fa fa-ban"></i> 错误!</h4>
-                            发布校友服务失败,请重新发布!
-                        </div>
-                        </c:if>
-                        <form class="form-horizontal" action="/project/publishAlumnusProject" method="post" enctype="multipart/form-data">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">标题:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" id="inputTitle"
-                                                                  name="project_name" placeholder="this is title"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">服务类型:</label>
-                                    <div class="col-sm-10"><select class="form-control" name="serviceType">
-                                        <option value="1">合作项目</option>
-                                        <option value="2">招聘信息</option>
-                                    </select> </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">描述:</label>
-                                    <div class="col-md-10">
-                                    <div class="box box-info">
-                                        <div class="box-header">
-                                            <h3 class="box-title">通知描述
-                                            </h3>
-                                            <!-- tools box -->
-                                            <div class="pull-right box-tools">
-                                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse"
-                                                        data-toggle="tooltip" title="Collapse">
-                                                    <i class="fa fa-minus"></i></button>
-                                            </div>
-                                            <!-- /. tools -->
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body pad">
-                                                <textarea id="editor1" name="description" rows="10" cols="80">
-
-                                                </textarea>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">上传文件:</label>
-                                    <div class="col-sm-10"><input type="file" class="form-control" id="serviceFile"
-                                                                  name="serviceFile"></div>
-                                </div>
-                                <div class="col-sm-2" style="margin-left: 400px;">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-block btn-info" id="upload">提交</button>
-                                </div>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-        </section>
+              <!-- Main content -->
+              <section class="content">
+                  <div class="row">
+                      <div class="col-md-9" style="margin-left: 200px;">
+                          <div class="box box-primary">
+                              <div class="box-header with-border" style="text-align: center;">
+                                  <h1 >${project.name}</h1>
+                              </div>
+                              <div class="box-body no-padding">
+                                  <div class="mailbox-read-message">
+                                      ${project.content}
+                                  </div>
+                                  <div class="box-footer" style="text-align: right;margin-right: 50px;">
+                                      <h3>发布时间:${project.uploadTime}</h3>
+                                  </div>
+                                  <div class="box-footer" style="text-align: left;margin-left: 50px;">
+                                      <h4>点击下载详细文件:<a href="${project.file}">点击下载</a></h4>
+                                  </div>
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </section>
     <!-- /.content -->
   </div>
   <!-- /.content-wrapper -->
@@ -291,20 +238,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- Page Script -->
 <!-- AdminLTE for demo purposes -->
 <script src="../../../AdminLTE-2.3.11/dist/js/demo.js"></script>
-<!-- CK Editor -->
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="../../../AdminLTE-2.3.11/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1');
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
-  });
-
-
-</script>
+<script src="../../../js/user_publish_notice.js"></script>
 </body>
 </html>

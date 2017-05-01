@@ -29,6 +29,11 @@
     <select id="findProjectsByAlumnusId" resultMap="BaseResult">
         select * from project where alumnus_id = #{alumnusId} order by upload_time desc limit #{begin},#{limit};
     </select>
+    <insert id="saveProject" parameterType="com.chuanchen.entity.Project" useGeneratedKeys="true" keyProperty="id">
+        insert into project(name,upload_time,content,upload_name,file,project_type,status,alumnus_id) values(#{name},
+        #{uploadTime},#{content},#{uploadName},#{file},#{projectType,typeHandler=com.chuanchen.typehandler.ProjectTypeHandler},
+        #{status,typeHandler=com.chuanchen.typehandler.StatusTypeHandler},#{alumnusId});
+    </insert>
     <delete id="deleteProject" parameterType="java.lang.Integer">
         delete from project where id = #{id};
     </delete>

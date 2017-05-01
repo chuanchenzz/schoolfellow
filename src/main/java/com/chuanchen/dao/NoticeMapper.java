@@ -31,5 +31,5 @@ public interface NoticeMapper {
 
     List<Notice> getNoticesByAlumnusId(@Param("begin") int begin,@Param("limit") int limit,@Param("alumnusId") int alumnusId);
 
-    int getCountByAlumnusId(@Param("alumnus") int alumnusId);
+    int getCountByAlumnusId(@Param("alumnusId") int alumnusId);
 }

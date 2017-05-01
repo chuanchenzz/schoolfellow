@@ -24,7 +24,7 @@ import java.util.*;
  */
 @Controller
 @RequestMapping("/user")
-@SessionAttributes(value = {"alumnus","user"})
+@SessionAttributes(value = {"user"})
 @PropertySource("classpath:variables.properties")
 public class UserController {
     @Autowired
@@ -41,7 +41,7 @@ public class UserController {
         return "test";
     }
 
-    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    @RequestMapping(value = "/loginPage", method = RequestMethod.GET)
     public String loginPage(HttpServletRequest request) {
         return "login";
     }
@@ -228,11 +228,11 @@ public class UserController {
         }
     }
     //user
-    @RequestMapping(value = "getSelfInfo",method = RequestMethod.GET)
+    @RequestMapping(value = "/getSelfInfo",method = RequestMethod.GET)
     public String getSelfInfo(Model model,HttpSession httpSession){
         Alumnus alumnus = (Alumnus) httpSession.getAttribute("alumnus");
         if(alumnus == null){
-            return "跳转到登录界面";
+            return "not_found";
         }
         //获取地区集合
         List<CommonCode> addressList = baseDataService.getCommonCodesByType(CodeType.CITY);
@@ -288,14 +288,14 @@ public class UserController {
     }
 
     @ResponseBody
-    @RequestMapping(value = "/login", method = RequestMethod.POST)
-    public JsonResult userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password,Model model) {
+    @RequestMapping(value = "/login", method = RequestMethod.GET)
+    public JsonResult userLogin(@RequestParam("userName") String userName, @RequestParam("password") String password,HttpSession httpSession) {
         password = CommonUtil.md5Password(password.trim());
         User user = userService.findUserByNameAndPassword(userName, password);
         JsonResult jsonResult = new JsonResult();
         if (user != null) {
             Alumnus alumnus = userService.getAlumnusById(user.getAlumnusId());
-            model.addAttribute("alumnus",alumnus);
+            httpSession.setAttribute("alumnus",alumnus);
             Map<String, Object> params = new HashMap<String, Object>();
             params.put("alumnus", alumnus);
             params.put("type", user.getLevel().getLevel());
@@ -328,9 +328,22 @@ public class UserController {
         }
         return jsonResult;
     }
+    @RequestMapping(value = "/logout",method = RequestMethod.GET)
+    public String logOut(HttpSession httpSession){
+        Enumeration<?> enumeration = httpSession.getAttributeNames();
+        List<String> keys = new ArrayList<String>();
+        while (enumeration.hasMoreElements()){
+            keys.add(enumeration.nextElement().toString());
+        }
+        for (String key : keys){
+            httpSession.removeAttribute(key);
+        }
+        return "";
+    }
     @RequestMapping(value = "/backManagement",method = RequestMethod.GET)
     public String backManagement(@RequestParam("level") int level,HttpSession httpSession){
         if(httpSession.getAttribute("alumnus") == null){
+            System.out.println("not found");
             return "not_found";
         }
         UserLevel userLevel = UserLevel.levelToUserLevel(level);
