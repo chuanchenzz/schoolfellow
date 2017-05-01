@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header">MAIN NAVIGATION</li>
-          <li class="treeview active">
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>校友信息管理</span>
               <span class="pull-right-container">
@@ -146,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-edit"></i> <span>捐赠发布管理</span>
               <span class="pull-right-container">
@@ -154,8 +154,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠表总览</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 发布捐赠消息</a></li>
+              <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 捐赠表总览</a></li>
+              <li><a href="/donation/toDonationPage"><i class="fa fa-circle-o"></i> 发布捐赠消息</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠流程</a></li>
             </ul>
           </li>

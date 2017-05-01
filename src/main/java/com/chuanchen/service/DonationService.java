@@ -11,4 +11,10 @@ public interface DonationService {
     int getTotalCount();
 
     List<Donation> findDonations(int page,int limit);
+
+    boolean deleteDonation(int id);
+
+    int insertDonation(Donation donation);
+
+    Donation findDonationById(int id);
 }

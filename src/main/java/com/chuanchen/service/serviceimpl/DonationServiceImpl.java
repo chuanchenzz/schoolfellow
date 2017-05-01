@@ -27,4 +27,16 @@ public class DonationServiceImpl implements DonationService{
         List<Donation> donationList = donationMapper.findDonations(begin,limit);
         return donationList == null ? Collections.<Donation>emptyList() : donationList;
     }
+
+    public boolean deleteDonation(int id) {
+        return donationMapper.deleteDonation(id) > 0 ? true : false;
+    }
+
+    public int insertDonation(Donation donation) {
+        return donationMapper.insertDonation(donation);
+    }
+
+    public Donation findDonationById(int id) {
+        return donationMapper.findDonationById(id);
+    }
 }

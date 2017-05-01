@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuanchen.dao.DonationMapper">
+    <resultMap type="com.chuanchen.entity.Donation" id="BaseResult">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="donateName" column="donate_name" jdbcType="VARCHAR"/>
+        <result property="donateAccount" column="donate_account" jdbcType="BIGINT"/>
+        <result property="donateTime" column="donate_time" jdbcType="DATE"/>
+        <result property="donationType" column="donation_type"
+                typeHandler="com.chuanchen.typehandler.DonationTypeHandler"/>
+        <result property="donationDescription" column="donation_description" jdbcType="VARCHAR"/>
+    </resultMap>
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        select count(*) from donation;
+    </select>
+    <select id="findDonations" resultMap="BaseResult">
+        select * from donation order by donate_time limit #{begin},#{limit};
+    </select>
+    <select id="findDonationById" parameterType="java.lang.Integer" resultMap="BaseResult">
+        select * from donation where id = #{id};
+    </select>
+    <insert id="insertDonation" useGeneratedKeys="true" keyProperty="id">
+        insert into donation(donate_name,donate_account,donate_time,donation_type,donation_description)
+        values(#{donateName},
+        #{donateAccount},#{donateTime},#{donationType},#{donationDescription});
+    </insert>
+    <delete id="deleteDonation" parameterType="java.lang.Integer">
+        delete from donation where id = #{id};
+    </delete>
+</mapper>

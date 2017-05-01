@@ -11,6 +11,7 @@ public class Donation {
     private long donateAccount;
     private Date donateTime;
     private DonationType donationType;
+    private String donationDescription;
 
     public Donation() {
     }
@@ -53,5 +54,13 @@ public class Donation {
 
     public void setDonationType(DonationType donationType) {
         this.donationType = donationType;
+    }
+
+    public String getDonationDescription() {
+        return donationDescription;
+    }
+
+    public void setDonationDescription(String donationDescription) {
+        this.donationDescription = donationDescription;
     }
 }

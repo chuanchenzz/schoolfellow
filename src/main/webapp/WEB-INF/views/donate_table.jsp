@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
             </ul>
           </li>
-          <li class="treeview active">
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
               <span>校友通知管理</span>
@@ -146,7 +146,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-edit"></i> <span>捐赠发布管理</span>
               <span class="pull-right-container">
@@ -154,8 +154,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠表总览</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 发布捐赠消息</a></li>
+              <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 捐赠表总览</a></li>
+              <li><a href="/donation/toDonationPage"><i class="fa fa-circle-o"></i> 发布捐赠消息</a></li>
               <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠流程</a></li>
             </ul>
           </li>
@@ -233,15 +233,14 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${notices}" var="item">
+                            <c:forEach items="${donationList}" var="item">
                                <tr class="odd gradeX">
-                                <td><c:out value="${item.title}"/></td>
-                                <td><c:out value="${item.userId}"/></td>
-                                <td><c:out value="${item.pubDate}"/></td>
-                                <td><c:out value="${item.type.description}"/></td>
-                                <td><c:out value="${item.status.description}"/></td>
-                                <td><a href="/notice/noticeinfo/${item.id}">查看</a></td>
-                                <td><a href="/user/deletealumnus/${item.id}">删除</a></td>
+                                <td><c:out value="${item.donateName}"/></td>
+                                <td><c:out value="${item.donateAccount}"/></td>
+                                <td><c:out value="${item.donationType.description}"/></td>
+                                <td><c:out value="${item.donateTime}"/></td>
+                                <td><a href="/donation/donation/${item.id}">查看</a></td>
+                                <td><a href="/donation/deleteDonation/<c:out value='${item.id}'></c:out>">删除</a></td>
                                </tr>
                             </c:forEach>
                       </tbody>

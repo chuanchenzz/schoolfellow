@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
                     </ul>
                 </li>
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
                         <span>校友通知管理</span>
@@ -148,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#">
                         <i class="fa fa-edit"></i> <span>捐赠发布管理</span>
                         <span class="pull-right-container">
@@ -196,7 +196,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                公告详细信息
+                捐赠详细信息
             </h1>
         </section>
 
@@ -204,37 +204,23 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <section class="content">
             <div class="row">
                 <div class="col-md-9" style="margin-left: 200px;">
-                    <div class="alert alert-success alert-dismissible" id="checksuccess" style="display: none;">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                        <h4><i class="icon fa fa-check"></i> 提示!</h4>
-                    </div>
-                    <div class="alert alert-danger alert-dismissible" id="checkfail" style="display: none;">
-                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                        <h4><i class="icon fa fa-ban"></i> 错误!</h4>
-                    </div>
                     <div class="box box-primary">
-                        <div class="box-header with-border" style="text-align: center;">
-                            <h1 >${notice.title}</h1>
+                        <div class="box-header with-border">
+                            <h1 >捐赠人:${donation.donateName}</h1>
                         </div>
                         <div class="box-body no-padding">
-                            <div class="mailbox-read-info" style="text-align: right;margin-right: 200px;">
-                                <h3>发布人:${username}</h3>
+                            <div class="mailbox-read-info" >
+                                <h3>捐赠金额:${donation.donateAccount}元</h3>
+                            </div>
+                            <div class="mailbox-read-info" >
+                                <h3>捐赠类型:${donation.donationType.description}</h3>
                             </div>
                             <div class="mailbox-read-message">
-                                ${notice.content}
+                                捐赠详情:${donation.donationDescription}
                             </div>
                             <div class="box-footer" style="text-align: right;margin-right: 50px;">
-                                <h3>发布时间:${notice.pubDate}</h3>
+                                <h3>捐赠时间:${donation.donateTime}</h3>
                             </div>
-                            <c:if test="${notice.status.statusCode == 0}">
-                            <div class="box-footer" id="check" style="text-align: center;">
-                                <input type="text" id="id" value="${notice.id}" style="display: none;">
-                                <button type="button" id="passcheck" class="btn btn-default"
-                                        style="margin-right: 30px;">审核通过
-                                </button>
-                                <button type="button" id="notpasscheck" class="btn btn-default">审核不通过</button>
-                            </div>
-                            </c:if>
                         </div>
                     </div>
                 </div>

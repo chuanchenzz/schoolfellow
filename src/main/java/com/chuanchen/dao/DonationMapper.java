@@ -12,4 +12,10 @@ public interface DonationMapper {
     int getTotalCount();
 
     List<Donation> findDonations(@Param("begin") int begin,@Param("limit") int limit);
+
+    int deleteDonation(@Param("id") int id);
+
+    int insertDonation(Donation donation);
+
+    Donation findDonationById(@Param("id") int id);
 }
