@@ -14,11 +14,11 @@ public interface AlumnusMapper {
 
     int saveAlumnus(Alumnus alumnus);
 
-    Alumnus getAlumnusById(int id);
+    Alumnus getAlumnusById(@Param("id") int id);
 
-    int deleteAlumusById(int id);
+    int deleteAlumusById(@Param("id") int id);
 
-    List<Alumnus> findAlumnuses(int begin,int limit);
+    List<Alumnus> findAlumnuses(@Param("begin") int begin,@Param("limit") int limit);
 
     int getAlumnusCount();
 }

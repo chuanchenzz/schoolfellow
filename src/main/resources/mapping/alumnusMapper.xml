@@ -13,7 +13,7 @@
         <result property="idCard" column="id_card" jdbcType="VARCHAR"/>
         <result property="birthday" column="birthday" typeHandler="com.chuanchen.typehandler.DateTypeHandler"/>
         <result property="birthPlace" column="birthplace_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
-        <result property="address" column="address" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
+        <result property="address" column="address_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
         <result property="phone" column="phone" jdbcType="VARCHAR"/>
         <result property="email" column="email" jdbcType="VARCHAR"/>
         <result property="education" column="education_number" typeHandler="com.chuanchen.typehandler.CodeTypeHandler"/>
@@ -41,7 +41,7 @@
     <select id="findAlumnuses" resultMap="BaseResult">
         select * from alumnus limit #{begin},#{limit};
     </select>
-    <select id="getAlumnusCount" >
+    <select id="getAlumnusCount" resultType="java.lang.Integer">
         select count(*) from alumnus;
     </select>
     <insert id="saveAlumnus" parameterType="com.chuanchen.entity.Alumnus">

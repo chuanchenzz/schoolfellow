@@ -69,8 +69,7 @@ public class UserController {
         return jsonResult;
     }
     @RequestMapping(value = "/findUsers",method = RequestMethod.GET)
-    public JsonResult findUsers(@RequestParam(value = "page",required = true) int page,@RequestParam(value = "limit",required = false,defaultValue = "10") int limit){
-        JsonResult jsonResult = new JsonResult();
+    public String findUsers(@RequestParam(value = "page",required = true) int page,@RequestParam(value = "limit",required = false,defaultValue = "15") int limit,Model model){
         int totalPage = userService.getTotalPage();
         if(page <= 0){
             page = 1;
@@ -78,12 +77,14 @@ public class UserController {
         if(page > totalPage){
             page = totalPage;
         }
+        if(limit <= 0 || limit > 15){
+            limit = 15;
+        }
         List<Alumnus> alumnusList = userService.findAlumnuses(page,limit);
-        Map<String,Object> map = new HashMap<String, Object>();
-        map.put("alumnusList",alumnusList);
-        jsonResult.setMapParams(map);
-        jsonResult.setStatusCode(200);
-        return jsonResult;
+        model.addAttribute("alumnusList",alumnusList);
+        model.addAttribute("totalCount",totalPage);
+        model.addAttribute("page",page);
+        return "xiaoyou_table";
     }
     @ResponseBody
     @RequestMapping(value = "/adduser", method = RequestMethod.POST)
@@ -191,9 +192,6 @@ public class UserController {
         }
     }
     public String saveAvatar(MultipartFile image,HttpServletRequest request){
-        if(image == null){
-            System.out.println("hehehehehehehehehehehehhehehh");
-        }
         if(image.getName() != null && !image.getName().equals("") && image.getSize() > 0){
             String basePath = request.getSession().getServletContext().getRealPath(environment.getProperty("avatarsDir"));
             File file = new File(basePath,image.getOriginalFilename());
@@ -217,18 +215,16 @@ public class UserController {
             return null;
         }
     }
-    @ResponseBody
     @RequestMapping(value = "/alumnusinfo/{id}", method = RequestMethod.GET)
-    public JsonResult getAlumnusInfo(@PathVariable("id") String id) {
+    public String getAlumnusInfo(@PathVariable("id") String id,Model model) {
         JsonResult jsonResult = new JsonResult();
         Alumnus alumnus = userService.getAlumnusById(Integer.valueOf(id));
         if (alumnus == null) {
-            jsonResult.setStatusCode(404);
-            jsonResult.setMessage("没有找到该用户的信息!");
+            return "xiaoyou_table";
         } else {
-            jsonResult.setStatusCode(200);
+            model.addAttribute("alumnus",alumnus);
+            return "xiaoyou_detail";
         }
-        return jsonResult;
     }
 
     @ResponseBody

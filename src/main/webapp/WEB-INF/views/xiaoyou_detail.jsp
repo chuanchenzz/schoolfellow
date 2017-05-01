@@ -1,3 +1,11 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.chuanchen.entity.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -109,8 +117,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="xiaoyou_table.html"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
-              <li><a href="xiaoyou_detail.html"><i class="fa fa-circle-o"></i> 校友详细信息</a></li>
+              <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -178,39 +185,6 @@
               <li><a href="#"><i class="fa fa-circle-o"></i> 线下活动</a></li>
             </ul>
           </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-share"></i> <span>Multilevel</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-              <li>
-                <a href="#"><i class="fa fa-circle-o"></i> Level One
-                  <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                  <li>
-                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                      <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                      </span>
-                    </a>
-                    <ul class="treeview-menu">
-                      <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            </ul>
-          </li>
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -238,145 +212,145 @@
                 <div class="form-group">
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">姓名:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="张三">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.name}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">性别:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="男">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.sex.sex}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">学号:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="2013211634">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.studentNumber}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">民族:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="汉族">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.nation.name}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">政治身份:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="共青团员">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.identity.name}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">身份证号:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="500382199410167453">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.idCard}'/>">
                   </div>
                 </div>
                 <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">出生日期:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="1994-10-16">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.birthday}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">户籍地:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="重庆市">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.birthPlace.name}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">现居住地址:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="重庆市">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.address.name}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">电话号码:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="18996474255">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.phone}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">邮箱:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="chuanchenwine@gmail.com">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.email}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">学历:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="本科">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.education.name}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">入学时间:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="2013-09-21">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.entranceAge}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">毕业时间:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="2017-6-20">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.graduteAge}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">学院:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="计算机科学与技术学院">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.academic}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">专业:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="计算机科学与技术">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.profession}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">班级:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="0411302">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.classs}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">工作地点:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="重庆市">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.workAddress.name}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">入职时间:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="2017-01-01">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.inductive}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">公司名称:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="dasdas">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.organization}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">单位所属行业:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="软件行业">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.industry.name}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">单位性质:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="私企">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.organizationNature.name}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">所属单位部门:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="mp">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.department}'/>">
                   </div>
                 </div>
                  <div class="form-group" >
                   <label  class="col-sm-3 control-label" style="padding-top: 7px;text-align: right;">工作职位:</label>
                   <div class="col-sm-5">
-                  <input type="text" class="form-control" name="" disabled value="后台开发">
+                  <input type="text" class="form-control" name="" disabled value="<c:out value='${alumnus.job}'/>">
                   </div>
                 </div>
                 <div class="box-footer" style="text-align: center;">

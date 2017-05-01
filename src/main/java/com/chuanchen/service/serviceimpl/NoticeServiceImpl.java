@@ -13,7 +13,7 @@ import java.util.List;
  */
 @Service
 public class NoticeServiceImpl implements NoticeService {
-    private final int PAGE_SIZE = 10;
+    private final int PAGE_SIZE = 15;
 
     @Autowired
     NoticeMapper noticeMapper;

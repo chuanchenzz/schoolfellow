@@ -1,9 +1,17 @@
+<%@ page contentType="text/html; charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%
+String path = request.getContextPath();
+String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
+%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ page import="java.util.*" %>
+<%@ page import="com.chuanchen.entity.*" %>
 <!DOCTYPE html>
 <html>
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>AdminLTE 2 | Mailbox</title>
+  <title>校友网后台管理系统</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
   <!-- Bootstrap 3.3.6 -->
@@ -108,8 +116,7 @@
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="xiaoyou_table.html"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
-              <li><a href="xiaoyou_detail.html"><i class="fa fa-circle-o"></i> 校友详细信息</a></li>
+              <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -177,39 +184,6 @@
               <li><a href="#"><i class="fa fa-circle-o"></i> 线下活动</a></li>
             </ul>
           </li>
-          <li class="treeview">
-            <a href="#">
-              <i class="fa fa-share"></i> <span>Multilevel</span>
-              <span class="pull-right-container">
-                <i class="fa fa-angle-left pull-right"></i>
-              </span>
-            </a>
-            <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-              <li>
-                <a href="#"><i class="fa fa-circle-o"></i> Level One
-                  <span class="pull-right-container">
-                    <i class="fa fa-angle-left pull-right"></i>
-                  </span>
-                </a>
-                <ul class="treeview-menu">
-                  <li><a href="#"><i class="fa fa-circle-o"></i> Level Two</a></li>
-                  <li>
-                    <a href="#"><i class="fa fa-circle-o"></i> Level Two
-                      <span class="pull-right-container">
-                        <i class="fa fa-angle-left pull-right"></i>
-                      </span>
-                    </a>
-                    <ul class="treeview-menu">
-                      <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                      <li><a href="#"><i class="fa fa-circle-o"></i> Level Three</a></li>
-                    </ul>
-                  </li>
-                </ul>
-              </li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Level One</a></li>
-            </ul>
-          </li>
         </ul>
       </section>
       <!-- /.sidebar -->
@@ -220,13 +194,9 @@
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          Mailbox
-          <small>13 new messages</small>
+          校友信息表
+          <small>总共 <c:out value="${totalCount}"/> 条数据</small>
         </h1>
-        <ol class="breadcrumb">
-          <li><a href="#"><i class="fa fa-dashboard"></i> Home</a></li>
-          <li class="active">Mailbox</li>
-        </ol>
       </section>
 
       <!-- Main content -->
@@ -266,171 +236,19 @@
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
-                         <tr class="odd gradeX">
-                           <td>陈川</td>
-                           <td>男</td>
-                           <td>2013211634</td>
-                           <td>田津舟</td>
-                           <td class="center">计算机科学与技术</td>
-                           <td class="center">chuanchenwine@gmail.com</td>
-                           <td>重庆</td>
-                           <td><a href="/user/alumnusinfo/">查看</a></td>
-                           <td><a href="#">删除</a></td>
-                         </tr>
+                            <c:forEach items="${alumnusList}" var="item">
+                               <tr class="odd gradeX">
+                                <td><c:out value="${item.name}"/></td>
+                                <td><c:out value="${item.sex.sex}"/></td>
+                                <td><c:out value="${item.studentNumber}"/></td>
+                                <td><c:out value="${item.instructor}"/></td>
+                                <td><c:out value="${item.profession}"/></td>
+                                <td><c:out value="${item.email}"/></td>
+                                <td><c:out value="${item.address.name}"/></td>
+                                <td><a href="/user/alumnusinfo/${item.id}">查看</a></td>
+                                <td><a href="/user/deletealumnus/${item.id}">删除</a></td>
+                               </tr>
+                            </c:forEach>
                       </tbody>
                     </table>
                   </div>
