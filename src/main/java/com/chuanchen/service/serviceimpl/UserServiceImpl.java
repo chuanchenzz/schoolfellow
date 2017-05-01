@@ -98,4 +98,8 @@ public class UserServiceImpl implements UserService{
         }
         return alumnusList;
     }
+
+    public String getAlumnusNameById(int id) {
+        return alumnusMapper.getAlumnusNameById(id);
+    }
 }

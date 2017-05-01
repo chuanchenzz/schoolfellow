@@ -25,4 +25,6 @@ public interface UserService {
     int getTotalPage();
 
     List<Alumnus> findAlumnuses(int page,int limit);
+
+    String getAlumnusNameById(int id);
 }

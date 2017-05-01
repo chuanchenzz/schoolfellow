@@ -21,4 +21,6 @@ public interface AlumnusMapper {
     List<Alumnus> findAlumnuses(@Param("begin") int begin,@Param("limit") int limit);
 
     int getAlumnusCount();
+
+    String getAlumnusNameById(@Param("id") int id);
 }

@@ -20,4 +20,10 @@ public interface NoticeService {
     boolean updateNotice(int noticeId,int status);
 
     int putNotice(Notice notice);
+
+    Notice getNoticeById(int id);
+
+    int getTotalCount();
+
+    boolean deleteNoticeById(int id);
 }

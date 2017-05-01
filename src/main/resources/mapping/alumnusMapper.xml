@@ -44,6 +44,9 @@
     <select id="getAlumnusCount" resultType="java.lang.Integer">
         select count(*) from alumnus;
     </select>
+    <select id="getAlumnusNameById" resultType="java.lang.String" parameterType="java.lang.Integer">
+        select username from alumnus where id = #{id};
+    </select>
     <insert id="saveAlumnus" parameterType="com.chuanchen.entity.Alumnus">
         insert into
         alumnus(username,sex,nation_number,identity_number,id_card,birthday,birthplace_number,address_number,phone,email,education_number,entrance_age,gradute_age,academic,profession,classs,work_address_number,inductive_age,organization,industry_number,organization_nature_number,department,job,student_number,instructor,avatar)

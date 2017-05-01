@@ -129,9 +129,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 通知公告</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 校友消息</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 母校动态</a></li>
+              <li><a href="/notice/findNotices?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告管理</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> 校友消息管理</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> 母校动态管理</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -155,9 +155,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> General Elements</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> Editors</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠历史管理</a></li>
+              <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠途径管理</a></li>
             </ul>
           </li>
           <li class="treeview">

@@ -20,4 +20,8 @@ public interface NoticeMapper {
     int updateNotice(@Param("noticeId") int noticeId,@Param("status") int status);
 
     int putNotice(Notice notice);
+
+    Notice getNoticeById(@Param("id") int id);
+
+    int deleteNoticeById(@Param("id") int id);
 }

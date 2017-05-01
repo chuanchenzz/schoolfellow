@@ -108,7 +108,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- sidebar menu: : style can be found in sidebar.less -->
         <ul class="sidebar-menu">
           <li class="header">MAIN NAVIGATION</li>
-          <li class="treeview active">
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-dashboard"></i> <span>校友信息管理</span>
               <span class="pull-right-container">
@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
             </ul>
           </li>
-          <li class="treeview">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
               <span>校友通知管理</span>
@@ -194,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          校友信息表
+          通知公告表
           <small>总共 <c:out value="${totalCount}"/> 条数据</small>
         </h1>
       </section>
@@ -205,7 +205,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">校友信息表</h3>
+                <h3 class="box-title">通知公告表</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -224,28 +224,24 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th>姓名</th>
-                            <th>性别</th>
-                            <th>学号</th>
-                            <th>辅导员</th>
-                            <th>专业</th>
-                            <th>邮箱</th>
-                            <th>所在地</th>
-                            <th>查看操作</th>
+                            <th>标题</th>
+                            <th>发布人编号</th>
+                            <th>发布时间</th>
+                            <th>发布类型</th>
+                            <th>公告状态</th>
+                            <th>查看详细信息</th>
                             <th>删除操作</th>
                           </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${alumnusList}" var="item">
+                            <c:forEach items="${notices}" var="item">
                                <tr class="odd gradeX">
-                                <td><c:out value="${item.name}"/></td>
-                                <td><c:out value="${item.sex.sex}"/></td>
-                                <td><c:out value="${item.studentNumber}"/></td>
-                                <td><c:out value="${item.instructor}"/></td>
-                                <td><c:out value="${item.profession}"/></td>
-                                <td><c:out value="${item.email}"/></td>
-                                <td><c:out value="${item.address.name}"/></td>
-                                <td><a href="/user/alumnusinfo/${item.id}">查看</a></td>
+                                <td><c:out value="${item.title}"/></td>
+                                <td><c:out value="${item.userId}"/></td>
+                                <td><c:out value="${item.pubDate}"/></td>
+                                <td><c:out value="${item.type.description}"/></td>
+                                <td><c:out value="${item.status.description}"/></td>
+                                <td><a href="/notice/noticeinfo/${item.id}">查看</a></td>
                                 <td><a href="/user/deletealumnus/${item.id}">删除</a></td>
                                </tr>
                             </c:forEach>

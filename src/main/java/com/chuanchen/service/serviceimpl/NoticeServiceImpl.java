@@ -19,7 +19,7 @@ public class NoticeServiceImpl implements NoticeService {
     NoticeMapper noticeMapper;
 
     public int getPageCount() {
-        int totalNoticeSize = noticeMapper.totalNoticeSize();
+        int totalNoticeSize = getTotalCount();
         return totalNoticeSize % PAGE_SIZE == 0 ? totalNoticeSize / PAGE_SIZE : totalNoticeSize / PAGE_SIZE + 1;
     }
 
@@ -43,5 +43,18 @@ public class NoticeServiceImpl implements NoticeService {
 
     public int putNotice(Notice notice) {
         return 0;
+    }
+
+    public Notice getNoticeById(int id) {
+        return noticeMapper.getNoticeById(id);
+    }
+
+    public int getTotalCount() {
+        return noticeMapper.totalNoticeSize();
+    }
+
+    public boolean deleteNoticeById(int id) {
+        int deleteId = noticeMapper.deleteNoticeById(id);
+        return deleteId > 0 ? true : false;
     }
 }

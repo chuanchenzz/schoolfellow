@@ -12,17 +12,20 @@
         <result property="userId" column="user_id" jdbcType="INTEGER"/>
         <result property="status" column="status" typeHandler="com.chuanchen.typehandler.StatusTypeHandler"/>
     </resultMap>
-    <select id="totalNoticeSize">
+    <select id="totalNoticeSize" resultType="java.lang.Integer">
         select count(*) from notice;
     </select>
     <select id="findNotices" resultMap="BaseResult">
         select * from notice order by pub_date desc limit #{begin},#{limit};
     </select>
-    <select id="getNoticesCountByStatus">
+    <select id="getNoticesCountByStatus" resultType="java.lang.Integer">
         select count(*) from notice where status = #{status};
     </select>
     <select id="findNoticesByStatus" resultMap="BaseResult">
         select * from notice where status = #{status} order by pub_date limit #{begin},#{limit};
+    </select>
+    <select id="getNoticeById" resultMap="BaseResult">
+        select * from notice where id = #{id};
     </select>
     <update id="updateNotice">
         update notice set status = #{status} where id = #{noticeId};
@@ -32,4 +35,7 @@
         values(#{title},#{pubDate},#{content},#{type,typeHandler=com.chuanchen.typehandler.NoticeTypeHandler},#{userId},
         #{status,typeHandler=com.chuanchen.typehandler.StatusTypeHandler);
     </insert>
+    <delete id="deleteNoticeById" parameterType="java.lang.Integer">
+        delete from notice where id = #{id};
+    </delete>
 </mapper>
