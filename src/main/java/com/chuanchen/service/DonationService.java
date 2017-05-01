@@ -1,6 +1,7 @@
 package com.chuanchen.service;
 
 import com.chuanchen.entity.Donation;
+import com.chuanchen.entity.DonationCompass;
 
 import java.util.List;
 
@@ -17,4 +18,6 @@ public interface DonationService {
     int insertDonation(Donation donation);
 
     Donation findDonationById(int id);
+
+    int insertDonationProcess(DonationCompass donationCompass);
 }

@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                添加捐赠消息
+                设置捐赠流程
             </h1>
         </section>
 
@@ -209,48 +209,30 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="col-md-8">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">添加杰出校友</h3>
+                            <h3 class="box-title">设置捐赠流程</h3>
                         </div>
-                        <c:if test="${putDonation == true}">
+                        <c:if test="${donationProcess == true}">
                         <div class="alert alert-success alert-dismissible" id="checksuccess" >
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                                 <h4><i class="icon fa fa-check"></i> 提示!</h4>
-                            添加捐赠消息成功!
+                            设置捐赠方式成功!
                         </div>
                         </c:if>
-                        <c:if test="${isUpload == false}">
+                        <c:if test="${donationProcess == false}">
                         <div class="alert alert-danger alert-dismissible" id="checkfail" >
                             <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
                             <h4><i class="icon fa fa-ban"></i> 错误!</h4>
-                            添加捐赠消息失败,请重新添加!
+                            设置捐赠方式失败,请重新设置!
                         </div>
                         </c:if>
-                        <form class="form-horizontal" action="/topAlumnus/uploadTopAlumnus" method="post" enctype="multipart/form-data">
+                        <form class="form-horizontal" action="/donation/setDonationProcess" method="post" enctype="multipart/form-data">
                             <div class="box-body">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">捐赠人姓名:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" id="inputName"
-                                                                  name="name" placeholder="陈川"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">捐赠金额:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" id="inputAccount"
-                                                                  name="account"></div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">捐赠类型:</label>
-                                    <div class="col-sm-10"><select class="form-control" name="donationType">
-                                        <option value="1">个人捐赠</option>
-                                        <option value="2">集体捐赠</option>
-                                        <option value="3">公司捐赠</option>
-                                    </select> </div>
-                                </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">描述:</label>
                                     <div class="col-md-10">
                                     <div class="box box-info">
                                         <div class="box-header">
-                                            <h3 class="box-title">捐赠信息描述
+                                            <h3 class="box-title">捐赠指南描述
                                             </h3>
                                             <!-- tools box -->
                                             <div class="pull-right box-tools">
@@ -262,12 +244,41 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body pad">
-                                                <textarea id="editor1" name="description" rows="10" cols="80">
+                                                <textarea id="editor1" name="donationCompass" rows="10" cols="80">
 
                                                 </textarea>
                                         </div>
                                     </div>
                                     </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">描述:</label>
+                                    <div class="col-md-10">
+                                    <div class="box box-info">
+                                        <div class="box-header">
+                                            <h3 class="box-title">捐赠方式描述
+                                            </h3>
+                                            <!-- tools box -->
+                                            <div class="pull-right box-tools">
+                                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse"
+                                                        data-toggle="tooltip" title="Collapse">
+                                                    <i class="fa fa-minus"></i></button>
+                                            </div>
+                                            <!-- /. tools -->
+                                        </div>
+                                        <!-- /.box-header -->
+                                        <div class="box-body pad">
+                                                <textarea id="editor1" name="donationWay" rows="10" cols="80">
+
+                                                </textarea>
+                                        </div>
+                                    </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label class="col-sm-2 control-label">上传文件:</label>
+                                    <div class="col-sm-10"><input type="file" class="form-control" id="inputFile"
+                                                                  name="donationFile"></div>
                                 </div>
                                 <div class="col-sm-2" style="margin-left: 400px;">
                                 <div class="form-group">

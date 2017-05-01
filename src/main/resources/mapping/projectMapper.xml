@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuanchen.dao.ProjectMapper">
+    <resultMap type="com.chuanchen.entity.Project" id="BaseResult">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="uploadTime" column="upload_time" jdbcType="DATE"/>
+        <result property="content" column="content" jdbcType="VARCHAR"/>
+        <result property="uploadName" column="upload_name" jdbcType="VARCHAR"/>
+        <result property="file" column="file" jdbcType="VARCHAR"/>
+        <result property="projectType" column="project_type" typeHandler="com.chuanchen.typehandler.ProjectTypeHandler"/>
+        <result property="status" column="status" typeHandler="com.chuanchen.typehandler.StatusTypeHandler"/>
+    </resultMap>
+</mapper>

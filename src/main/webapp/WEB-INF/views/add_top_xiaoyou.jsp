@@ -161,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     <ul class="treeview-menu">
                         <li><a href="/donation/findDonations?page=1&limit=15"><i class="fa fa-circle-o"></i> 捐赠表总览</a></li>
                         <li><a href="/donation/toDonationPage"><i class="fa fa-circle-o"></i> 发布捐赠消息</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠流程</a></li>
+                        <li><a href="/donation/toDonationProcessPage"><i class="fa fa-circle-o"></i> 捐赠流程</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

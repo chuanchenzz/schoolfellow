@@ -1,7 +1,9 @@
 package com.chuanchen.service.serviceimpl;
 
+import com.chuanchen.dao.DonationCompassMapper;
 import com.chuanchen.dao.DonationMapper;
 import com.chuanchen.entity.Donation;
+import com.chuanchen.entity.DonationCompass;
 import com.chuanchen.service.DonationService;
 import com.chuanchen.util.Constant;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +19,8 @@ import java.util.List;
 public class DonationServiceImpl implements DonationService{
     @Autowired
     DonationMapper donationMapper;
+    @Autowired
+    DonationCompassMapper donationCompassMapper;
 
     public int getTotalCount() {
         return  donationMapper.getTotalCount();
@@ -38,5 +42,9 @@ public class DonationServiceImpl implements DonationService{
 
     public Donation findDonationById(int id) {
         return donationMapper.findDonationById(id);
+    }
+
+    public int insertDonationProcess(DonationCompass donationCompass) {
+        return donationCompassMapper.insertDonationProcess(donationCompass);
     }
 }

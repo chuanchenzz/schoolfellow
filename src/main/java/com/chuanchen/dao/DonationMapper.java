@@ -1,6 +1,7 @@
 package com.chuanchen.dao;
 
 import com.chuanchen.entity.Donation;
+import com.chuanchen.entity.DonationCompass;
 import org.apache.ibatis.annotations.Param;
 
 import java.util.List;

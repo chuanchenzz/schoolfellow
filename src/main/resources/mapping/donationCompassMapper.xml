@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.chuanchen.dao.DonationCompassMapper">
+    <resultMap type="com.chuanchen.entity.DonationCompass" id="BaseResult">
+        <id property="id" column="id" jdbcType="INTEGER"/>
+        <result property="donationCompass" column="donation_compass" jdbcType="VARCHAR"/>
+        <result property="donationWay" column="donation_way" jdbcType="VARCHAR"/>
+        <result property="donationFile" column="donation_file" jdbcType="VARCHAR"/>
+        <result property="set_time" column="DATE" jdbcType="DATE"/>
+    </resultMap>
+    <insert id="insertDonationProcess" parameterType="com.chuanchen.entity.DonationCompass" useGeneratedKeys="true" keyProperty="id">
+        insert into donation_compass(donation_compass,donation_way,donation_file,set_time) values(#{donationCompass},#{donationWay},
+        #{donationFile},#{setTime});
+    </insert>
+</mapper>
