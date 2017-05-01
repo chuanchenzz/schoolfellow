@@ -130,12 +130,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/notice/findNotices/1?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告管理</a>
-                        </li>
-                        <li><a href="/notice/findNotices/2?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友消息管理</a>
-                        </li>
-                        <li><a href="/notice/findNotices/3?page=1&limit=15"><i class="fa fa-circle-o"></i> 母校动态管理</a>
-                        </li>
+                        <li><a href="/notice/findNotices/1?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告管理</a></li>
+                        <li><a href="/notice/findNotices/2?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友消息管理</a></li>
+                        <li><a href="/notice/findNotices/3?page=1&limit=15"><i class="fa fa-circle-o"></i> 母校动态管理</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -147,11 +144,11 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                       <li><a href="/topAlumnus/findTopAlumnus?page=1&limit=16"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
-                       <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
+                        <li><a href="/topAlumnus/findTopAlumnus?page=1&limit=16"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
+                        <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
                     </ul>
                 </li>
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-edit"></i> <span>捐赠发布管理</span>
                         <span class="pull-right-container">
@@ -164,7 +161,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="/donation/toDonationProcessPage"><i class="fa fa-circle-o"></i> 捐赠流程</a></li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#">
                         <i class="fa fa-table"></i> <span>校友服务管理</span>
                         <span class="pull-right-container">
@@ -198,94 +195,46 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                设置捐赠流程
+               <c:out value="${project.projectType.description}"></c:out>详细信息
             </h1>
         </section>
 
         <!-- Main content -->
         <section class="content">
-            <div class="row" style="margin-left: 100px;">
-                <div class="col-md-8">
-                    <div class="box box-info">
-                        <div class="box-header with-border">
-                            <h3 class="box-title">设置捐赠流程</h3>
+            <div class="row">
+                <div class="col-md-9" style="margin-left: 200px;">
+                    <div class="alert alert-success alert-dismissible" id="checksuccess" style="display: none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                        <h4><i class="icon fa fa-check"></i> 提示!</h4>
+                    </div>
+                    <div class="alert alert-danger alert-dismissible" id="checkfail" style="display: none;">
+                        <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                        <h4><i class="icon fa fa-ban"></i> 错误!</h4>
+                    </div>
+                    <div class="box box-primary">
+                        <div class="box-header with-border" style="text-align: center;">
+                            <h1 >${project.name}</h1>
                         </div>
-                        <c:if test="${donationProcess == true}">
-                        <div class="alert alert-success alert-dismissible" id="checksuccess" >
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                                <h4><i class="icon fa fa-check"></i> 提示!</h4>
-                            设置捐赠方式成功!
-                        </div>
-                        </c:if>
-                        <c:if test="${donationProcess == false}">
-                        <div class="alert alert-danger alert-dismissible" id="checkfail" >
-                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
-                            <h4><i class="icon fa fa-ban"></i> 错误!</h4>
-                            设置捐赠方式失败,请重新设置!
-                        </div>
-                        </c:if>
-                        <form class="form-horizontal" action="/donation/setDonationProcess" method="post" enctype="multipart/form-data">
-                            <div class="box-body">
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">描述:</label>
-                                    <div class="col-md-10">
-                                    <div class="box box-info">
-                                        <div class="box-header">
-                                            <h3 class="box-title">捐赠指南描述
-                                            </h3>
-                                            <!-- tools box -->
-                                            <div class="pull-right box-tools">
-                                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse"
-                                                        data-toggle="tooltip" title="Collapse">
-                                                    <i class="fa fa-minus"></i></button>
-                                            </div>
-                                            <!-- /. tools -->
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body pad">
-                                                <textarea id="editor1" name="donationCompass" rows="10" cols="80">
-
-                                                </textarea>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">描述:</label>
-                                    <div class="col-md-10">
-                                    <div class="box box-info">
-                                        <div class="box-header">
-                                            <h3 class="box-title">捐赠方式描述
-                                            </h3>
-                                            <!-- tools box -->
-                                            <div class="pull-right box-tools">
-                                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse"
-                                                        data-toggle="tooltip" title="Collapse">
-                                                    <i class="fa fa-minus"></i></button>
-                                            </div>
-                                            <!-- /. tools -->
-                                        </div>
-                                        <!-- /.box-header -->
-                                        <div class="box-body pad">
-                                                <textarea id="editor1" name="donationWay" rows="10" cols="80">
-
-                                                </textarea>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>
-                                <div class="form-group">
-                                    <label class="col-sm-2 control-label">上传文件:</label>
-                                    <div class="col-sm-10"><input type="file" class="form-control" id="inputFile"
-                                                                  name="donationFile"></div>
-                                </div>
-                                <div class="col-sm-2" style="margin-left: 400px;">
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-block btn-info" id="upload">提交</button>
-                                </div>
-                                </div>
+                        <div class="box-body no-padding">
+                            <div class="mailbox-read-message">
+                                ${project.content}
                             </div>
-                        </form>
+                            <div class="box-footer" style="text-align: right;margin-right: 50px;">
+                                <h3>发布时间:${project.uploadTime}</h3>
+                            </div>
+                            <div class="box-footer" style="text-align: left;margin-left: 50px;">
+                                <h4>点击下载详细文件:<a href="#">${project.file}</a></h4>
+                            </div>
+                            <c:if test="${project.status.statusCode == 0}">
+                            <div class="box-footer" id="check" style="text-align: center;">
+                                <input type="text" id="id" value="${notice.id}" style="display: none;">
+                                <button type="button" id="passcheck" class="btn btn-default"
+                                        style="margin-right: 30px;">审核通过
+                                </button>
+                                <button type="button" id="notpasscheck" class="btn btn-default">审核不通过</button>
+                            </div>
+                            </c:if>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -310,27 +259,18 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="../../AdminLTE-2.3.11/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="../../AdminLTE-2.3.11/bootstrap/js/bootstrap.min.js"></script>
+<!-- Slimscroll -->
+<script src="../../AdminLTE-2.3.11/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="../../AdminLTE-2.3.11/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../AdminLTE-2.3.11/dist/js/app.min.js"></script>
+<!-- iCheck -->
+<script src="../../AdminLTE-2.3.11/plugins/iCheck/icheck.min.js"></script>
+<!-- Page Script -->
+
 <!-- AdminLTE for demo purposes -->
 <script src="../../AdminLTE-2.3.11/dist/js/demo.js"></script>
-<!-- CK Editor -->
-<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
-<!-- Bootstrap WYSIHTML5 -->
-<script src="../../AdminLTE-2.3.11/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
-<script>
-  $(function () {
-    // Replace the <textarea id="editor1"> with a CKEditor
-    // instance, using default configuration.
-    CKEDITOR.replace('editor1');
-    //bootstrap WYSIHTML5 - text editor
-    $(".textarea").wysihtml5();
-  });
-
-
-</script>
-<script src="../../js/add_top_xiaoyou.js"></script>
+<script type="text/javascript" src="<%=basePath%>js/notice_info.js"></script>
 </body>
 </html>

@@ -9,4 +9,6 @@ public class Constant {
     public static final int NOTICE_PAGE_COUNT = 15;
 
     public static final int DONATION_PAGE_COUNT = 15;
+
+    public static final int PROJECT_PAGE_COUNT = 15;
 }

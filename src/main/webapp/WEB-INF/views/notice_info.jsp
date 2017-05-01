@@ -169,9 +169,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 合作项目</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 招聘信息</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 宣传展示</a></li>
+                        <li><a href="/project/findProjects?page=1&limit=15&type=1"><i class="fa fa-circle-o"></i> 合作项目</a></li>
+                        <li><a href="/project/findProjects?page=1&limit=15&type=2"><i class="fa fa-circle-o"></i> 招聘信息</a></li>
                     </ul>
                 </li>
                 <li class="treeview">

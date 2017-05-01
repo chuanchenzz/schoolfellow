@@ -167,8 +167,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 合作项目</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 招聘信息</a></li>
+              <li><a href="/project/findProjects?page=1&limit=15&type=1"><i class="fa fa-circle-o"></i> 合作项目</a></li>
+              <li><a href="/project/findProjects?page=1&limit=15&type=2"><i class="fa fa-circle-o"></i> 招聘信息</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -193,8 +193,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          母校动态表
-          <small>总共 <c:out value="${totalCount}"/> 条数据</small>
+          <c:out value="${title}"/>
+          <small>总共 <c:out value="${projectTotalCount}"/> 条数据</small>
         </h1>
       </section>
 
@@ -204,7 +204,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">母校动态表</h3>
+                <h3 class="box-title"><c:out value="${title}"/></h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -223,25 +223,25 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                       <table id="example1" class="table table-bordered table-striped">
                         <thead>
                           <tr>
-                            <th>标题</th>
-                            <th>发布人编号</th>
+                            <th>项目名</th>
+                            <th>项目发布人</th>
                             <th>发布时间</th>
                             <th>发布类型</th>
-                            <th>公告状态</th>
+                            <th>项目状态</th>
                             <th>查看详细信息</th>
                             <th>删除操作</th>
                           </tr>
                         </thead>
                         <tbody>
-                            <c:forEach items="${notices}" var="item">
+                            <c:forEach items="${projectList}" var="item">
                                <tr class="odd gradeX">
-                                <td><c:out value="${item.title}"/></td>
-                                <td><c:out value="${item.userId}"/></td>
-                                <td><c:out value="${item.pubDate}"/></td>
-                                <td><c:out value="${item.type.description}"/></td>
+                                <td><c:out value="${item.name}"/></td>
+                                <td><c:out value="${item.uploadName}"/></td>
+                                <td><c:out value="${item.uploadTime}"/></td>
+                                <td><c:out value="${item.projectType.description}"/></td>
                                 <td><c:out value="${item.status.description}"/></td>
-                                <td><a href="/notice/noticeinfo/${item.id}">查看</a></td>
-                                <td><a href="/user/deletealumnus/${item.id}">删除</a></td>
+                                <td><a href="/project/projectInfo/${item.id}">查看</a></td>
+                                <td><a href="/project/deleteProject/${item.id}">删除</a></td>
                                </tr>
                             </c:forEach>
                       </tbody>

@@ -13,4 +13,16 @@
         <result property="projectType" column="project_type" typeHandler="com.chuanchen.typehandler.ProjectTypeHandler"/>
         <result property="status" column="status" typeHandler="com.chuanchen.typehandler.StatusTypeHandler"/>
     </resultMap>
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        select count(*) from project;
+    </select>
+    <select id="findProjectList" resultMap="BaseResult">
+        select * from project where project_type = #{type} order by upload_time limit #{begin},#{limit};
+    </select>
+    <select id="findProjectById" resultMap="BaseResult">
+        select * from project where id = #{id};
+    </select>
+    <delete id="deleteProject" parameterType="java.lang.Integer">
+        delete from project where id = #{id};
+    </delete>
 </mapper>
