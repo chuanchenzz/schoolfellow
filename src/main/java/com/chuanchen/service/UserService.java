@@ -27,4 +27,6 @@ public interface UserService {
     List<Alumnus> findAlumnuses(int page,int limit);
 
     String getAlumnusNameById(int id);
+
+    String getUsernameById(int id);
 }

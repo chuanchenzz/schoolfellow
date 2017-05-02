@@ -18,6 +18,9 @@
     <select id="findNotices" resultMap="BaseResult">
         select * from notice order by pub_date desc limit #{begin},#{limit};
     </select>
+    <select id="findNoticesByType" resultMap="BaseResult">
+        select * from notice where type = #{type} order by pub_date limit #{begin},#{limit};
+    </select>
     <select id="getNoticesCountByStatus" resultType="java.lang.Integer">
         select count(*) from notice where status = #{status};
     </select>
@@ -26,6 +29,9 @@
     </select>
     <select id="getNoticeById" resultMap="BaseResult">
         select * from notice where id = #{id};
+    </select>
+    <select id="getTotalCountByType" resultType="java.lang.Integer">
+        select count(*) from notice where type = #{type};
     </select>
     <update id="updateNotice">
         update notice set status = #{status} where id = #{noticeId};

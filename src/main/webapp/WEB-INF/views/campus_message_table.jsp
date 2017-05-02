@@ -194,7 +194,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          通知公告表
+          母校动态表
           <small>总共 <c:out value="${totalCount}"/> 条数据</small>
         </h1>
       </section>
@@ -205,7 +205,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
           <div class="col-xs-12">
             <div class="box">
               <div class="box-header">
-                <h3 class="box-title">通知公告表</h3>
+                <h3 class="box-title">母校动态表</h3>
               </div>
               <!-- /.box-header -->
               <div class="box-body">
@@ -321,7 +321,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <!-- iCheck -->
 <script src="../../AdminLTE-2.3.11/plugins/iCheck/icheck.min.js"></script>
 <!-- Page Script -->
-  
+
 <!-- AdminLTE for demo purposes -->
 <script src="../../AdminLTE-2.3.11/dist/js/demo.js"></script>
 </body>

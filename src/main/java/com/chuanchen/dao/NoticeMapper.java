@@ -13,6 +13,8 @@ public interface NoticeMapper {
 
     List<Notice> findNotices(@Param("begin") int begin, @Param("limit") int limit);
 
+    List<Notice> findNoticesByType(@Param("begin") int begin,@Param("limit") int limit,@Param("type") int type);
+
     int getNoticesCountByStatus(@Param("status") int statusCode);
 
     List<Notice> findNoticesByStatus(@Param("begin") int begin,@Param("limit") int limit,@Param("status") int statusCode);
@@ -24,4 +26,6 @@ public interface NoticeMapper {
     Notice getNoticeById(@Param("id") int id);
 
     int deleteNoticeById(@Param("id") int id);
+
+    int getTotalCountByType(int type);
 }

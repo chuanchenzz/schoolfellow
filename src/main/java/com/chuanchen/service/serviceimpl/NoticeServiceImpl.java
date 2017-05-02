@@ -28,6 +28,11 @@ public class NoticeServiceImpl implements NoticeService {
         return noticeMapper.findNotices(begin, limit);
     }
 
+    public List<Notice> findNoticesByType(int page, int limit, int type) {
+        int begin = (page - 1) * PAGE_SIZE;
+        return noticeMapper.findNoticesByType(begin,limit,type);
+    }
+
     public int getTotalByStatus(int statusCode) {
         return noticeMapper.getNoticesCountByStatus(statusCode);
     }
@@ -56,5 +61,9 @@ public class NoticeServiceImpl implements NoticeService {
     public boolean deleteNoticeById(int id) {
         int deleteId = noticeMapper.deleteNoticeById(id);
         return deleteId > 0 ? true : false;
+    }
+
+    public int getTotalCountByType(int type) {
+        return noticeMapper.getTotalCountByType(type);
     }
 }

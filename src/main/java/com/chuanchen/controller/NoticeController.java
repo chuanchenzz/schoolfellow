@@ -29,11 +29,12 @@ public class NoticeController {
     UserService userService;
     private final int DEFAULT_COUNT = 15;
 
-    @RequestMapping(value = "/findNotices", method = RequestMethod.GET)
-    public String findNotices(@RequestParam(value = "page", required = true) int page, @RequestParam(value = "limit", required = false, defaultValue = "10") int limit, Model model) {
-        int totalCount = noticeService.getTotalCount();
+    @RequestMapping(value = "/findNotices/{type}", method = RequestMethod.GET)
+    public String findNotices(@PathVariable("type") int type, @RequestParam(value = "page", required = true) int page, @RequestParam(value = "limit", required = false, defaultValue = "15") int limit, Model model) {
+        NoticeType noticeType = NoticeType.codeToType(type);
+        int totalCount = noticeService.getTotalCountByType(noticeType.getType());
         if (totalCount < 0) {
-            return "notice_message_table";
+            return toPageByType(noticeType);
         }
         int pageCount = pageCount(totalCount);
         if (page <= 0) {
@@ -41,28 +42,42 @@ public class NoticeController {
         } else if (page > pageCount) {
             page = pageCount;
         }
-        List<Notice> notices = noticeService.findNotices(page, limit);
+        List<Notice> notices = noticeService.findNoticesByType(page,limit,noticeType.getType());
         model.addAttribute("notices", notices);
-        model.addAttribute("totalCount",totalCount);
-        return "notice_message_table";
+        model.addAttribute("totalCount", totalCount);
+        return toPageByType(noticeType);
+    }
+
+    private String toPageByType(NoticeType noticeType) {
+        switch (noticeType) {
+            case NOTICE_MESSAGE:
+                return "notice_message_table";
+            case SCHOOL_DYNAMIC:
+                return "campus_message_table";
+            case ALUMNUS_MESSAGE:
+                return "xiaoyou_message_table";
+            default:
+                return "notice_message_table";
+        }
     }
 
     private int pageCount(int totalCount) {
+        if(totalCount / DEFAULT_COUNT == 0){
+            return 1;
+        }
         return totalCount % DEFAULT_COUNT == 0 ? totalCount / DEFAULT_COUNT : totalCount / DEFAULT_COUNT + 1;
     }
 
     @ResponseBody
-    @RequestMapping(value = "checknotice/{noticeId}", method = RequestMethod.GET)
-    public JsonResult checkNotice(@PathVariable("noticeId") int noticeId, @RequestParam("status") int status) {
+    @RequestMapping(value = "/checknotice", method = RequestMethod.POST)
+    public JsonResult checkNotice(@RequestParam("noticeId") int noticeId, @RequestParam("status") int status) {
         JsonResult jsonResult = new JsonResult();
         Status statusType = Status.codeToStatus(status);
         boolean result = noticeService.updateNotice(noticeId, statusType.getStatusCode());
         if (result) {
             jsonResult.setStatusCode(200);
-            jsonResult.setMessage("审核完成,审核结果:" + statusType.getDescription());
         } else {
             jsonResult.setStatusCode(404);
-            jsonResult.setMessage("审核失败,请重新审核!");
         }
         return jsonResult;
     }
@@ -91,16 +106,17 @@ public class NoticeController {
         Notice notice = noticeService.getNoticeById(noticeId);
         if (notice != null) {
             int userId = notice.getUserId();
-            String userName = userService.getAlumnusNameById(userId);
+            String userName = userService.getUsernameById(userId);
             model.addAttribute("notice", notice);
             model.addAttribute("username", userName);
-            return "";
+            return "notice_info";
         } else {
-            return "";
+            return "notice_info";
         }
     }
-    @RequestMapping(value = "/deletenotice/{id}",method = RequestMethod.GET)
-    public String deleteNotice(@PathVariable("id") int id){
+
+    @RequestMapping(value = "/deletenotice/{id}", method = RequestMethod.GET)
+    public String deleteNotice(@PathVariable("id") int id) {
         boolean result = noticeService.deleteNoticeById(id);
         return "redirect:/notice/findNotices?page=1&limit=15";
     }

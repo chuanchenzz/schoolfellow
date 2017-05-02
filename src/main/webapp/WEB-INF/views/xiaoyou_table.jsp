@@ -128,9 +128,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="/notice/findNotices?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 校友消息</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 母校动态</a></li>
+              <li><a href="/notice/findNotices/1?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告管理</a></li>
+              <li><a href="/notice/findNotices/2?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友消息管理</a></li>
+              <li><a href="/notice/findNotices/3?page=1&limit=15"><i class="fa fa-circle-o"></i> 母校动态管理</a></li>
             </ul>
           </li>
           <li class="treeview">

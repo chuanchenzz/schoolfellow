@@ -13,6 +13,8 @@ public interface NoticeService {
 
     List<Notice> findNotices(int page,int limit);
 
+    List<Notice> findNoticesByType(int page,int limit,int type);
+
     int getTotalByStatus(int statusCode);
 
     List<Notice> findNoticesByStatus(int page,int limit,int statusCode);
@@ -26,4 +28,6 @@ public interface NoticeService {
     int getTotalCount();
 
     boolean deleteNoticeById(int id);
+
+    int getTotalCountByType(int type);
 }

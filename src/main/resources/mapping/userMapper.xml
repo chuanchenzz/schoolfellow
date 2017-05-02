@@ -19,6 +19,9 @@
     <select id="getTotalCount" resultType="java.lang.Integer">
         select count(*) from user;
     </select>
+    <select id="getUsernameById" resultType="java.lang.String">
+        select username from user where id = #{id};
+    </select>
     <delete id="deleteUserByAlumnusId" parameterType="java.lang.Integer">
         delete from user where alumnus_id = #{id};
     </delete>
