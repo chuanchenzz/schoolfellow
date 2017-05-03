@@ -6,7 +6,11 @@
     <resultMap type="com.chuanchen.entity.TopAlumnus" id="BaseResult">
         <id property="id" column="id" jdbcType="INTEGER"/>
         <result property="name" column="name" jdbcType="VARCHAR"/>
+        <result property="avatar" column="avatar" jdbcType="VARCHAR"/>
         <result property="description" column="description" jdbcType="VARCHAR"/>
-        <result property="alumnusId" column="alumnus_id" jdbcType="INTEGER"/>
+        <result property="uploadDate" column="upload_date" jdbcType="DATE"/>
     </resultMap>
+    <insert id="uploadTopAlumnus" parameterType="com.chuanchen.entity.TopAlumnus" useGeneratedKeys="true" keyProperty="id">
+        insert into top_alumnus(name,description,upload_date,avatar) values(#{name},#{description},#{uploadDate},#{avatar});
+    </insert>
 </mapper>

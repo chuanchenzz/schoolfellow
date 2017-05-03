@@ -1,5 +1,7 @@
 package com.chuanchen.service.serviceimpl;
 
+import com.chuanchen.dao.TopAlumnusMapper;
+import com.chuanchen.entity.TopAlumnus;
 import com.chuanchen.service.TopAlumnusService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -10,5 +12,10 @@ import org.springframework.stereotype.Service;
 @Service
 public class TopAlumnusServiceImpl implements TopAlumnusService{
     @Autowired
-    TopAlumnusService topAlumnusService;
+    TopAlumnusMapper topAlumnusMapper;
+
+    public boolean uploadTopAlumnus(TopAlumnus topAlumnus) {
+        int insertId = topAlumnusMapper.uploadTopAlumnus(topAlumnus);
+        return insertId > 0 ? true : false;
+    }
 }

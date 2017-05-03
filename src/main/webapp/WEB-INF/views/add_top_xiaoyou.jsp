@@ -1,11 +1,11 @@
-<!-- <%@ page contentType="text/html; charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.chuanchen.entity.*" %> -->
+<%@ page import="com.chuanchen.entity.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -130,9 +130,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="/notice/findNotices/1?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告管理</a></li>
-                        <li><a href="/notice/findNotices/2?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友消息管理</a></li>
-                        <li><a href="/notice/findNotices/3?page=1&limit=15"><i class="fa fa-circle-o"></i> 母校动态管理</a></li>
+                        <li><a href="/notice/findNotices/1?page=1&limit=15"><i class="fa fa-circle-o"></i> 通知公告管理</a>
+                        </li>
+                        <li><a href="/notice/findNotices/2?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友消息管理</a>
+                        </li>
+                        <li><a href="/notice/findNotices/3?page=1&limit=15"><i class="fa fa-circle-o"></i> 母校动态管理</a>
+                        </li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -145,7 +148,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                     </a>
                     <ul class="treeview-menu">
                         <li><a href="#"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
+                        <li><a href="/notice"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -202,8 +205,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
         <!-- Main content -->
         <section class="content">
-            <div class="row">
-                <div class="col-md-6">
+            <div class="row" style="margin-left: 100px;">
+                <div class="col-md-8">
                     <div class="box box-info">
                         <div class="box-header with-border">
                             <h3 class="box-title">添加杰出校友</h3>
@@ -212,52 +215,43 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                             <div class="box-body">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">姓名:</label>
-                                    <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail3" name="top_alumnus_name" placeholder="陈川"></div>
+                                    <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail3"
+                                                                  name="top_alumnus_name" placeholder="陈川"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">头像:</label>
-                                    <div class="col-sm-10"><input type="file" class="form-control" id="inputAvatar" name="top_alumnus_avatar" ></div>
+                                    <div class="col-sm-10"><input type="file" class="form-control" id="inputAvatar"
+                                                                  name="top_alumnus_avatar"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">描述:</label>
-                                    <div class="box">
+                                    <div class="col-md-10">
+                                    <div class="box box-info">
                                         <div class="box-header">
-                                            <h3 class="box-title">添加杰出校友描述</h3>
+                                            <h3 class="box-title">杰出校友履历
+                                            </h3>
+                                            <!-- tools box -->
                                             <div class="pull-right box-tools">
-                                                <button type="button" class="btn btn-default btn-sm" data-widget="collapse" data-toggle="tooltip"    data-original-title="Collapse"><i class="fa fa-minus"></i>
-                                                </button>
+                                                <button type="button" class="btn btn-info btn-sm" data-widget="collapse"
+                                                        data-toggle="tooltip" title="Collapse">
+                                                    <i class="fa fa-minus"></i></button>
                                             </div>
+                                            <!-- /. tools -->
                                         </div>
-                                        <div class="box-body pad" style="display: block;">
-                                            <form>
-                                                <ul class="wysihtml5-toolbar">
-                                                    <li class="dropdown"><a href="" class="btn btn-default dropdown-toggle ">
-                                                        <span class="glyphicon glyphicon-font"></span>
-                                                        <span class="current-font">Heading 6</span>
-                                                        <b class="caret"></b>
-                                                    </a>
-                                                    <ul class="dropdown-menu">
-                                                        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="p" tabindex="-1" href="javascript:;" unselectable="on" class="wysihtml5-command-active">Normal text</a></li>
-                                                        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h1" tabindex="-1" href="javascript:;" unselectable="on" >Heading 1</a></li>
-                                                        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h2" tabindex="-1" href="javascript:;" unselectable="on" >Heading 2</a></li>
-                                                        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h3" tabindex="-1" href="javascript:;" unselectable="on" >Heading 3</a></li>
-                                                        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h4" tabindex="-1" href="javascript:;" unselectable="on" >Heading 4</a></li>
-                                                        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h5" tabindex="-1" href="javascript:;" unselectable="on" >Heading 5</a></li>
-                                                        <li><a data-wysihtml5-command="formatBlock" data-wysihtml5-command-value="h6" tabindex="-1" href="javascript:;" unselectable="on" >Heading 6</a></li>
-                                                    </ul>
-                                                    </li>
-                                                    <li><div class="btn-group">
-                                                            <a href="javascript:;" class="btn btn-default" data-wysihtml5-command="bold" title="CTRL+B" tabindex="-1" unselectable="on">Bold</a>
-                                                            <a href="javascript:;" class="btn btn-default wysihtml5-command-active" data-wysihtml5-command="italic" title="CTRL+I" tabindex="-1" unselectable="on">Italic</a>
-                                                            <a href="javascript:;" class="btn  btn-default" data-wysihtml5-command="underline" title="CTRL+U" tabindex="-1" unselectable="on">Underline</a>
-                                                            <a href="javascript:;" class="btn  btn-default" data-wysihtml5-command="small" title="CTRL+S" tabindex="-1" unselectable="on">Small</a>
-                                                    </div></li>
-                                                </ul>
-                                            </form>
+                                        <!-- /.box-header -->
+                                        <div class="box-body pad">
+                                                <textarea id="editor1" name="editor1" rows="10" cols="80">
+                                         
+                                                </textarea>
                                         </div>
                                     </div>
+                                    </div>
                                 </div>
-
+                                <div class="col-sm-2" style="margin-left: 400px;">
+                                <div class="form-group">
+                                    <button type="button" class="btn btn-block btn-info">提交</button>
+                                </div>
+                                </div>
                             </div>
                         </form>
                     </div>
@@ -284,18 +278,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 <script src="../../AdminLTE-2.3.11/plugins/jQuery/jquery-2.2.3.min.js"></script>
 <!-- Bootstrap 3.3.6 -->
 <script src="../../AdminLTE-2.3.11/bootstrap/js/bootstrap.min.js"></script>
-<!-- Slimscroll -->
-<script src="../../AdminLTE-2.3.11/plugins/slimScroll/jquery.slimscroll.min.js"></script>
 <!-- FastClick -->
 <script src="../../AdminLTE-2.3.11/plugins/fastclick/fastclick.js"></script>
 <!-- AdminLTE App -->
 <script src="../../AdminLTE-2.3.11/dist/js/app.min.js"></script>
-<!-- iCheck -->
-<script src="../../AdminLTE-2.3.11/plugins/iCheck/icheck.min.js"></script>
-<!-- Page Script -->
-
 <!-- AdminLTE for demo purposes -->
 <script src="../../AdminLTE-2.3.11/dist/js/demo.js"></script>
-<script type="text/javascript" src="<%=basePath%>js/notice_info.js"></script>
+<!-- CK Editor -->
+<script src="https://cdn.ckeditor.com/4.5.7/standard/ckeditor.js"></script>
+<!-- Bootstrap WYSIHTML5 -->
+<script src="../../AdminLTE-2.3.11/plugins/bootstrap-wysihtml5/bootstrap3-wysihtml5.all.min.js"></script>
+<script>
+  $(function () {
+    // Replace the <textarea id="editor1"> with a CKEditor
+    // instance, using default configuration.
+    CKEDITOR.replace('editor1');
+    //bootstrap WYSIHTML5 - text editor
+    $(".textarea").wysihtml5();
+  });
+
+
+</script>
 </body>
 </html>

@@ -1,14 +1,16 @@
 package com.chuanchen.entity;
 
+import java.util.Date;
+
 /**
  * Created by chuanchenwine on 2017/5/2.
  */
 public class TopAlumnus {
     private int id;
     private String name;
+    private String avatar;
     private String description;
-    private int alumnusId;
-
+    private Date uploadDate;
     public TopAlumnus() {
     }
 
@@ -36,11 +38,19 @@ public class TopAlumnus {
         this.description = description;
     }
 
-    public int getAlumnusId() {
-        return alumnusId;
+    public Date getUploadDate() {
+        return uploadDate;
     }
 
-    public void setAlumnusId(int alumnusId) {
-        this.alumnusId = alumnusId;
+    public void setUploadDate(Date uploadDate) {
+        this.uploadDate = uploadDate;
+    }
+
+    public String getAvatar() {
+        return avatar;
+    }
+
+    public void setAvatar(String avatar) {
+        this.avatar = avatar;
     }
 }
