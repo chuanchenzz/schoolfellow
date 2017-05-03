@@ -38,18 +38,24 @@ public class TopAlumnusController {
         return "add_top_xiaoyou";
     }
 
-    @RequestMapping(value = "uploadTopAlumnus", method = RequestMethod.POST)
+    @RequestMapping(value = "/uploadTopAlumnus", method = RequestMethod.POST)
     public String uploadTopAlumnus(@RequestParam("name") String name, @RequestPart("avatar") MultipartFile avatar, @RequestParam("description") String description, Model model, HttpServletRequest request) {
+        System.out.println("start");
         TopAlumnus topAlumnus = new TopAlumnus();
         topAlumnus.setName(name);
         topAlumnus.setDescription(description);
         topAlumnus.setUploadDate(new Date());
         topAlumnus.setAvatar(saveTopAvatar(avatar, request));
+        String str = "start";
+        System.out.println(str);
+        int i = 1;
         if (topAlumnusService.uploadTopAlumnus(topAlumnus)) {
-            model.addAttribute("uploadResult","true");
+            model.addAttribute("isUpload",1);
+            System.out.println("ok");
             return "add_top_xiaoyou";
         } else {
-            model.addAttribute("uploadResult",false);
+            model.addAttribute("isUpload",0);
+            System.out.println("error");
             return "add_top_xiaoyou";
         }
     }

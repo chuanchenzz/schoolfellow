@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                添加杰出校友
+                添加杰出校友zz
             </h1>
         </section>
 
@@ -209,8 +209,22 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="col-md-8">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">添加杰出校友</h3>
+                            <h3 class="box-title">添加杰出校友zzz<c:out value="${isUpload}dsads"></c:out></h3>
                         </div>
+                        <c:if test="${isUpload == 1}">
+                        <div class="alert alert-success alert-dismissible" id="checksuccess" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                                <h4><i class="icon fa fa-check"></i> 提示!</h4>
+                            添加杰出校友成功!
+                        </div>
+                        </c:if>
+                        <c:if test="${isUpload == 0}">
+                        <div class="alert alert-danger alert-dismissible" id="checkfail" >
+                            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">x</button>
+                            <h4><i class="icon fa fa-ban"></i> 错误!</h4>
+                            添加杰出校友失败,请重新添加!
+                        </div>
+                        </c:if>
                         <form class="form-horizontal" action="/topAlumnus/uploadTopAlumnus" method="post" enctype="multipart/form-data">
                             <div class="box-body">
                                 <div class="form-group">
