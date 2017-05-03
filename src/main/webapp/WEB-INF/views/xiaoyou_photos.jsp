@@ -1,11 +1,11 @@
-<!-- <%@ page contentType="text/html; charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8"%>
+<%@ page contentType="text/html; charset=UTF-8" language="java" import="java.util.*" pageEncoding="UTF-8"%>
 <%
 String path = request.getContextPath();
 String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.getServerPort()+path+"/";
 %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="java.util.*" %>
-<%@ page import="com.chuanchen.entity.*" %> -->
+<%@ page import="com.chuanchen.entity.*" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -142,8 +142,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
             </a>
             <ul class="treeview-menu">
-              <li><a href="#"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
-              <li><a href="#"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
+              <li><a href="/topAlumnus/findTopAlumnus"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
+              <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
             </ul>
           </li>
           <li class="treeview">
@@ -192,10 +192,16 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
     <!-- Content Wrapper. Contains page content -->
     <div class="content-wrapper">
       <!-- Content Header (Page header) -->
+      <section class="content-header">
+        <h1>
+          杰出校友总览
+        </h1>
+      </section>
+
       <!-- Main content -->
       <section class="content">
-        <div class="row" style="margin-left: 250px;margin-top: 30px;">
-          <div class="col-md-9" >
+        <div class="row">
+          <div class="col-md-9">
             <div class="box box-danger">
               <div class="box-header with-border">
                 <h3 class="box-title">杰出校友成员</h3>

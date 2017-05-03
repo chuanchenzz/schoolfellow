@@ -121,7 +121,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
                     </ul>
                 </li>
-                <li class="treeview active">
+                <li class="treeview">
                     <a href="#">
                         <i class="fa fa-pie-chart"></i>
                         <span>校友通知管理</span>
@@ -138,7 +138,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         </li>
                     </ul>
                 </li>
-                <li class="treeview">
+                <li class="treeview active">
                     <a href="#">
                         <i class="fa fa-laptop"></i>
                         <span>杰出校友管理</span>
@@ -147,8 +147,8 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
-                        <li><a href="/notice"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
+                       <li><a href="/topAlumnus/findTopAlumnus"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
+                       <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -211,17 +211,17 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                         <div class="box-header with-border">
                             <h3 class="box-title">添加杰出校友</h3>
                         </div>
-                        <form class="form-horizontal">
+                        <form class="form-horizontal" action="/topAlumnus/uploadTopAlumnus" method="post" enctype="multipart/form-data">
                             <div class="box-body">
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">姓名:</label>
                                     <div class="col-sm-10"><input type="text" class="form-control" id="inputEmail3"
-                                                                  name="top_alumnus_name" placeholder="陈川"></div>
+                                                                  name="name" placeholder="陈川"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">头像:</label>
                                     <div class="col-sm-10"><input type="file" class="form-control" id="inputAvatar"
-                                                                  name="top_alumnus_avatar"></div>
+                                                                  name="avatar"></div>
                                 </div>
                                 <div class="form-group">
                                     <label class="col-sm-2 control-label">描述:</label>
@@ -240,7 +240,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                         </div>
                                         <!-- /.box-header -->
                                         <div class="box-body pad">
-                                                <textarea id="editor1" name="editor1" rows="10" cols="80">
+                                                <textarea id="editor1" name="description" rows="10" cols="80">
                                          
                                                 </textarea>
                                         </div>
@@ -249,7 +249,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                                 </div>
                                 <div class="col-sm-2" style="margin-left: 400px;">
                                 <div class="form-group">
-                                    <button type="button" class="btn btn-block btn-info">提交</button>
+                                    <button type="submit" class="btn btn-block btn-info" id="upload">提交</button>
                                 </div>
                                 </div>
                             </div>
@@ -299,5 +299,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 
 
 </script>
+<script src="../../js/add_top_xiaoyou.js"></script>
 </body>
 </html>

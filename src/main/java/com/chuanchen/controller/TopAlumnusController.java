@@ -32,31 +32,41 @@ public class TopAlumnusController {
     TopAlumnusService topAlumnusService;
     @Autowired
     Environment environment;
-    @RequestMapping(value = "/addTopAlumnusPage",method = RequestMethod.GET)
-    public String addTopAlumnusPage(HttpSession session, Model model){
+
+    @RequestMapping(value = "/addTopAlumnusPage", method = RequestMethod.GET)
+    public String addTopAlumnusPage(HttpSession session, Model model) {
         return "add_top_xiaoyou";
     }
-    @RequestMapping(value = "uploadTopAlumnus",method = RequestMethod.POST)
-    public String uploadTopAlumnus(@RequestParam("name") String name, @RequestPart("avatar")MultipartFile avatar,@RequestParam("description") String description,Model model,HttpServletRequest request){
+
+    @RequestMapping(value = "uploadTopAlumnus", method = RequestMethod.POST)
+    public String uploadTopAlumnus(@RequestParam("name") String name, @RequestPart("avatar") MultipartFile avatar, @RequestParam("description") String description, Model model, HttpServletRequest request) {
         TopAlumnus topAlumnus = new TopAlumnus();
         topAlumnus.setName(name);
         topAlumnus.setDescription(description);
         topAlumnus.setUploadDate(new Date());
-        topAlumnus.setAvatar(saveTopAvatar(avatar,request));
-        if(topAlumnusService.uploadTopAlumnus(topAlumnus)){
-            return "";
-        }else {
-            return "";
+        topAlumnus.setAvatar(saveTopAvatar(avatar, request));
+        if (topAlumnusService.uploadTopAlumnus(topAlumnus)) {
+            model.addAttribute("uploadResult","true");
+            return "add_top_xiaoyou";
+        } else {
+            model.addAttribute("uploadResult",false);
+            return "add_top_xiaoyou";
         }
     }
-    private String saveTopAvatar(MultipartFile image,HttpServletRequest request){
-        if(image.getName() != null && !image.getName().equals("") && image.getSize() > 0){
+
+    @RequestMapping(value = "/findTopAlumnus", method = RequestMethod.GET)
+    public String findTopAlumnus() {
+        return "xiaoyou_photos";
+    }
+
+    private String saveTopAvatar(MultipartFile image, HttpServletRequest request) {
+        if (image.getName() != null && !image.getName().equals("") && image.getSize() > 0) {
             String basePath = request.getSession().getServletContext().getRealPath(environment.getProperty("topAvatarsDir"));
-            File file = new File(basePath,image.getOriginalFilename());
-            if(!file.getParentFile().exists()){
+            File file = new File(basePath, image.getOriginalFilename());
+            if (!file.getParentFile().exists()) {
                 file.getParentFile().mkdir();
             }
-            if(!file.exists()){
+            if (!file.exists()) {
                 try {
                     file.createNewFile();
                 } catch (IOException e) {
@@ -69,7 +79,7 @@ public class TopAlumnusController {
                 e.printStackTrace();
             }
             return file.getAbsolutePath();
-        }else {
+        } else {
             return null;
         }
     }
