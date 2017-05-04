@@ -10,6 +10,12 @@
         <result property="description" column="description" jdbcType="VARCHAR"/>
         <result property="uploadDate" column="upload_date" jdbcType="DATE"/>
     </resultMap>
+    <select id="findTopAlumnus" resultMap="BaseResult">
+        select id,name,avatar from top_alumnus order by upload_date desc limit #{begin},#{limit};
+    </select>
+    <select id="getTotalCount" resultType="java.lang.Integer">
+        select count(*) from top_alumnus;
+    </select>
     <insert id="uploadTopAlumnus" parameterType="com.chuanchen.entity.TopAlumnus" useGeneratedKeys="true" keyProperty="id">
         insert into top_alumnus(name,description,upload_date,avatar) values(#{name},#{description},#{uploadDate},#{avatar});
     </insert>

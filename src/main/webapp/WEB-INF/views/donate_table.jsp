@@ -119,7 +119,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <li><a href="/user/findUsers?page=1&limit=15"><i class="fa fa-circle-o"></i> 校友信息表总览</a></li>
             </ul>
           </li>
-          <li class="treeview ">
+          <li class="treeview active">
             <a href="#">
               <i class="fa fa-pie-chart"></i>
               <span>校友通知管理</span>
@@ -133,7 +133,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               <li><a href="/notice/findNotices/3?page=1&limit=15"><i class="fa fa-circle-o"></i> 母校动态管理</a></li>
             </ul>
           </li>
-          <li class="treeview active">
+          <li class="treeview">
             <a href="#">
               <i class="fa fa-laptop"></i>
               <span>杰出校友管理</span>
@@ -194,29 +194,67 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
       <!-- Content Header (Page header) -->
       <section class="content-header">
         <h1>
-          杰出校友总览
+          捐赠表总览
+          <small>总共 <c:out value="${totalCount}"/> 条数据</small>
         </h1>
       </section>
 
       <!-- Main content -->
       <section class="content">
         <div class="row">
-          <div class="col-md-9">
-            <div class="box box-danger">
-              <div class="box-header with-border">
-                <h3 class="box-title">杰出校友成员</h3>
-                <div class="box-tools pull-right"><span class="label label-danger">总共<c:out value="${totalCount}"></c:out>位成员</span></div>
+          <div class="col-xs-12">
+            <div class="box">
+              <div class="box-header">
+                <h3 class="box-title">捐赠表总览</h3>
               </div>
-              <div class="box-body no-padding">
-                <ul class="users-list clearfix">
-                  <c:forEach var="item" items="${topAlumnusList}">
-                    <li><img src="<c:out value='${item.avatar}'></c:out>" alt="User Image"><a href="#" class="users-list-name"><c:out value="${item.name}"></c:out></a></li>
-                  </c:forEach>
-                </ul>
-              </div>
-              <div class="col-sm-12" style="text-align: right;">
-                <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
-                  <ul class="pagination">
+              <!-- /.box-header -->
+              <div class="box-body">
+                <div id="example1_wrapper" class="dataTables_wrapper form-inline dt-bootstrap">
+                  <div class="row">
+                    <div class="col-sm-12" style="text-align: right;">
+                      <div class="example1_filter" id="dataTables_filter">
+                        <label>Search
+                          <input type="search" class="form-control input-sm" placeholder aria-controls="example1">
+                        </label>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-sm-12">
+                      <table id="example1" class="table table-bordered table-striped">
+                        <thead>
+                          <tr>
+                            <th>捐赠人</th>
+                            <th>捐赠金额</th>
+                            <th>捐赠类型</th>
+                            <th>捐赠时间</th>
+                            <th>查看详细信息</th>
+                            <th>删除操作</th>
+                          </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach items="${notices}" var="item">
+                               <tr class="odd gradeX">
+                                <td><c:out value="${item.title}"/></td>
+                                <td><c:out value="${item.userId}"/></td>
+                                <td><c:out value="${item.pubDate}"/></td>
+                                <td><c:out value="${item.type.description}"/></td>
+                                <td><c:out value="${item.status.description}"/></td>
+                                <td><a href="/notice/noticeinfo/${item.id}">查看</a></td>
+                                <td><a href="/user/deletealumnus/${item.id}">删除</a></td>
+                               </tr>
+                            </c:forEach>
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+                <div class="row">
+                  <div class="col-sm-5" style="padding-top: 8px;">
+                    <div class="dataTables_info" id="example1_info" role="status" aria-live="polite">每页最多展示15条数据</div>
+                  </div>
+                  <div class="col-sm-7" style="text-align: right;">
+                    <div class="dataTables_paginate paging_simple_numbers" id="example1_paginate">
+                      <ul class="pagination">
                         <li class="paginate_button previous disabled" id="example1_previous">
                           <a href="#" aria-controls="example1" data-dt-idx="0" tabindex="0">Previous</a>
                         </li>
@@ -242,10 +280,15 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                           <a href="#" aria-controls="example1" data-dt-idx="7" tabindex="0">Next</a>
                         </li>
                       </ul>
+                    </div>
+                  </div>
                 </div>
               </div>
             </div>
+            <!-- /.box-body -->
           </div>
+          <!-- /.row -->
+        </div>
       </div>
     </section>
     <!-- /.content -->

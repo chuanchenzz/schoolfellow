@@ -3,6 +3,7 @@ package com.chuanchen.controller;
 import com.chuanchen.entity.TopAlumnus;
 import com.chuanchen.service.TopAlumnusService;
 import com.chuanchen.service.UserService;
+import com.chuanchen.util.Constant;
 import com.mysql.cj.core.util.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.PropertySource;
@@ -20,6 +21,7 @@ import javax.servlet.http.HttpSession;
 import java.io.File;
 import java.io.IOException;
 import java.util.Date;
+import java.util.List;
 
 /**
  * Created by chuanchenwine on 2017/5/2.
@@ -40,31 +42,45 @@ public class TopAlumnusController {
 
     @RequestMapping(value = "/uploadTopAlumnus", method = RequestMethod.POST)
     public String uploadTopAlumnus(@RequestParam("name") String name, @RequestPart("avatar") MultipartFile avatar, @RequestParam("description") String description, Model model, HttpServletRequest request) {
-        System.out.println("start");
         TopAlumnus topAlumnus = new TopAlumnus();
         topAlumnus.setName(name);
         topAlumnus.setDescription(description);
         topAlumnus.setUploadDate(new Date());
         topAlumnus.setAvatar(saveTopAvatar(avatar, request));
-        String str = "start";
-        System.out.println(str);
-        int i = 1;
         if (topAlumnusService.uploadTopAlumnus(topAlumnus)) {
             model.addAttribute("isUpload",1);
-            System.out.println("ok");
             return "add_top_xiaoyou";
         } else {
             model.addAttribute("isUpload",0);
-            System.out.println("error");
             return "add_top_xiaoyou";
         }
     }
 
     @RequestMapping(value = "/findTopAlumnus", method = RequestMethod.GET)
-    public String findTopAlumnus() {
+    public String findTopAlumnus(@RequestParam("page") int page,@RequestParam("limit") int limit,Model model) {
+        int totalCount = topAlumnusService.getTotalCount();
+        int pageCount = pageCount(totalCount);
+        if(page <= 0){
+            page = 1;
+        }
+        if(page > pageCount){
+            page = pageCount;
+        }
+        if(limit != Constant.TOPALUMNUS_PAGE_COUNT){
+            limit = Constant.TOPALUMNUS_PAGE_COUNT;
+        }
+        List<TopAlumnus> topAlumnusList = topAlumnusService.findTopAlumnus(page,limit);
+        model.addAttribute("topAlumnusList",topAlumnusList);
+        model.addAttribute("totalCount",totalCount);
+        model.addAttribute("pageCount",pageCount);
         return "xiaoyou_photos";
     }
-
+    private int pageCount(int totalCount) {
+        if(totalCount / Constant.TOPALUMNUS_PAGE_COUNT == 0){
+            return 1;
+        }
+        return totalCount % Constant.TOPALUMNUS_PAGE_COUNT == 0 ? totalCount / Constant.TOPALUMNUS_PAGE_COUNT : totalCount / Constant.TOPALUMNUS_PAGE_COUNT + 1;
+    }
     private String saveTopAvatar(MultipartFile image, HttpServletRequest request) {
         if (image.getName() != null && !image.getName().equals("") && image.getSize() > 0) {
             String basePath = request.getSession().getServletContext().getRealPath(environment.getProperty("topAvatarsDir"));

@@ -147,7 +147,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                       <li><a href="/topAlumnus/findTopAlumnus"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
+                       <li><a href="/topAlumnus/findTopAlumnus?page=1&limit=16"><i class="fa fa-circle-o"></i> 杰出校友总览</a></li>
                        <li><a href="/topAlumnus/addTopAlumnusPage"><i class="fa fa-circle-o"></i> 添加杰出校友</a></li>
                     </ul>
                 </li>
@@ -159,9 +159,9 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
               </span>
                     </a>
                     <ul class="treeview-menu">
-                        <li><a href="#"><i class="fa fa-circle-o"></i> General Elements</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Advanced Elements</a></li>
-                        <li><a href="#"><i class="fa fa-circle-o"></i> Editors</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠表总览</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 发布捐赠消息</a></li>
+                        <li><a href="#"><i class="fa fa-circle-o"></i> 捐赠流程</a></li>
                     </ul>
                 </li>
                 <li class="treeview">
@@ -199,7 +199,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
         <!-- Content Header (Page header) -->
         <section class="content-header">
             <h1>
-                添加杰出校友zz
+                添加杰出校友
             </h1>
         </section>
 
@@ -209,7 +209,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
                 <div class="col-md-8">
                     <div class="box box-info">
                         <div class="box-header with-border">
-                            <h3 class="box-title">添加杰出校友zzz<c:out value="${isUpload}dsads"></c:out></h3>
+                            <h3 class="box-title">添加杰出校友</h3>
                         </div>
                         <c:if test="${isUpload == 1}">
                         <div class="alert alert-success alert-dismissible" id="checksuccess" >
